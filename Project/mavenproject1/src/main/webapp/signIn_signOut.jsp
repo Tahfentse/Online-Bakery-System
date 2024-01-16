@@ -246,7 +246,7 @@
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="#">
-			<h1>Create Account</h1>
+			<h1>Create New Account</h1>
 			
 			
                         <p>Title <select name ="" size='1'>
