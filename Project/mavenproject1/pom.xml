@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>za.co.mie</groupId>
-    <artifactId>Online-Bakery-System</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>za.ac.mie.Online-Bakery-System</groupId>
+    <artifactId>mavenproject1</artifactId>
+    <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>Online-Bakery-System</name>
+    <name>OnlineBakerySystem</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
