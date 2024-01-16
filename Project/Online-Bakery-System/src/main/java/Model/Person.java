@@ -14,6 +14,18 @@ public class Person {
     private String surname;
     private String email;
     private Address address;
+
+    public Person() {
+    }
+
+    public Person(String id_number, String name, String surname, String email, Address address) {
+        this.id_number = id_number;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.address = address;
+    }
+    
     
     
 }
