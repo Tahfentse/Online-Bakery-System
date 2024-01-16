@@ -4,6 +4,8 @@
  */
 package za.ac.bakery.model;
 
+import java.util.List;
+
 /**
  *
  * @author Train
@@ -18,7 +20,6 @@ public class Item {
     private String itemNutrientInformation;
     private List<Ingridient> ingridients;
     private String catergory;
-
 
     public Item() {
     }
@@ -86,7 +87,7 @@ public class Item {
         return ingridients;
     }
 
-    public void setIngridients(List<Ingridient>) {
+    public void setIngridients(List<Ingridient> ingridients) {
         this.ingridients = ingridients;
     }
 
@@ -100,7 +101,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" + "itemId " + itemId + ", ItemName " + ItemName + ", itemDescription " + itemDescription + " itemWarning :" + itemWarning + " itemPrice : " + itemPrice + "itemNutrientInformation : " + itemNutrientInformation ,"ingridients : "+ingridients,"Category : "+catergory;
+        return "Item{" + "itemId " + itemId + ", ItemName " + ItemName + ", itemDescription " + itemDescription + " itemWarning :" + itemWarning + " itemPrice : " + itemPrice + "itemNutrientInformation : " + itemNutrientInformation + "ingridients : " + ingridients + "Category : " + catergory;
     }
 
 }
