@@ -4,10 +4,78 @@
  */
 package za.ac.bakery.Processor;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import za.ac.bakery.Controller.ProcessRequest;
+import za.ac.bakery.dao.AdminDao;
+import za.ac.bakery.dao.CustomerDao;
+import za.ac.bakery.databaseManager.Dbmanager;
+import za.ac.bakery.model.Ingridient;
+import za.ac.bakery.model.Item;
+import za.ac.bakery.model.Person;
+import za.ac.bakery.service.Service;
+
 /**
  *
  * @author Train
  */
-public class AdminProcessor {
-    
+public class AdminProcessor extends ProcessRequest {
+
+    private Dbmanager db;
+    private Connection con;
+    private List<Person> customers;
+    private Service service;
+
+    public AdminProcessor(String url, String username, String password) {
+        service = new Service(url, username, password);
+    }
+
+    @Override
+    public void Request(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+        String act = request.getParameter("");
+        act = act.toLowerCase();
+
+        switch (act) {
+            case "createadmin":
+                break;
+                
+            case "getadmin":
+                break;
+                
+            case "updateAdmin":
+                break;
+                
+            case "deleteadmin":
+                break;
+                
+            case "additem":
+                break;
+                
+            case "getItem":
+                break;
+                
+            case "listofitem":
+                break;
+                
+            case "deleteItem":
+                break;
+                
+            case "addSpecialToItem":
+                break;
+        }
+    }
+
 }

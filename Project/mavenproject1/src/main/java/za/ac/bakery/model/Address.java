@@ -61,6 +61,11 @@ public class Address {
     public void setPostal_code(String postal_code) {
         this.postal_code = postal_code;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" + "address_Id=" + address_Id + ", street_name=" + street_name + ", suburb=" + suburb + ", postal_code=" + postal_code + '}';
+    }
     
     
     

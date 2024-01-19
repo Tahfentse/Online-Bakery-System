@@ -4,10 +4,15 @@
  */
 package za.ac.bakery.Processor;
 
+import java.sql.Connection;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import za.ac.bakery.Controller.ProcessRequest;
+import za.ac.bakery.databaseManager.Dbmanager;
+import za.ac.bakery.model.Person;
+import za.ac.bakery.service.Service;
 
 /**
  *
@@ -15,12 +20,34 @@ import za.ac.bakery.Controller.ProcessRequest;
  */
 public class CustomerProcessor extends ProcessRequest {
 
+    private Dbmanager db;
+    private Connection con;
+    private List<Person> customers;
+    private Service service;
+
+    public CustomerProcessor(String url, String username, String password) {
+        service = new Service(url, username, password);
+    }
+
     @Override
     public void Request(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String act = request.getParameter("act");
+
+        act = act.toUpperCase();
+        
+        switch(act){
+            
+            case "addCustomer":
+                break;
+            case "updateCustomer":
+                break;
+            case "createOrder":
+                break;
+            case "checkout":
+                break;
+        }
+        
     }
-    
-    
-    
-    
+
 }

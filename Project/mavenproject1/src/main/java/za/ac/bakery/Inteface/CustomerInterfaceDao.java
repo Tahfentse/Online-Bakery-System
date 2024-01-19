@@ -14,16 +14,18 @@ import za.ac.bakery.model.Person;
  */
 public interface CustomerInterfaceDao {
 
-    public String createCustomer(Person customer);
+    public void createCustomer(Person customer);
 
-    public String deleteCustomer(String email);
+    public void deleteCustomer(String email);
 
-    public void updateCustomer(Person customer);
+    public void updateCustomer(Person customer,String email);
 
     public Person getPerson(String email);
 
     public List<Person> person();
     
-    public void addAddress(Address address);
-
+    public void addAddress(Address address,Person p);
+    
+    public int getPersonAddressId(String email);
+    
 }

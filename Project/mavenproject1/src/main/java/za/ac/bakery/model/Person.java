@@ -9,20 +9,30 @@ package za.ac.bakery.model;
  * @author Train
  */
 public class Person {
-    private int id_Number;
-    private String name ;
+
+    private String id_Number;
+    private String name;
     private String surname;
     private String title;
     private String email;
     private String contact_no;
     private Address Address;
     private String password;
-    
-    
+
     public Person() {
     }
 
-    public Person(int id_Number, String name, String surname,String title,String email, String contact_no, Address Address,String password) {
+    public Person(String id_Number, String name, String surname, String title, String email, String contact_no, String password) {
+        this.id_Number = id_Number;
+        this.name = name;
+        this.surname = surname;
+        this.title = title;
+        this.email = email;
+        this.contact_no = contact_no;
+        this.password = password;
+    }
+
+    public Person(String id_Number, String name, String surname, String title, String email, String contact_no, Address Address, String password) {
         this.id_Number = id_Number;
         this.name = name;
         this.surname = surname;
@@ -57,13 +67,11 @@ public class Person {
         this.title = title;
     }
 
-    
-
-    public int getId_Number() {
+    public String getId_Number() {
         return id_Number;
     }
 
-    public void setId_Number(int id_Number) {
+    public void setId_Number(String id_Number) {
         this.id_Number = id_Number;
     }
 
@@ -98,5 +106,10 @@ public class Person {
     public void setContact_no(String contact_no) {
         this.contact_no = contact_no;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Person{" + "id_Number=" + id_Number + ", name=" + name + ", surname=" + surname + ", title=" + title + ", email=" + email + ", contact_no=" + contact_no + ", Address=" + Address + ", password=" + password + '}';
+    }
+
 }

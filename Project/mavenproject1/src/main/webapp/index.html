@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+</head>
+<body>
+    <form action="OnlineBakeryController" method="GET" enctype="multipart/form-data">
+        
+        <label for="pic">Choose an image:</label>
+        <input type="file" name="image" id="image" accept="image/*" required>
+        <br>
+        <input type="hidden" value="pro" name="pro"/>
+        <input type="hidden" value="pic" name="act"/>
+        <input type="submit" value="Upload">
+    </form>
+
+</body>
 </html>
