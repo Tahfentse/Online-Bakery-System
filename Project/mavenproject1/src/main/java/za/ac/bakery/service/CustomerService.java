@@ -17,26 +17,6 @@ import za.ac.bakery.model.Person;
  */
 public interface CustomerService {
 
-    public void createAdmin(Person Admin);
-
-    public void updateAdmin(Person Admin);
-
-    public Person getAdmin(Person Admin);
-
-    public List<Person> getAlladmin();
-
-    public void deleteAdmin(String adminEmail);
-
-    public void createItem(Item item);
-
-    public Item getItem(int itemId);
-
-    public void deleteItem(int ItemId);
-
-    public void updateItem(Item item);
-
-    public void uploadPicture(InputStream is, int id);
-
     public void createCustomer(Person customer);
 
     public void deleteCustomer(String email);
@@ -45,17 +25,11 @@ public interface CustomerService {
 
     public Person getPerson(String email);
 
-    public List<Person> person();
+    public List<Person> people();
 
     public void addAddress(Address address, Person p);
 
     public int getPersonAddressId(String email);
 
-    public void createOrder(Order order);
-
-    public void updateOrder(Order order);
-
-    public Order getOrder(int orderNum);
-
-    public void MappingItemWithOrder(Order order);
+  
 }
