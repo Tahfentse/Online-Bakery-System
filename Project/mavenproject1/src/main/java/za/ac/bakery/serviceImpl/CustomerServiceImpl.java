@@ -22,82 +22,12 @@ import za.ac.bakery.service.CustomerService;
  */
 public class CustomerServiceImpl implements CustomerService {
 
-    private AdminDaoImpl admindao;
     private CustomerDaoImpl customerdao;
-    private OrderDaoImpl orderdao;
-    private StockDaoImpl stockdao;
 
     public CustomerServiceImpl(String url, String username, String password) {
-        this.admindao = new AdminDaoImpl(url, username, password);
+
         this.customerdao = new CustomerDaoImpl(url, username, password);
-        this.orderdao = new OrderDaoImpl(url, username, password);
-        this.stockdao = new StockDaoImpl(url, username, password);
-    }
 
-    public void createAdmin(Person Admin) {
-
-        admindao.createAdmin(Admin);
-
-    }
-
-    @Override
-    public void updateAdmin(Person Admin) {
-
-        admindao.updateAdmin(Admin);
-
-    }
-
-    @Override
-    public Person getAdmin(Person Admin) {
-
-        return admindao.getAdmin(Admin);
-
-    }
-
-    @Override
-    public List<Person> getAlladmin() {
-
-        return admindao.getAlladmin();
-
-    }
-
-    @Override
-    public void deleteAdmin(String adminEmail) {
-
-        admindao.deleteAdmin(adminEmail);
-
-    }
-
-    @Override
-    public void createItem(Item item) {
-
-        admindao.createItem(item);
-
-    }
-
-    @Override
-    public Item getItem(int itemId) {
-
-        return admindao.getItem(itemId);
-
-    }
-
-    @Override
-    public void deleteItem(int ItemId) {
-
-        admindao.deleteItem(ItemId);
-
-    }
-
-    @Override
-    public void updateItem(Item item) {
-
-        admindao.updateItem(item);
-    }
-
-    @Override
-    public void uploadPicture(InputStream is, int id) {
-        admindao.uploadPicture(is, id);
     }
 
     @Override
@@ -119,12 +49,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Person getPerson(String email) {
-        return customerdao.getPerson(email);
-    }
+        Person person = customerdao.getPerson(email);
 
-    @Override
-    public List<Person> person() {
-        return customerdao.person();
+        if (person.getEmail() != null) {
+            return person;
+        }
+        
+        return new Person();
     }
 
     @Override
@@ -138,23 +69,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void createOrder(Order order) {
-        orderdao.createOrder(order);
+    public List<Person> people() {
+        return customerdao.person();
     }
-
-    @Override
-    public void updateOrder(Order order) {
-        orderdao.updateOrder(order);
-    }
-
-    @Override
-    public Order getOrder(int orderNum) {
-        return orderdao.getOrder(orderNum);
-    }
-
-    @Override
-    public void MappingItemWithOrder(Order order) {
-        orderdao.MappingItemWithOrder(order);
-    }
-
 }

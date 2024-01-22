@@ -115,7 +115,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
             System.out.println("Error : " + ex.getMessage());
         }
-        return null;
+        return new Person();
     }
 
     @Override
