@@ -49,6 +49,9 @@ public class CustomerController extends HttpServlet {
         switch (action) {
 
             case "signup":
+                title = request.getParameter("title");
+                
+                
 
         }
 
