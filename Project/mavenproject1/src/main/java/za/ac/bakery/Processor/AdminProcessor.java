@@ -19,13 +19,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import za.ac.bakery.Controller.ProcessRequest;
-import za.ac.bakery.dao.AdminDao;
-import za.ac.bakery.dao.CustomerDao;
+import za.ac.bakery.daoImpl.AdminDaoImpl;
+import za.ac.bakery.daoImpl.CustomerDaoImpl;
 import za.ac.bakery.databaseManager.Dbmanager;
 import za.ac.bakery.model.Ingridient;
 import za.ac.bakery.model.Item;
 import za.ac.bakery.model.Person;
-import za.ac.bakery.service.Service;
+
+import za.ac.bakery.service.CustomerService;
+import za.ac.bakery.serviceImpl.AdminServiceImpl;
 
 /**
  *
@@ -36,10 +38,10 @@ public class AdminProcessor extends ProcessRequest {
     private Dbmanager db;
     private Connection con;
     private List<Person> customers;
-    private Service service;
+    private AdminServiceImpl service;
 
     public AdminProcessor(String url, String username, String password) {
-        service = new Service(url, username, password);
+        service = new AdminServiceImpl(url, username, password);
     }
 
     @Override
@@ -51,28 +53,28 @@ public class AdminProcessor extends ProcessRequest {
         switch (act) {
             case "createadmin":
                 break;
-                
+
             case "getadmin":
                 break;
-                
+
             case "updateAdmin":
                 break;
-                
+
             case "deleteadmin":
                 break;
-                
+
             case "additem":
                 break;
-                
+
             case "getItem":
                 break;
-                
+
             case "listofitem":
                 break;
-                
+
             case "deleteItem":
                 break;
-                
+
             case "addSpecialToItem":
                 break;
         }

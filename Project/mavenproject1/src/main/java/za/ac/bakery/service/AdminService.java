@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package za.ac.bakery.dao;
+package za.ac.bakery.service;
 
 import java.io.InputStream;
 import java.util.List;
@@ -13,9 +13,8 @@ import za.ac.bakery.model.Person;
  *
  * @author Train
  */
-public interface AdminDao {
-
-    public void createAdmin(Person Admin);
+public interface AdminService {
+     public void createAdmin(Person Admin);
 
     public void updateAdmin(Person Admin);
 
@@ -32,7 +31,7 @@ public interface AdminDao {
     public void deleteItem(int ItemId);
 
     public void updateItem(Item item);
-    
-    public void uploadPicture(InputStream is,int id);
+
+    public void uploadPicture(InputStream is, int id);
 
 }

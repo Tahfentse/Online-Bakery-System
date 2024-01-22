@@ -12,7 +12,9 @@ import javax.servlet.http.HttpSession;
 import za.ac.bakery.Controller.ProcessRequest;
 import za.ac.bakery.databaseManager.Dbmanager;
 import za.ac.bakery.model.Person;
-import za.ac.bakery.service.Service;
+
+import za.ac.bakery.service.CustomerService;
+import za.ac.bakery.serviceImpl.CustomerServiceImpl;
 
 /**
  *
@@ -23,10 +25,10 @@ public class OrderProcessor extends ProcessRequest {
     private Dbmanager db;
     private Connection con;
     private List<Person> customers;
-    private Service service;
+    private CustomerService service;
 
     public OrderProcessor(String url, String username, String password) {
-        service = new Service(url, username, password);
+        service = new CustomerServiceImpl(url, username, password);
     }
 
     @Override

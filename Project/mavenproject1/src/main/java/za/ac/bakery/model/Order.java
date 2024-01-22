@@ -15,7 +15,7 @@ public class Order {
     private String OrderId;
     private Double price;
     private List<Item> items;
-    private Timestamp timestamp;
+    private Timestamp timestamp; 
 
     public Order() {
     }
