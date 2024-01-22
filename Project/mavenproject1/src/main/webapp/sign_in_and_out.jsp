@@ -17,11 +17,11 @@
         <!-- partial:index.partial.html -->
         <div class="container" id="container">
             <div class="form-container sign-up-container">
-                <form action="#">
+                <form action="CustomerController" method="Post">
                     <h1>Create Account</h1>
 
 
-                    <p>Title <select name ="" size='1'>
+                    <p>Title <select name ="title" size='1'>
                             <option value='1'>Mr</option>
                             <option value='2'>Ms</option>
                             <option value='3'>Miss</option>
@@ -29,15 +29,15 @@
                             <option value='5'>Dr</option>
                         </select>
                     </p>
-                    <input type="text" placeholder="ID/Passport" />
-                    <input type="text" placeholder="Name" />
-                    <input type="text" placeholder="Surname" />
-                    <input type="text" placeholder="Contact No" />
-                    <input type="text" placeholder="Address" />
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <input type="password" placeholder="Confirm Password" />
+                    <input type="text" name="id" placeholder="ID/Passport" />
+                    <input type="text" name="name" placeholder="Name" />
+                    <input type="text" name="surname" placeholder="Surname" />
+                    <input type="text" name="contactno" placeholder="Contact No" />
+                    <input type="email" name="email" placeholder="Email" />
+                    <input type="password" name="password" placeholder="Password" />
+                    <input type="password" name="verifypassword" placeholder="Confirm Password" />
                     <button>Sign Up</button>
+                    <input text="hidden" value="signup" name="act">
                 </form>
             </div>
             <div class="form-container sign-in-container">

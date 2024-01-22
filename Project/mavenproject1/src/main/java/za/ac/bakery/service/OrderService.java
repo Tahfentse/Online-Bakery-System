@@ -4,10 +4,19 @@
  */
 package za.ac.bakery.service;
 
+import za.ac.bakery.model.Order;
+
 /**
  *
  * @author Train
  */
 public interface OrderService {
-    
+      public void createOrder(Order order);
+
+    public void updateOrder(Order order);
+
+    public Order getOrder(int orderNum);
+
+    public void MappingItemWithOrder(Order order);
+      
 }
