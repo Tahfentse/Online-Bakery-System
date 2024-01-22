@@ -10,8 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sign Up</title>
+        <link rel="website icon" type="png" href="img/logo.png">
     </head>
-     <style>
+
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #FEF7E4; /* Vanilla Cream */
@@ -60,7 +62,7 @@
         function validateForm() {
             var password = document.getElementById('password').value;
             var email = document.getElementById('email').value;
-           
+
 
             // Check if any of the input values contain only white spaces
             if (/^\s*$/.test(password) || /^\s*$/.test(email)) {
@@ -73,19 +75,19 @@
         }
     </script>
 
-<body>
-    <form onsubmit="return validateForm();">
-        <h2>Sign In</h2>
+    <body>
+        <form onsubmit="return validateForm();">
+            <h2>Sign In</h2>
 
-        
 
-        <label for="email">E-mail address</label>
-        <input type="email" id="email" name="email" required>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required />
-        
-        <button type="submit">Login</button>
-     
-    </form>
+
+            <label for="email">E-mail address</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <button type="submit">Login</button>
+
+        </form>
     </body>
 </html>

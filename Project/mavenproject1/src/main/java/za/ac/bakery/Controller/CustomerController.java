@@ -82,13 +82,13 @@ public class CustomerController extends HttpServlet {
 
                     customerservice.createCustomer(customer);
                     session.setAttribute("person", customer);
-                    path = "sign_in_and_out.jsp";
+                    path = "homein.jsp";
                     System.out.println(" NULL");
 
                 } else {
 
                     System.out.println("NOT NULL");
-                    path = "Item.jsp";
+                    path = "sign_in.jsp";
 
                 }
 

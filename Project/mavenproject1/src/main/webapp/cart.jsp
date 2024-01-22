@@ -9,6 +9,7 @@
 <html>
 <head>
   <title>Cart View</title>
+   <link rel="website icon" type="png" href="img/logo.png">
   <style>
    
   </style>

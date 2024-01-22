@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Page - To Pie Four Bakery</title>
+     <link rel="website icon" type="png" href="img/logo.png">
     <style>
         body {
             font-family: Arial, sans-serif;

@@ -105,7 +105,7 @@ public class AdminDaoImpl implements AdminDao {
 
             System.out.println("Error : " + ex.getMessage());
         }
-        return null;
+        return new Person();
 
     }
 
@@ -134,7 +134,7 @@ public class AdminDaoImpl implements AdminDao {
 
             System.out.println("Error : " + ex.getMessage());
         }
-        return null;
+        return new ArrayList<>();
 
     }
 
