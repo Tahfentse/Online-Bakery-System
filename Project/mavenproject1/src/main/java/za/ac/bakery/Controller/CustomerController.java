@@ -36,6 +36,8 @@ public class CustomerController extends HttpServlet {
     private HttpSession session;
     private String tempEmail;
     private List<Person> customers;
+    private String message;
+    private String realpath;
 
     public CustomerController() {
         customerservice = new CustomerServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
@@ -79,37 +81,59 @@ public class CustomerController extends HttpServlet {
                 if (customer.getEmail() == null) {
 
                     customer = new Person(id, name, surname, title, email, contactno, password);
-
                     customerservice.createCustomer(customer);
-                    session.setAttribute("person", customer);
-                    path = "homein.jsp";
-                    System.out.println(" NULL");
+
+                    message = "Account Succesfully Created!";
+
+                    realpath = "sign_in.jsp";
+
+                    path = "sucessful.jsp";
 
                 } else {
 
-                    System.out.println("NOT NULL");
-                    path = "sign_in.jsp";
+                    message = "User Exist! sign in.";
+
+                    path = "unsuccesful.jsp";
+
+                    realpath = "sign_in.jsp";
 
                 }
+
+                session.setAttribute("path", realpath);
+                session.setAttribute("message", message);
 
                 request.getRequestDispatcher(path).forward(request, response);
 
-            case "login":
+            case "signin":
 
                 email = request.getParameter("email");
                 password = request.getParameter("password");
-                
-                customer =customerservice.getPerson(email);
-                
-                if(customer.getEmail()!=null){
-                    path="home.jsp";
-                }else{
-                    path="sign_in_and_out.jsp";
+
+                customer = customerservice.getPerson(email);
+
+
+                if (customer.getId_Number().length() > 1 && password.equals(customer.getPassword())) {
+
+                    realpath = "home.jsp";
+                    path = "sucessful.jsp";
+
+                    message = "Succesfully Logged In!";
+
+                } else {
+
+                    realpath = "sign_in.jsp";
+
+                    path = "unsuccesful.jsp";
+
+                    message = "Wrong Email or Password!";
+
                 }
-                
-                
-                
-                
+
+                session.setAttribute("path", realpath);
+                session.setAttribute("message", message);
+
+                request.getRequestDispatcher(path).forward(request, response);
+
         }
 
     }

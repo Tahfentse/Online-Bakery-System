@@ -76,7 +76,8 @@
     </script>
 
     <body>
-        <form onsubmit="return validateForm();">
+        <form onsubmit="return validateForm();" action="CustomerController" method="Post" >
+
             <h2>Sign In</h2>
 
 
@@ -85,8 +86,12 @@
             <input type="email" id="email" name="email" required>
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required />
+            
+            <input type="hidden" name="act" value="signin"/>
 
             <button type="submit">Login</button>
+            
+            <p>Don't have an account ? <a href="sign_up.jsp">SIGN Up</a></p>
 
         </form>
     </body>

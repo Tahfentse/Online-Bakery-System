@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="website icon" type="png" href="img/logo.png">
     </head>
     <style>
         /*
@@ -114,14 +115,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     <body>
         <%
             String path = String.valueOf(session.getAttribute("path"));
-            String sucess = String.valueOf(request.getAttribute("success"));
+            String message = String.valueOf(request.getAttribute("message"));
         %>
 
         <form action="action">
             <div class="popup">
                 <div class="popup-content">
                     <img src="img/sucessful.png" alt="user">
-                    <label class="question"><%=sucess%></label>
+                    <label class="question"><%=message%></label>
                     <a href="<%=path%>" value="o" class="button" >OK</a>
                 </div>
             </div>

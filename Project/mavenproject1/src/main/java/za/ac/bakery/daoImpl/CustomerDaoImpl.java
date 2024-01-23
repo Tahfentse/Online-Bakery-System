@@ -149,7 +149,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public void addAddress(Address adrs, Person p) {
 
-        int id = getPersonAddressId(p.getEmail());
+        int id = getPersonAddressId(p.getId_Number());
 
         try {
 
