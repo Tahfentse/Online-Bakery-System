@@ -4,6 +4,7 @@
  */
 package za.ac.bakery.model;
 
+import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -12,75 +13,120 @@ import java.util.List;
  */
 public class Item {
 
-    private String itemId;
-    private String ItemName;
-    private String itemDescription;
-    private String itemWarning;
-    private Double itemPrice;
-    private String itemNutrientInformation;
+    private int item_id;
+    private String item_title;
+    private String item_description;
+    private String item_warnings;
+    private Blob pic ;
+    private String item_nutrients;
+    private String item_category;
     private List<Ingridient> ingridients;
-    private String catergory;
+    private Double item_price;
 
     public Item() {
     }
 
-    public Item(String itemId, String ItemName, String itemDescription, String itemWarning, Double itemPrice, String itemNutrientInformation, List<Ingridient> ingridients, String catergory) {
-        this.itemId = itemId;
-        this.ItemName = ItemName;
-        this.itemDescription = itemDescription;
-        this.itemWarning = itemWarning;
-        this.itemPrice = itemPrice;
-        this.itemNutrientInformation = itemNutrientInformation;
+    public Item(int item_id, String item_title, String item_description, String item_warnings, Blob pic, String item_nutrients, String item_category, List<Ingridient> ingridients, Double item_price) {
+        this.item_id = item_id;
+        this.item_title = item_title;
+        this.item_description = item_description;
+        this.item_warnings = item_warnings;
+        this.pic = pic;
+        this.item_nutrients = item_nutrients;
+        this.item_category = item_category;
         this.ingridients = ingridients;
-        this.catergory = catergory;
+        this.item_price = item_price;
+    }
+    
+    
+
+    
+    public Item(int item_id, String item_title, String item_description, String item_warnings, String item_nutrients, String item_category, List<Ingridient> ingridients, Double item_price) {
+        this.item_id = item_id;
+        this.item_title = item_title;
+        this.item_description = item_description;
+        this.item_warnings = item_warnings;
+        this.item_nutrients = item_nutrients;
+        this.item_category = item_category;
+        this.ingridients = ingridients;
+        this.item_price = item_price;
     }
 
-    public String getItemId() {
-        return itemId;
+    public Item(String item_title, String item_description, String item_warnings, String item_nutrients, String item_category, Double item_price) {
+
+        this.item_title = item_title;
+        this.item_description = item_description;
+        this.item_warnings = item_warnings;
+        this.item_nutrients = item_nutrients;
+        this.item_category = item_category;
+        this.item_price = item_price;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
+    public Item(int item_id, String item_title, String item_description, String item_warnings, String item_nutrients, String item_category, Double item_price) {
+        this.item_id = item_id;
+        this.item_title = item_title;
+        this.item_description = item_description;
+        this.item_warnings = item_warnings;
+        this.item_nutrients = item_nutrients;
+        this.item_category = item_category;
+        this.item_price = item_price;
     }
 
-    public String getItemName() {
-        return ItemName;
+    
+    public int getItem_id() {
+        return item_id;
     }
 
-    public void setItemName(String ItemName) {
-        this.ItemName = ItemName;
+    public void setItem_id(int item_id) {
+        this.item_id = item_id;
     }
 
-    public String getItemDescription() {
-        return itemDescription;
+    public Blob getPic() {
+        return pic;
     }
 
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
+    public void setPic(Blob pic) {
+        this.pic = pic;
     }
 
-    public String getItemWarning() {
-        return itemWarning;
+    public String getItem_title() {
+        return item_title;
     }
 
-    public void setItemWarning(String itemWarning) {
-        this.itemWarning = itemWarning;
+    public void setItem_title(String item_title) {
+        this.item_title = item_title;
     }
 
-    public Double getItemPrice() {
-        return itemPrice;
+    public String getItem_description() {
+        return item_description;
     }
 
-    public void setItemPrice(Double itemPrice) {
-        this.itemPrice = itemPrice;
+    public void setItem_description(String item_description) {
+        this.item_description = item_description;
     }
 
-    public String getItemNutrientInformation() {
-        return itemNutrientInformation;
+    public String getItem_warnings() {
+        return item_warnings;
     }
 
-    public void setItemNutrientInformation(String itemNutrientInformation) {
-        this.itemNutrientInformation = itemNutrientInformation;
+    public void setItem_warnings(String item_warnings) {
+        this.item_warnings = item_warnings;
+    }
+
+    public String getItem_nutrients() {
+        return item_nutrients;
+    }
+
+    public void setItem_nutrients(String item_nutrients) {
+        this.item_nutrients = item_nutrients;
+    }
+
+    public String getItem_category() {
+        return item_category;
+    }
+
+    public void setItem_category(String item_category) {
+        this.item_category = item_category;
     }
 
     public List<Ingridient> getIngridients() {
@@ -91,17 +137,19 @@ public class Item {
         this.ingridients = ingridients;
     }
 
-    public String getCatergory() {
-        return catergory;
+    public Double getItem_price() {
+        return item_price;
     }
 
-    public void setCatergory(String catergory) {
-        this.catergory = catergory;
+    public void setItem_price(Double item_price) {
+        this.item_price = item_price;
     }
 
     @Override
     public String toString() {
-        return "Item{" + "itemId " + itemId + ", ItemName " + ItemName + ", itemDescription " + itemDescription + " itemWarning :" + itemWarning + " itemPrice : " + itemPrice + "itemNutrientInformation : " + itemNutrientInformation + "ingridients : " + ingridients + "Category : " + catergory;
+        return "Item{" + "item_id=" + item_id + ", item_title=" + item_title + ", item_description=" + item_description + ", item_warnings=" + item_warnings + ", pic=" + pic + ", item_nutrients=" + item_nutrients + ", item_category=" + item_category + ", ingridients=" + ingridients + ", item_price=" + item_price + '}';
     }
+
+ 
 
 }

@@ -9,6 +9,8 @@ package za.ac.bakery.model;
  * @author Train
  */
 public class Ingridient {
+
+    private int ingridientId;
     private String ingridient_name;
     private Double ingridient_size;
 
@@ -16,6 +18,13 @@ public class Ingridient {
     }
 
     public Ingridient(String ingridient_name, Double ingridient_size) {
+
+        this.ingridient_name = ingridient_name;
+        this.ingridient_size = ingridient_size;
+    }
+
+    public Ingridient(int ingridientId, String ingridient_name, Double ingridient_size) {
+        this.ingridientId = ingridientId;
         this.ingridient_name = ingridient_name;
         this.ingridient_size = ingridient_size;
     }
@@ -35,5 +44,19 @@ public class Ingridient {
     public void setIngridient_size(Double ingridient_size) {
         this.ingridient_size = ingridient_size;
     }
+
+    public int getIngridientId() {
+        return ingridientId;
+    }
+
+    public void setIngridientId(int ingridientId) {
+        this.ingridientId = ingridientId;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingridient{" + "ingridientId=" + ingridientId + ", ingridient_name=" + ingridient_name + ", ingridient_size=" + ingridient_size + '}';
+    }
     
+
 }
