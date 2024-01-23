@@ -111,6 +111,7 @@ public class CustomerController extends HttpServlet {
 
                 customer = customerservice.getPerson(email);
 
+
                 if (customer.getId_Number().length() > 1 && password.equals(customer.getPassword())) {
 
                     realpath = "home.jsp";

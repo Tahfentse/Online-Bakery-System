@@ -1,3 +1,10 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               8.0.25 - MySQL Community Server - GPL
+-- Server OS:                    Win64
+-- HeidiSQL Version:             12.5.0.6677
+-- --------------------------------------------------------
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -7,10 +14,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Dumping database structure for bakery-systemdb
 DROP DATABASE IF EXISTS `bakery-systemdb`;
 CREATE DATABASE IF NOT EXISTS `bakery-systemdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `bakery-systemdb`;
 
+-- Dumping structure for table bakery-systemdb.address
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE IF NOT EXISTS `address` (
   `address_id` varchar(50) NOT NULL,
@@ -23,30 +33,38 @@ CREATE TABLE IF NOT EXISTS `address` (
   CONSTRAINT `FK_address_person` FOREIGN KEY (`person_id`) REFERENCES `person` (`idNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `ingridient`;
-CREATE TABLE IF NOT EXISTS `ingridient` (
-  `ingridient_id` int NOT NULL AUTO_INCREMENT,
-  `ingridient_name` varchar(50) NOT NULL DEFAULT '0',
-  `ingridient_size` double NOT NULL DEFAULT (0),
+-- Dumping data for table bakery-systemdb.address: ~0 rows (approximately)
+
+-- Dumping structure for table bakery-systemdb.ingredient
+DROP TABLE IF EXISTS `ingredient`;
+CREATE TABLE IF NOT EXISTS `ingredient` (
+  `ingredient_id` int NOT NULL AUTO_INCREMENT,
+  `ingredient_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  `ingredient_size` double NOT NULL DEFAULT '0',
   `item_id` int DEFAULT NULL,
-  PRIMARY KEY (`ingridient_id`),
+  PRIMARY KEY (`ingredient_id`) USING BTREE,
   KEY `FK_ingridient_item` (`item_id`),
   CONSTRAINT `FK_ingridient_item` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumping data for table bakery-systemdb.ingredient: ~0 rows (approximately)
+
+-- Dumping structure for table bakery-systemdb.item
 DROP TABLE IF EXISTS `item`;
 CREATE TABLE IF NOT EXISTS `item` (
   `item_id` int NOT NULL AUTO_INCREMENT,
   `item_title` varchar(50) NOT NULL DEFAULT '0',
   `item_description` varchar(50) NOT NULL DEFAULT '0',
-  `item_warnings` varchar(50) NOT NULL DEFAULT '0',
-  `item_nutrients` varchar(50) NOT NULL DEFAULT '0',
+  `item_nutrients` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `item_pic` longblob,
   `item_category` varchar(50) NOT NULL DEFAULT '',
   `item_price` double NOT NULL DEFAULT (0),
   PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumping data for table bakery-systemdb.item: ~0 rows (approximately)
+
+-- Dumping structure for table bakery-systemdb.oderitemid
 DROP TABLE IF EXISTS `oderitemid`;
 CREATE TABLE IF NOT EXISTS `oderitemid` (
   `OrderId` int NOT NULL,
@@ -56,17 +74,24 @@ CREATE TABLE IF NOT EXISTS `oderitemid` (
   KEY `FK_oderitemid_order` (`OrderId`),
   KEY `FK_oderitemid_item` (`ItemId`),
   CONSTRAINT `FK_oderitemid_item` FOREIGN KEY (`ItemId`) REFERENCES `item` (`item_id`),
-  CONSTRAINT `FK_oderitemid_order` FOREIGN KEY (`OrderId`) REFERENCES `ordert` (`order_id`)
+  CONSTRAINT `FK_oderitemid_order` FOREIGN KEY (`OrderId`) REFERENCES `order` (`order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `ordert`;
-CREATE TABLE IF NOT EXISTS `ordert` (
+-- Dumping data for table bakery-systemdb.oderitemid: ~0 rows (approximately)
+
+-- Dumping structure for table bakery-systemdb.order
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE IF NOT EXISTS `order` (
   `order_id` int NOT NULL AUTO_INCREMENT,
   `order_price` double NOT NULL DEFAULT (0),
   `orderTimeStamp` timestamp NOT NULL,
+  `item_note` mediumtext,
   PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumping data for table bakery-systemdb.order: ~0 rows (approximately)
+
+-- Dumping structure for table bakery-systemdb.person
 DROP TABLE IF EXISTS `person`;
 CREATE TABLE IF NOT EXISTS `person` (
   `idNumber` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -80,22 +105,48 @@ CREATE TABLE IF NOT EXISTS `person` (
   PRIMARY KEY (`idNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumping data for table bakery-systemdb.person: ~0 rows (approximately)
+
+-- Dumping structure for table bakery-systemdb.recipe
 DROP TABLE IF EXISTS `recipe`;
 CREATE TABLE IF NOT EXISTS `recipe` (
   `recipeid` int NOT NULL DEFAULT (0),
-  `ingridientid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `item_recipe` longtext,
   `size` double NOT NULL DEFAULT (0),
-  KEY `FK_recipe_ingridient` (`recipeid`)
+  KEY `FK_recipe_ingridient` (`recipeid`),
+  CONSTRAINT `FK_recipe_item` FOREIGN KEY (`recipeid`) REFERENCES `item` (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumping data for table bakery-systemdb.recipe: ~0 rows (approximately)
+
+-- Dumping structure for table bakery-systemdb.recipe_ingredient
+DROP TABLE IF EXISTS `recipe_ingredient`;
+CREATE TABLE IF NOT EXISTS `recipe_ingredient` (
+  `recipeIngredient` int NOT NULL AUTO_INCREMENT,
+  `recipeId` int DEFAULT NULL,
+  `ingredientId` int DEFAULT NULL,
+  PRIMARY KEY (`recipeIngredient`),
+  KEY `FK_recipe_ingredient_recipe` (`recipeId`),
+  KEY `FK_recipe_ingredient_ingredient` (`ingredientId`),
+  CONSTRAINT `FK_recipe_ingredient_ingredient` FOREIGN KEY (`ingredientId`) REFERENCES `ingredient` (`ingredient_id`),
+  CONSTRAINT `FK_recipe_ingredient_recipe` FOREIGN KEY (`recipeId`) REFERENCES `recipe` (`recipeid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table bakery-systemdb.recipe_ingredient: ~0 rows (approximately)
+
+-- Dumping structure for table bakery-systemdb.stock
 DROP TABLE IF EXISTS `stock`;
 CREATE TABLE IF NOT EXISTS `stock` (
   `stock_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '0',
   `size` double NOT NULL DEFAULT (0),
-  PRIMARY KEY (`stock_id`)
+  `recipe_id` int NOT NULL DEFAULT (0),
+  PRIMARY KEY (`stock_id`),
+  KEY `FK_stock_recipe` (`recipe_id`),
+  CONSTRAINT `FK_stock_recipe` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`recipeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table bakery-systemdb.stock: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
