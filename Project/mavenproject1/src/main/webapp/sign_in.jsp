@@ -76,7 +76,7 @@
     </script>
 
     <body>
-        <form onsubmit="return validateForm();">
+        <form onsubmit="return validateForm(); action ">
             <h2>Sign In</h2>
 
 
