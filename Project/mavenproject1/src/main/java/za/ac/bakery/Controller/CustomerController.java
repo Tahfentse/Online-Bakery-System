@@ -98,18 +98,15 @@ public class CustomerController extends HttpServlet {
 
                 email = request.getParameter("email");
                 password = request.getParameter("password");
-                
-                customer =customerservice.getPerson(email);
-                
-                if(customer.getEmail()!=null){
-                    path="home.jsp";
-                }else{
-                    path="sign_in_and_out.jsp";
+
+                customer = customerservice.getPerson(email);
+
+                if (customer.getEmail() != null) {
+                    path = "home.jsp";
+                } else {
+                    path = "sign_in_and_out.jsp";
                 }
-                
-                
-                
-                
+
         }
 
     }
