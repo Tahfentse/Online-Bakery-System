@@ -77,6 +77,7 @@
 
     <body>
         <form onsubmit="return validateForm();" action="CustomerController" method="Post" >
+
             <h2>Sign In</h2>
 
 
