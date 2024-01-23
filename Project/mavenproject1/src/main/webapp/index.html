@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To 2Pie4 Bakery</title>
+        <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <script src="https://kit.fontawesome.com/ad78bb0d17.js" crossorigin="anonymous"></script>
+        <link rel="website icon" type="png" href="img/logo.png">
+    </head>
+    <body>
+        <!-- Top SECTION -->
+        <div class="container">
+            <div class="top-section">
+                <a href="home.jsp" class="logo"><img src="img/Screenshot (99).png"></a>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <a href="search.jsp" alt="search" onclick="performSearch()" ><i class="fa fa-search" aria-hidden="true"></i></a>
+                </div>
+                <div class="top-icons">
+                    <a href="cart.jsp" class="logo"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a><!--onclick="addToCart()"-->
+                        
+                        <a href="sign_in.jsp" class="profile"><i class="fa fa-user" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <!--End Top SECTION -->
+            <!-- Nav SECTION -->
+            <nav>
+                <a href="#">Menu</a>
+                <a href="#">Cookies</a>
+                <a href="#">Cakes</a>
+                <a href="#">Cupcakes</a>
+                <a href="#">Fresh Bread</a>
+                <a href="#">Pastries</a>
+                <a href="#">Pies</a>
+                <a href="#">Brownies</a>
+                <a href="#">Contact Us</a> 
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+            </nav>
+            <!--End Nav SECTION -->
+            <!-- Welcome SECTION -->
+            <div class="welcome-section">
+                <h1>Welcome to 2Pie4 Bakery</h1>
+                <p>Indulge your senses in our delicious and freshly baked treats. From cookies to cakes, we have it all!</p>
+            </div>
+            <!--End Welcome SECTION -->
+            <!-- HERO SLIDER SECTION -->
+            <div class="mobile-toggle">          
+            </div>                         
+            <div class="hero">
+
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <!-- slide -->
+                        <div class="swiper-slide">
+                            <div class="hero__slide">
+                                <div class="hero__slide__txt">
+                                    Cookies
+                                </div>
+                                <div class="hero__slide__img">
+                                    <img src="./category/cookies/vegan_chocolate_chip.png" alt="Category 1">
+                                    <button class="btn btn-left" data-speed="-5">Get Cookies</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end slide -->
+                        <!-- slide -->
+                        <div class="swiper-slide">
+                            <div class="hero__slide">
+                                <div class="hero__slide__txt">
+                                    Cakes
+                                </div>
+                                <div class="hero__slide__img">
+                                    <img src="./category/cakes/fruity.png" alt="Category 2">
+                                    <button class="btn btn-left" data-speed="-5">Get Cakes</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end slide -->
+                        <!-- slide -->
+                        <div class="swiper-slide">
+                            <div class="hero__slide">
+                                <div class="hero__slide__txt">
+                                    Cupcakes
+                                </div>
+                                <div class="hero__slide__img">
+                                    <img src="./category/cupcake/lunchbar.png" alt="Category 3">
+                                    <button class="btn btn-left" data-speed="-5">Get Cakecups</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end slide -->
+                        <!-- slide -->
+                        <div class="swiper-slide">
+                            <div class="hero__slide">
+                                <div class="hero__slide__txt">
+                                    Brownies
+                                </div>
+                                <div class="hero__slide__img">
+                                    <img src="./category/brownies/brownies.png" alt="Category 4">
+                                    <button class="btn btn-left" data-speed="-5">Get Brownies</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end slide -->
+                        <!-- slide -->
+                        <div class="swiper-slide">
+                            <div class="hero__slide">
+                                <div class="hero__slide__txt">
+                                    Fresh Bread
+                                </div>
+                                <div class="hero__slide__img">
+                                    <img src="./category/bread/oat.png" alt="Category 5">
+
+                                    <button class="btn btn-left" data-speed="-5">Get Fresh Bread</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end slide -->
+                        <!-- slide -->
+                        <div class="swiper-slide">
+                            <div class="hero__slide">
+                                <div class="hero__slide__txt">
+                                    Pies
+                                </div>
+                                <div class="hero__slide__img">
+                                    <img src="./category/pies/chicken.png" alt="Category 6">
+                                    <button class="btn btn-left" data-speed="-5">Get Pies</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end slide -->
+                        <!-- slide -->
+                        <div class="swiper-slide">
+                            <div class="hero__slide">
+                                <div class="hero__slide__txt">
+                                    Donuts
+                                </div>
+                                <div class="hero__slide__img">
+                                    <img src="./category/donuts/bubble_gum_with_sprinkles.png" alt="Category 7">
+                                    <button class="btn btn-left" data-speed="-5">Get Donut</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end slide -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>                           
+            </div>
+
+            <!-- Swiper JS -->
+            <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+            <!-- App JS -->
+            <script src="./app/js/app.js"></script>
+            <!-- END HERO SLIDER -->
+            <!-- ABOUT SECTION -->
+            <div class="section">                               
+                <div class="about">
+                    <div class="about__img">
+                        <img src="./img/cupcake (8).png" alt="">
+                    </div>
+                    <div class="about__info">
+                        <div class="section__header">About Us</div>
+                        <h2 class="about__info__title">2Pie4<span class="txt-main">Bakery</span></h2>                                        					
+                        <p class="about__info__description">
+                            At 2π4 Bakery, we are passionate about creating delicious and delightful treats
+                            that match your taste buds to haven. Our journey began in 2019 when our founder, Mrs Pat Cake.,
+                            decided to turn her love for baking into a business.
+                        </p >
+                        <p class="about__info__description">
+                            Since then, we have been dedicated to crafting high-quality pie, cakes, cookies, and
+                            other sweet treats using the finest ingredients. Our commitment to excellence and creativity
+                            has made us a beloved bakery in the community.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- END ABOUT SECTION -->                            
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer-content">
+                    <div class="footer-section contact-info">
+                        <h3>Contact Us</h3>
+                        <p>Email: info@2Pie4bakery.com</p>
+                        <p>Phone: +1 (123) 456-7890</p>
+                    </div>
+
+                    <div class="footer-section social-media">
+                        <h3>Follow Us</h3>
+                        <a href="#" target="_blank"><img src="img/facebook.png" alt="Facebook"></a>
+                        <a href="#" target="_blank"><img src="img/twitter.png" alt="Twitter"></a>
+                        <a href="#" target="_blank"><img src="img/instagram.png" alt="Instagram"></a>
+                    </div>
+                </div>
+
+                <div class="footer-section copyright">
+                    <p>&copy; 2024 2Pie4 Bakery. All rights reserved.</p>
+                </div>
+            </div>
+            <!--End Footer -->
+        </div>
+        <script>
+                function myFunction() {
+                    var x = document.querySelector("nav");
+                    if (x.className === "") {
+                        x.className = "responsive";
+                    } else {
+                        x.className = "";
+                    }
+                }
+
+                // adding to cart
+                let cartCount = 0;
+
+                function addToCart() {
+                    // Increment the cart count
+                    cartCount++;
+
+                    // Update the cart count element
+                    document.getElementById('cart-count').innerText = cartCount;
+                }
+
+                function performSearch() {
+                    // Your search functionality goes here
+                    alert('Performing search...');
+
+
+
+                }
+        </script>
+    </body>
+</html>
