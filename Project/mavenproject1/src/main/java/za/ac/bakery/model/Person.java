@@ -20,6 +20,14 @@ public class Person {
     private String password;
 
     public Person() {
+
+        this.id_Number = "";
+        this.name = "";
+        this.surname = "";
+        this.title = "";
+        this.email = "";
+        this.contact_no = "";
+        this.password = "";
     }
 
     public Person(String id_Number, String name, String surname, String title, String email, String contact_no, String password) {
