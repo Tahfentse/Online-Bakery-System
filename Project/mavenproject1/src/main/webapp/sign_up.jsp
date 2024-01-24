@@ -90,8 +90,10 @@
 
         <body>
             <form onsubmit="return validateForm();" action="CustomerController" method="Post">
-                <h2>Sign Up</h2>
+               
 
+                <label for="customer_info"><h1>CUSTOMER INFO</h1></label>
+                <br>
                 <label for="title">Title</label>
                 <select id="title" name="title">
                     <option value="Mr.">Mr.</option>
@@ -107,14 +109,28 @@
                 <input type="text" id="surname" name="surname" required>
 
                 <label for="idNumber">ID Number</label>
-                <input type="text" id="idNumber" name="idNumber" required>
+                <input type="text" id="idNumber" name="idPassport" required>
 
                 <label for="phoneNumber">Telephone Number (Mobile)</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                <input type="tel" id="phoneNumber" name="contactNo" required>
 
                 <label for="email">E-mail address</label>
                 <input type="email" id="email" name="email" required>
 
+                
+                <label for="address_info"><h1>Address Info</h1></label>
+                
+                <br>
+                <label for="street_name">Street Name </label>
+                <input type="text" id="street_name" name="street_name" required="">
+
+                <label for="suburb">Suburb </label>
+                <input type="text" id="suburb" name="suburb" required=""/>
+
+                <label for="postal_code">Postal code</label>
+                <input type="type" id="postal_code" name="postal_code" required=""/>
+
+                <br>
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
 
@@ -122,7 +138,7 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" required>
 
                 <input type="hidden" name="act" value="signup"/>
-                
+
                 <button type="submit">Sign Up</button>
 
                 <p>Have an account ? <a href="sign_in.jsp">SIGN IN</a></p>

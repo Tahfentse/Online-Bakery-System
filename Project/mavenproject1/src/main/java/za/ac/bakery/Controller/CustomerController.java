@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import za.ac.bakery.model.Address;
 import za.ac.bakery.model.Person;
 import za.ac.bakery.serviceImpl.CustomerServiceImpl;
 
@@ -31,6 +32,7 @@ public class CustomerController extends HttpServlet {
     private String password;
     private String action;
     private Person customer;
+    private Person existingCustomer;
     private CustomerServiceImpl customerservice;
     private String path;
     private HttpSession session;
@@ -38,6 +40,10 @@ public class CustomerController extends HttpServlet {
     private List<Person> customers;
     private String message;
     private String realpath;
+    private String street_name;
+    private String suburb;
+    private String postalcode;
+    private Address adress;
 
     public CustomerController() {
         customerservice = new CustomerServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
@@ -75,13 +81,25 @@ public class CustomerController extends HttpServlet {
                 contactno = request.getParameter("contactNo");
                 email = request.getParameter("email");
                 password = request.getParameter("password");
+                street_name = request.getParameter("street_name");
+                suburb = request.getParameter("suburb");
+                postalcode = request.getParameter("postal_code");
 
-                customer = customerservice.getPerson(email);
+                existingCustomer = customerservice.getPerson(email);
 
-                if (customer.getEmail() == null) {
+                System.out.println("Customer Email : " + existingCustomer.getEmail());
+
+                if (existingCustomer.getEmail().isEmpty() && existingCustomer.getId_Number().length() > 2) {
 
                     customer = new Person(id, name, surname, title, email, contactno, password);
+
+                    adress = new Address(street_name, suburb, postalcode);
+
+                    System.out.println("Customer : " + customer.getEmail());
+
                     customerservice.createCustomer(customer);
+
+                    customerservice.addAddress(adress, customer);
 
                     message = "Account Succesfully Created!";
 
@@ -112,27 +130,48 @@ public class CustomerController extends HttpServlet {
                 customer = customerservice.getPerson(email);
 
                 System.out.println("Email : " + customer.getEmail());
+                System.out.println("Password : " + customer.getPassword());
+                
+                System.out.println("Role :"+customer.getRole());
 
-                if (customer.getId_Number().length() > 1 && password.equals(customer.getPassword())) {
+                if (customer.getEmail().length() > 2) {
 
-                    realpath = "home.jsp";
-                    path = "sucessful.jsp";
+                    if (customer.getPassword().equals(password)) {
 
-                    message = "Succesfully Logged In!";
-                    session.setAttribute("path", realpath);
-                    session.setAttribute("message", message);
+                        if (customer.getRole().equalsIgnoreCase("customer")) {
+
+                            path = "sucessful.jsp";
+                            realpath = "customerMenu.jsp";
+                            message = "Succesfully Logged In!";
+                        } else {
+
+                            path = "sucessful.jsp";
+                            realpath = "adminmenu.jsp";
+                            message = "Succesfully Logged In!";
+
+                        }
+
+                    } else {
+
+                        path = "unsuccesful.jsp";
+                        realpath = "sign_in.jsp";
+                        message = "Wrong Password !";
+
+                    }
+
                 } else {
 
-                    realpath = "sign_in.jsp";
-
                     path = "unsuccesful.jsp";
+                    realpath = "signs_up.jsp";
 
-                    message = "Wrong Email or Password!";
-                    session.setAttribute("path", realpath);
-                    session.setAttribute("message", message);
+                    message = "User don't exit! SIGN UP!";
+
+                
                 }
 
-                System.out.println("Math : "+message);
+                    session.setAttribute("message", message);
+                    session.setAttribute("path", realpath);
+
                 request.getRequestDispatcher(path).forward(request, response);
 
         }

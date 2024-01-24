@@ -64,7 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public int getPersonAddressId(String email) {
+    public String getPersonAddressId(String email) {
         return customerdao.getPersonAddressId(email);
     }
 

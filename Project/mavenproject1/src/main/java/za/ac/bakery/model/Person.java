@@ -18,6 +18,7 @@ public class Person {
     private String contact_no;
     private Address Address;
     private String password;
+    private String role;
 
     public Person() {
 
@@ -28,6 +29,7 @@ public class Person {
         this.email = "";
         this.contact_no = "";
         this.password = "";
+        this.role="";
     }
 
     public Person(String id_Number, String name, String surname, String title, String email, String contact_no, String password) {
@@ -40,6 +42,19 @@ public class Person {
         this.password = password;
     }
 
+    public Person(String id_Number, String name, String surname, String title, String email, String contact_no, Address Address, String password, String role) {
+        this.id_Number = id_Number;
+        this.name = name;
+        this.surname = surname;
+        this.title = title;
+        this.email = email;
+        this.contact_no = contact_no;
+        this.Address = Address;
+        this.password = password;
+        this.role = role;
+    }
+    
+
     public Person(String id_Number, String name, String surname, String title, String email, String contact_no, Address Address, String password) {
         this.id_Number = id_Number;
         this.name = name;
@@ -51,6 +66,15 @@ public class Person {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    
     public Address getAddress() {
         return Address;
     }
@@ -117,7 +141,9 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" + "id_Number=" + id_Number + ", name=" + name + ", surname=" + surname + ", title=" + title + ", email=" + email + ", contact_no=" + contact_no + ", Address=" + Address + ", password=" + password + '}';
+        return "Person{" + "id_Number=" + id_Number + ", name=" + name + ", surname=" + surname + ", title=" + title + ", email=" + email + ", contact_no=" + contact_no + ", Address=" + Address + ", password=" + password + ", role=" + role + '}';
     }
+
+    
 
 }

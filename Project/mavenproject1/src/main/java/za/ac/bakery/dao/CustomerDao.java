@@ -26,6 +26,6 @@ public interface CustomerDao {
     
     public void addAddress(Address address,Person p);
     
-    public int getPersonAddressId(String email);
+    public String getPersonAddressId(String email);
     
 }
