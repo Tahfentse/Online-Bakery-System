@@ -23,7 +23,7 @@ USE `bakery-systemdb`;
 -- Dumping structure for table bakery-systemdb.address
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE IF NOT EXISTS `address` (
-  `address_id` varchar(50) NOT NULL,
+  `address_id` int NOT NULL AUTO_INCREMENT,
   `street_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `suburb` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `postal_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -34,6 +34,24 @@ CREATE TABLE IF NOT EXISTS `address` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table bakery-systemdb.address: ~0 rows (approximately)
+
+-- Dumping structure for table bakery-systemdb.category
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE IF NOT EXISTS `category` (
+  `categoryId` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`categoryId`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table bakery-systemdb.category: ~7 rows (approximately)
+INSERT INTO `category` (`categoryId`, `name`) VALUES
+	(1, 'cakes'),
+	(2, 'cupcakes'),
+	(3, 'brownies'),
+	(4, 'fresh bread'),
+	(5, 'pies'),
+	(6, 'donuts'),
+	(7, 'cookies');
 
 -- Dumping structure for table bakery-systemdb.ingredient
 DROP TABLE IF EXISTS `ingredient`;
@@ -53,16 +71,20 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
 DROP TABLE IF EXISTS `item`;
 CREATE TABLE IF NOT EXISTS `item` (
   `item_id` int NOT NULL AUTO_INCREMENT,
-  `item_title` varchar(50) NOT NULL DEFAULT '0',
-  `item_description` varchar(50) NOT NULL DEFAULT '0',
+  `item_title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  `item_description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
   `item_nutrients` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `item_pic` longblob,
-  `item_category` varchar(50) NOT NULL DEFAULT '',
-  `item_price` double NOT NULL DEFAULT (0),
-  PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `item_pic` longblob NOT NULL,
+  `item_category` int NOT NULL DEFAULT '0',
+  `item_price` double NOT NULL DEFAULT '0',
+  PRIMARY KEY (`item_id`),
+  KEY `FK_item_category` (`item_category`),
+  CONSTRAINT `FK_item_category` FOREIGN KEY (`item_category`) REFERENCES `category` (`categoryId`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table bakery-systemdb.item: ~0 rows (approximately)
+-- Dumping data for table bakery-systemdb.item: ~1 rows (approximately)
+INSERT INTO `item` (`item_id`, `item_title`, `item_description`, `item_nutrients`, `item_pic`, `item_category`, `item_price`) VALUES
+	(1, 'Banana Bread', 'tsbfhnfehfgv', 'rvfcrfbtfhgrh', _binary '', 4, 2359);
 
 -- Dumping structure for table bakery-systemdb.oderitemid
 DROP TABLE IF EXISTS `oderitemid`;
