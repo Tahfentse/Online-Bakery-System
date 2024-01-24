@@ -107,7 +107,7 @@ public class OrderDaoImpl implements OrderDao { // OrderDaoImpl == these are you
                 String itemWarnings = rs.getString("item_warnings");
                 String itemNutrients = rs.getString("item_nutrients");
                 String itemPic = rs.getString("item_pic");
-                String itemCategory = rs.getString("item_category");
+                int itemCategory = rs.getInt("item_category");
                 double itemPrice = rs.getDouble("item_price");
 
                 int ingredientId = rs.getInt("ingridient_id");

@@ -165,9 +165,9 @@ public class AdminDaoImpl implements AdminDao {
 
             ps.setString(1, item.getItem_title());
             ps.setString(2, item.getItem_description());
-            ps.setString(3, item.getItem_warnings());
+         
             ps.setString(4, item.getItem_nutrients());
-            ps.setString(5, item.getItem_category());
+            ps.setInt(5, item.getItem_category());
             ps.setDouble(6, item.getItem_price());
             ps.executeUpdate();
 
@@ -201,7 +201,7 @@ public class AdminDaoImpl implements AdminDao {
                 if (item == null) {
 
                     item = new Item(rs.getInt("i.item_id"), rs.getString("item_title"), rs.getString("item_description"),
-                            rs.getString("item_warnings"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getString("item_category"),
+                            rs.getString("item_warnings"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getInt("item_category"),
                             ingridients, rs.getDouble("item_price"));
                 }
             }
@@ -239,9 +239,9 @@ public class AdminDaoImpl implements AdminDao {
 
             ps.setString(1, item.getItem_title());
             ps.setString(2, item.getItem_description());
-            ps.setString(3, item.getItem_warnings());
+
             ps.setString(4, item.getItem_nutrients());
-            ps.setString(5, item.getItem_category());
+            ps.setInt(5, item.getItem_category());
             ps.setDouble(6, item.getItem_price());
             ps.setInt(7, item.getItem_id());
 

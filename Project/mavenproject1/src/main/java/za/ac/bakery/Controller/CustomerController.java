@@ -131,8 +131,8 @@ public class CustomerController extends HttpServlet {
 
                 System.out.println("Email : " + customer.getEmail());
                 System.out.println("Password : " + customer.getPassword());
-                
-                System.out.println("Role :"+customer.getRole());
+
+                System.out.println("Role :" + customer.getRole());
 
                 if (customer.getEmail().length() > 2) {
 
@@ -162,15 +162,14 @@ public class CustomerController extends HttpServlet {
                 } else {
 
                     path = "unsuccesful.jsp";
-                    realpath = "signs_up.jsp";
+                    realpath = "sign_up.jsp";
 
                     message = "User don't exit! SIGN UP!";
 
-                
                 }
 
-                    session.setAttribute("message", message);
-                    session.setAttribute("path", realpath);
+                session.setAttribute("message", message);
+                session.setAttribute("path", realpath);
 
                 request.getRequestDispatcher(path).forward(request, response);
 
