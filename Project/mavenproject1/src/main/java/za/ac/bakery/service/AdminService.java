@@ -24,7 +24,11 @@ public interface AdminService {
 
     public void deleteAdmin(String adminEmail);
 
+<<<<<<< HEAD
     public void createItem(Item item);
+=======
+    public int createItem(Item item);
+>>>>>>> Ofentse-branch
 
     public Item getItem(int itemId);
 

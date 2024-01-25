@@ -1,26 +1,3 @@
-<%-- 
-    Document   : sucessful
-    Created on : Jan 22, 2024, 3:08:36 PM
-    Author     : Train
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-<<<<<<< HEAD
-    </head>
-    <style>
-        /*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-        */
-        /* 
-            Created on : May 19, 2022, 6:46:12 PM
-            Author     : letso
-        */
         *{
             margin: 0;
             padding: 0;
@@ -28,6 +5,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
             box-sizing: border-box;
             text-decoration: none;
             list-style: none;
+          
         }
 
         .container{
@@ -88,6 +66,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
             background: #fff;
             border-radius: 20px;
             position:relative;
+              background-color: #FEF7E4;
         }
 
         img{
@@ -111,35 +90,4 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 
 
-    </style>
-    <body>
-        <%
-            String path = String.valueOf(session.getAttribute("path"));
-            String sucess = String.valueOf(request.getAttribute("success"));
-=======
-        <link rel="website icon" type="png" href="img/logo.png">
-        <link href="successful&Unsuccesful.css" rel="stylesheet" type="text/css"/>
-    </head>
-
-    <body>
-        <%
-            String path = String.valueOf(session.getAttribute("path"));
-            String message = String.valueOf(request.getAttribute("message"));
->>>>>>> Ofentse-branch
-        %>
-
-        <form action="action">
-            <div class="popup">
-                <div class="popup-content">
-                    <img src="img/sucessful.png" alt="user">
-<<<<<<< HEAD
-                    <label class="question"><%=sucess%></label>
-=======
-                    <label class="question">${message}</label>
->>>>>>> Ofentse-branch
-                    <a href="<%=path%>" value="o" class="button" >OK</a>
-                </div>
-            </div>
-        </form>
-    </body>
-</html>
+    

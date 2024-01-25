@@ -99,15 +99,26 @@ public class CustomerDaoImpl implements CustomerDao {
         Person p;
         Address a;
         try {
+<<<<<<< HEAD
             ps = con.prepareStatement("SELECT idNumber,name,surname,title,person.personAddrs,contactNo,email,password,ROLE,address.street_name,suburb,postal_code FROM person,address WHERE person.personAddrs =address.address_id AND   email = ? AND ROLE=?");
             ps.setString(1, email);
             ps.setString(2, "customer");
+=======
+            ps = con.prepareStatement("SELECT p.idNumber,p.name,p.surname,p.title,p.contactNo,p.email,p.password,p.role,a.address_id,a.street_name,a.suburb,a.postal_code FROM person p,address a WHERE p.idNumber=a.person_id AND p.email=?");
+            ps.setString(1, email);
+>>>>>>> Ofentse-branch
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
 
+<<<<<<< HEAD
                 a = new Address(rs.getString("address.street_name"), rs.getString("suburb"), rs.getString("postal_code"));
                 p = new Person(rs.getString("idNumber"), rs.getString("name"), rs.getString("surname"), rs.getString("title"), rs.getString("email"), rs.getString("contactNo"), a, rs.getString("password"));
+=======
+                a = new Address(rs.getString("a.street_name"), rs.getString("a.suburb"), rs.getString("a.postal_code"));
+                p = new Person();
+               p= new Person(rs.getString("p.idNumber"), rs.getString("p.name"), rs.getString("p.surname"), rs.getString("p.title"), rs.getString("p.email"), rs.getString("p.contactNo"), a, rs.getString("p.password"),rs.getString("p.role"));
+>>>>>>> Ofentse-branch
                 return p;
             }
 
@@ -149,6 +160,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public void addAddress(Address adrs, Person p) {
 
+<<<<<<< HEAD
         int id = getPersonAddressId(p.getId_Number());
 
         try {
@@ -156,6 +168,15 @@ public class CustomerDaoImpl implements CustomerDao {
             ps = con.prepareStatement("INSERT INTO address (address_id,street_name,suburb,postal_code) VALUES(?,?,?,?)");
 
             ps.setInt(1, id);
+=======
+        String id = getPersonAddressId(p.getId_Number());
+
+        try {
+
+            ps = con.prepareStatement("INSERT INTO address (person_id,street_name,suburb,postal_code) VALUES(?,?,?,?)");
+
+            ps.setString(1, id);
+>>>>>>> Ofentse-branch
 
             ps.setString(2, adrs.getStreet_name());
 
@@ -170,6 +191,7 @@ public class CustomerDaoImpl implements CustomerDao {
         }
     }
 
+<<<<<<< HEAD
     @Override
     public int getPersonAddressId(String email) {
         try {
@@ -189,6 +211,8 @@ public class CustomerDaoImpl implements CustomerDao {
         return 0;
     }
 
+=======
+>>>>>>> Ofentse-branch
     public static void main(String[] args) {
 
         CustomerDaoImpl cust = new CustomerDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
@@ -202,4 +226,26 @@ public class CustomerDaoImpl implements CustomerDao {
         cust.addAddress(adrs, per);
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public String getPersonAddressId(String email) {
+
+        try {
+            ps = con.prepareStatement("SELECT idNumber FROM person WHERE email =?");
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String id = rs.getString("idNumber");
+                return id;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+
+>>>>>>> Ofentse-branch
 }

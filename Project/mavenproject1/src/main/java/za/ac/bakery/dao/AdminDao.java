@@ -25,14 +25,26 @@ public interface AdminDao {
 
     public void deleteAdmin(String adminEmail);
 
+<<<<<<< HEAD
     public void createItem(Item item);
+=======
+    public int createItem(Item item);
+>>>>>>> Ofentse-branch
 
     public Item getItem(int itemId);
 
     public void deleteItem(int ItemId);
 
     public void updateItem(Item item);
+<<<<<<< HEAD
     
     public void uploadPicture(InputStream is,int id);
 
+=======
+
+    public void uploadPicture(InputStream is, int id);
+
+    public int getItemId();
+    
+>>>>>>> Ofentse-branch
 }

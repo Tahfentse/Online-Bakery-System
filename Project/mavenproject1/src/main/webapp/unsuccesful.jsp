@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="website icon" type="png" href="img/logo.png">
+<<<<<<< HEAD
         <style>
 
             *{
@@ -103,10 +104,17 @@
 
 
         </style>
+=======
+        <link href="successful&Unsuccesful.css" rel="stylesheet" type="text/css"/>
+>>>>>>> Ofentse-branch
     </head>
     <body>
         <%
             String path = String.valueOf(session.getAttribute("path"));
+<<<<<<< HEAD
+=======
+            
+>>>>>>> Ofentse-branch
             String message = String.valueOf(request.getAttribute("message"));
         %>
 
@@ -114,7 +122,11 @@
             <div class="popup">
                 <div class="popup-content">
                     <img src="img/unsuccesful.png" alt="user">
+<<<<<<< HEAD
                     <label class="question"><%=message%></label>
+=======
+                    <label class="question">${message}</label>
+>>>>>>> Ofentse-branch
                     <a href="<%=path%>" value="o" class="button" >OK</a>
                 </div>
             </div>

@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+<<<<<<< HEAD
+=======
+import za.ac.bakery.model.Address;
+>>>>>>> Ofentse-branch
 import za.ac.bakery.model.Person;
 import za.ac.bakery.serviceImpl.CustomerServiceImpl;
 
@@ -31,11 +35,24 @@ public class CustomerController extends HttpServlet {
     private String password;
     private String action;
     private Person customer;
+<<<<<<< HEAD
+=======
+    private Person existingCustomer;
+>>>>>>> Ofentse-branch
     private CustomerServiceImpl customerservice;
     private String path;
     private HttpSession session;
     private String tempEmail;
     private List<Person> customers;
+<<<<<<< HEAD
+=======
+    private String message;
+    private String realpath;
+    private String street_name;
+    private String suburb;
+    private String postalcode;
+    private Address adress;
+>>>>>>> Ofentse-branch
 
     public CustomerController() {
         customerservice = new CustomerServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
@@ -73,6 +90,7 @@ public class CustomerController extends HttpServlet {
                 contactno = request.getParameter("contactNo");
                 email = request.getParameter("email");
                 password = request.getParameter("password");
+<<<<<<< HEAD
 
                 customer = customerservice.getPerson(email);
 
@@ -95,18 +113,109 @@ public class CustomerController extends HttpServlet {
                 request.getRequestDispatcher(path).forward(request, response);
 
             case "login":
+=======
+                street_name = request.getParameter("street_name");
+                suburb = request.getParameter("suburb");
+                postalcode = request.getParameter("postal_code");
+
+                existingCustomer = customerservice.getPerson(email);
+
+                System.out.println("Customer Email : " + existingCustomer.getEmail());
+
+                if (existingCustomer.getEmail().isEmpty() && existingCustomer.getId_Number().length() > 2) {
+
+                    customer = new Person(id, name, surname, title, email, contactno, password);
+
+                    adress = new Address(street_name, suburb, postalcode);
+
+                    System.out.println("Customer : " + customer.getEmail());
+
+                    customerservice.createCustomer(customer);
+
+                    customerservice.addAddress(adress, customer);
+
+                    message = "Account Succesfully Created!";
+
+                    realpath = "sign_in.jsp";
+
+                    path = "sucessful.jsp";
+
+                } else {
+
+                    message = "User Exist! sign in.";
+
+                    path = "unsuccesful.jsp";
+
+                    realpath = "sign_in.jsp";
+
+                }
+
+                session.setAttribute("path", realpath);
+                session.setAttribute("message", message);
+
+                request.getRequestDispatcher(path).forward(request, response);
+
+            case "signin":
+>>>>>>> Ofentse-branch
 
                 email = request.getParameter("email");
                 password = request.getParameter("password");
 
                 customer = customerservice.getPerson(email);
 
+<<<<<<< HEAD
                 if (customer.getEmail() != null) {
                     path = "home.jsp";
                 } else {
                     path = "sign_in_and_out.jsp";
                 }
 
+=======
+                System.out.println("Email : " + customer.getEmail());
+                System.out.println("Password : " + customer.getPassword());
+
+                System.out.println("Role :" + customer.getRole());
+
+                if (customer.getEmail().length() > 2) {
+
+                    if (customer.getPassword().equals(password)) {
+
+                        if (customer.getRole().equalsIgnoreCase("customer")) {
+
+                            path = "sucessful.jsp";
+                            realpath = "customerMenu.jsp";
+                            message = "Succesfully Logged In!";
+                        } else {
+
+                            path = "sucessful.jsp";
+                            realpath = "addRecipe.jsp";
+                            message = "Succesfully Logged In!";
+
+                        }
+
+                    } else {
+
+                        path = "unsuccesful.jsp";
+                        realpath = "sign_in.jsp";
+                        message = "Wrong Password !";
+
+                    }
+
+                } else {
+
+                    path = "unsuccesful.jsp";
+                    realpath = "sign_up.jsp";
+
+                    message = "User don't exit! SIGN UP!";
+
+                }
+
+                session.setAttribute("message", message);
+                session.setAttribute("path", realpath);
+
+                request.getRequestDispatcher(path).forward(request, response);
+
+>>>>>>> Ofentse-branch
         }
 
     }

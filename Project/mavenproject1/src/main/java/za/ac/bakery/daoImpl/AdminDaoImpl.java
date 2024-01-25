@@ -9,6 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+<<<<<<< HEAD
+=======
+import java.sql.Statement;
+>>>>>>> Ofentse-branch
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -156,6 +160,7 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
+<<<<<<< HEAD
     public void createItem(Item item) {
 
         try {
@@ -170,11 +175,52 @@ public class AdminDaoImpl implements AdminDao {
             ps.setString(5, item.getItem_category());
             ps.setDouble(6, item.getItem_price());
             ps.executeUpdate();
+=======
+    public int createItem(Item item) {
+        int id;
+        long lastInsertedId = 0;
+        try {
+
+            String insertQuery = "INSERT INTO item (item_title, item_description, item_nutrients, item_category, item_price)"
+                    + "VALUES (?,?,?,?,?)";
+
+            ps = con.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setString(1, item.getItem_title());
+            ps.setString(2, item.getItem_description());
+            ps.setString(3, item.getItem_nutrients());
+            ps.setInt(4, item.getItem_category());
+            ps.setDouble(5, item.getItem_price());
+
+            int affectedRows = ps.executeUpdate();
+
+            if (affectedRows > 0) {
+
+                ResultSet rs = ps.getGeneratedKeys();
+
+                if (rs.next()) {
+                    lastInsertedId = rs.getLong(1);
+                    System.out.println("Last inserted ID: " + lastInsertedId);
+                } else {
+                    System.out.println("No ID obtained.");
+                }
+
+            } else {
+                System.out.println("No rows affected.");
+            }
+>>>>>>> Ofentse-branch
 
         } catch (SQLException ex) {
             System.err.println("Error : " + ex.getMessage());
         }
 
+<<<<<<< HEAD
+=======
+        id = Integer.parseInt(String.valueOf(lastInsertedId));
+
+        return id;
+
+>>>>>>> Ofentse-branch
     }
 
     @Override
@@ -201,7 +247,11 @@ public class AdminDaoImpl implements AdminDao {
                 if (item == null) {
 
                     item = new Item(rs.getInt("i.item_id"), rs.getString("item_title"), rs.getString("item_description"),
+<<<<<<< HEAD
                             rs.getString("item_warnings"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getString("item_category"),
+=======
+                            rs.getString("item_warnings"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getInt("item_category"),
+>>>>>>> Ofentse-branch
                             ingridients, rs.getDouble("item_price"));
                 }
             }
@@ -239,9 +289,15 @@ public class AdminDaoImpl implements AdminDao {
 
             ps.setString(1, item.getItem_title());
             ps.setString(2, item.getItem_description());
+<<<<<<< HEAD
             ps.setString(3, item.getItem_warnings());
             ps.setString(4, item.getItem_nutrients());
             ps.setString(5, item.getItem_category());
+=======
+
+            ps.setString(4, item.getItem_nutrients());
+            ps.setInt(5, item.getItem_category());
+>>>>>>> Ofentse-branch
             ps.setDouble(6, item.getItem_price());
             ps.setInt(7, item.getItem_id());
 
@@ -273,6 +329,7 @@ public class AdminDaoImpl implements AdminDao {
 
         AdminDaoImpl dao = new AdminDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
+<<<<<<< HEAD
         List<Ingridient> ingridients = new ArrayList<>();
 
         //   Ingridient in = new Ingridient("Butter", 2.00);
@@ -285,4 +342,42 @@ public class AdminDaoImpl implements AdminDao {
 
     }
 
+=======
+        Item a = new Item("Scones", "Made with love", "it has nuts", "olive oil,eegs,many moree", 1, 200.0);
+
+        int id = dao.createItem(a);
+
+        System.out.println("Item : " + id);
+
+    }
+
+    @Override
+    public int getItemId() {
+        Long lastInsertedId = null;
+        int id;
+        try (Statement st = con.createStatement();) {
+
+            String selectQuery = "SELECT LAST_INSERT_ID(item_id) AS item_id FROM item LIMIT 1";
+
+            try (ResultSet resultSet = st.executeQuery(selectQuery)) {
+                if (resultSet.next()) {
+                    lastInsertedId = resultSet.getLong("item_id");
+                    System.out.println("Last inserted ID: " + lastInsertedId);
+                } else {
+                    System.out.println("No ID obtained.");
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("Error " + ex);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        id = Integer.valueOf(String.valueOf(lastInsertedId));
+
+        return id;
+    }
+>>>>>>> Ofentse-branch
 }

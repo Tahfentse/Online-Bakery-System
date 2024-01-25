@@ -76,7 +76,12 @@
     </script>
 
     <body>
+<<<<<<< HEAD
         <form onsubmit="return validateForm(); action ">
+=======
+        <form onsubmit="return validateForm();" action="CustomerController" method="Post" >
+
+>>>>>>> Ofentse-branch
             <h2>Sign In</h2>
 
 
@@ -85,8 +90,17 @@
             <input type="email" id="email" name="email" required>
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required />
+<<<<<<< HEAD
 
             <button type="submit">Login</button>
+=======
+            
+            <input type="hidden" name="act" value="signin"/>
+
+            <button type="submit">Login</button>
+            
+            <p>Don't have an account ? <a href="sign_up.jsp">SIGN Up</a></p>
+>>>>>>> Ofentse-branch
 
         </form>
     </body>

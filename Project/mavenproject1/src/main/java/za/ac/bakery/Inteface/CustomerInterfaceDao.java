@@ -26,6 +26,10 @@ public interface CustomerInterfaceDao {
     
     public void addAddress(Address address,Person p);
     
+<<<<<<< HEAD
     public int getPersonAddressId(String email);
+=======
+    public String getPersonAddressId(String email);
+>>>>>>> Ofentse-branch
     
 }

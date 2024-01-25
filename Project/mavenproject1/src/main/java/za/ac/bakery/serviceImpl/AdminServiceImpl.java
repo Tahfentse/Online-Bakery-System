@@ -59,10 +59,16 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+<<<<<<< HEAD
     public void createItem(Item item) {
 
         admindao.createItem(item);
 
+=======
+    public int createItem(Item item) {
+
+        return admindao.createItem(item);
+>>>>>>> Ofentse-branch
     }
 
     @Override

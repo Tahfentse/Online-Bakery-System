@@ -64,7 +64,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+<<<<<<< HEAD
     public int getPersonAddressId(String email) {
+=======
+    public String getPersonAddressId(String email) {
+>>>>>>> Ofentse-branch
         return customerdao.getPersonAddressId(email);
     }
 
