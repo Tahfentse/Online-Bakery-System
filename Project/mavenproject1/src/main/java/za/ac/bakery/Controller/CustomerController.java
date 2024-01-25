@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import za.ac.bakery.model.Address;
+
 import za.ac.bakery.model.Person;
 import za.ac.bakery.serviceImpl.CustomerServiceImpl;
 
@@ -32,12 +34,15 @@ public class CustomerController extends HttpServlet {
     private String password;
     private String action;
     private Person customer;
+
     private Person existingCustomer;
+
     private CustomerServiceImpl customerservice;
     private String path;
     private HttpSession session;
     private String tempEmail;
     private List<Person> customers;
+
     private String message;
     private String realpath;
     private String street_name;
@@ -81,6 +86,7 @@ public class CustomerController extends HttpServlet {
                 contactno = request.getParameter("contactNo");
                 email = request.getParameter("email");
                 password = request.getParameter("password");
+
                 street_name = request.getParameter("street_name");
                 suburb = request.getParameter("suburb");
                 postalcode = request.getParameter("postal_code");
@@ -146,7 +152,7 @@ public class CustomerController extends HttpServlet {
                         } else {
 
                             path = "sucessful.jsp";
-                            realpath = "addRecipe.jsp";
+                            realpath = "addItem.jsp";
                             message = "Succesfully Logged In!";
 
                         }
@@ -170,6 +176,8 @@ public class CustomerController extends HttpServlet {
 
                 session.setAttribute("message", message);
                 session.setAttribute("path", realpath);
+
+                request.getRequestDispatcher(path).forward(request, response);
 
                 request.getRequestDispatcher(path).forward(request, response);
 

@@ -47,27 +47,37 @@ img {
     height: 25px;
     cursor: pointer;
     padding-left: 5px;
+
     padding: 10px;
-    
+
+
 }
 
 .top-icons {
     display: flex;
     align-items: center;
-     
+
 }
 
+
+
+
+
 .top-icons i{
-    
+
     margin-right: 15px;
 }
+
 
 
 .top-icons img {
     margin: 0 5px; /* Reduced margin for smaller screens */
     height: 30px; /* Reduced height for smaller screens */
     max-width: 100%; /* Ensure icon images are responsive */
+
+
     font-size: 30px;
+
 }
 
 nav {

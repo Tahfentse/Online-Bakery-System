@@ -18,14 +18,14 @@ public interface CustomerInterfaceDao {
 
     public void deleteCustomer(String email);
 
-    public void updateCustomer(Person customer,String email);
+    public void updateCustomer(Person customer, String email);
 
     public Person getPerson(String email);
 
     public List<Person> person();
-    
-    public void addAddress(Address address,Person p);
-    
+
+    public void addAddress(Address address, Person p);
+
     public String getPersonAddressId(String email);
-    
+
 }

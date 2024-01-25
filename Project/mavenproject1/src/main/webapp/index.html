@@ -4,11 +4,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://kit.fontawesome.com/ad78bb0d17.js" crossorigin="anonymous"></script>
+
         <title>To 2Pie4 Bakery</title>
         <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
         <link href="style.css" rel="stylesheet" type="text/css"/>
         <script src="https://kit.fontawesome.com/ad78bb0d17.js" crossorigin="anonymous"></script>
         <link rel="website icon" type="png" href="img/logo.png">
+
     </head>
     <body>
         <!-- Top SECTION -->
@@ -17,12 +21,15 @@
                 <a href="home.jsp" class="logo"><img src="img/Screenshot (99).png"></a>
                 <div class="search-bar">
                     <input type="text" placeholder="Search...">
+                    <br>
+        
                     <a href="search.jsp" alt="search" onclick="performSearch()" ><i class="fa fa-search" aria-hidden="true"></i></a>
                 </div>
                 <div class="top-icons">
                     <a href="cart.jsp" class="logo"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a><!--onclick="addToCart()"-->
-                        
-                        <a href="sign_in.jsp" class="profile"><i class="fa fa-user" aria-hidden="true"></i></a>
+
+                    <a href="sign_in.jsp" class="profile"><i class="fa fa-user" aria-hidden="true"></i></a>
+
                 </div>
             </div>
             <!--End Top SECTION -->
@@ -49,6 +56,8 @@
             <!-- HERO SLIDER SECTION -->
             <div class="mobile-toggle">          
             </div>                         
+            <div class="mobile-toggle">          
+            </div>                         
             <div class="hero">
 
                 <div class="swiper">
@@ -61,7 +70,9 @@
                                 </div>
                                 <div class="hero__slide__img">
                                     <img src="./category/cookies/vegan_chocolate_chip.png" alt="Category 1">
-                                    <button class="btn btn-left" data-speed="-5">Get Cookies</button>
+                                    <a href="cookies.jsp">
+                                        <button class="btn btn-left" data-speed="-5">Get Cookies</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -204,33 +215,41 @@
             <!--End Footer -->
         </div>
         <script>
-                function myFunction() {
-                    var x = document.querySelector("nav");
-                    if (x.className === "") {
-                        x.className = "responsive";
-                    } else {
-                        x.className = "";
+                    function myFunction() {
+                        var x = document.querySelector("nav");
+                        if (x.className === "") {
+                            x.className = "responsive";
+                        } else {
+                            x.className = "";
+                        }
                     }
-                }
 
-                // adding to cart
-                let cartCount = 0;
+// adding to cart
+                    let cartCount = 0;
 
-                function addToCart() {
-                    // Increment the cart count
-                    cartCount++;
+                    function addToCart() {
+                        // Increment the cart count
+                        cartCount++;
 
-                    // Update the cart count element
-                    document.getElementById('cart-count').innerText = cartCount;
-                }
+                        // Update the cart count element
+                        document.getElementById('cart-count').innerText = cartCount;
+                    }
 
-                function performSearch() {
-                    // Your search functionality goes here
-                    alert('Performing search...');
-
+                    function performSearch() {
+                        // Your search functionality goes here
+                        alert('Performing search...');
 
 
-                }
+
+
+                    }
         </script>
     </body>
+
+
 </html>
+
+</script>
+</body>
+</html>
+

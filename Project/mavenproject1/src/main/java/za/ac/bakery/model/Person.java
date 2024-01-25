@@ -29,7 +29,8 @@ public class Person {
         this.email = "";
         this.contact_no = "";
         this.password = "";
-        this.role="";
+        this.role = "";
+
     }
 
     public Person(String id_Number, String name, String surname, String title, String email, String contact_no, String password) {
@@ -42,7 +43,7 @@ public class Person {
         this.password = password;
     }
 
-    public Person(String id_Number, String name, String surname, String title, String email, String contact_no, Address Address, String password, String role) {
+    public Person(String id_Number, String name, String surname, String title, String email, String contact_no, Address Address, String password,String role) {
         this.id_Number = id_Number;
         this.name = name;
         this.surname = surname;
@@ -51,20 +52,10 @@ public class Person {
         this.contact_no = contact_no;
         this.Address = Address;
         this.password = password;
-        this.role = role;
+        this.role=role;
     }
-    
 
-    public Person(String id_Number, String name, String surname, String title, String email, String contact_no, Address Address, String password) {
-        this.id_Number = id_Number;
-        this.name = name;
-        this.surname = surname;
-        this.title = title;
-        this.email = email;
-        this.contact_no = contact_no;
-        this.Address = Address;
-        this.password = password;
-    }
+
 
     public String getRole() {
         return role;
@@ -74,7 +65,6 @@ public class Person {
         this.role = role;
     }
 
-    
     public Address getAddress() {
         return Address;
     }
@@ -141,9 +131,9 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" + "id_Number=" + id_Number + ", name=" + name + ", surname=" + surname + ", title=" + title + ", email=" + email + ", contact_no=" + contact_no + ", Address=" + Address + ", password=" + password + ", role=" + role + '}';
-    }
 
-    
+        return "Person{" + "id_Number=" + id_Number + ", name=" + name + ", surname=" + surname + ", title=" + title + ", email=" + email + ", contact_no=" + contact_no + ", Address=" + Address + ", password=" + password + ", role=" + role
+                + '}';
+    }
 
 }

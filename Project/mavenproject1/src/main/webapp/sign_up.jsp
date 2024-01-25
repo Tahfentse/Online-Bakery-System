@@ -7,11 +7,158 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+     <link rel="website icon" type="png" href="img/logo.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FEF7E4; /* Vanilla Cream */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            padding: 50px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #FEF7E4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 5%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 4px;
+            background-color: #eee;
+        }
+
+        button {
+            background-color: #D91E36; /* Cherry Red */
+            color: #FFF;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+    </style>
+<script>
+        function validateForm() {
+            var title = document.getElementById('title').value;
+            var name = document.getElementById('name').value;
+            var surname = document.getElementById('surname').value;
+            var idNumber = document.getElementById('idNumber').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Check if any of the input values contain only white spaces
+            if (/^\s*$/.test(title) || /^\s*$/.test(name) || /^\s*$/.test(surname) || /^\s*$/.test(idNumber) ||
+                /^\s*$/.test(phoneNumber) || /^\s*$/.test(email) || /^\s*$/.test(password) || /^\s*$/.test(confirmPassword)) {
+                alert('Please enter valid values for all fields.');
+                return false;
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sign Up</title>
         <link rel="website icon" type="png" href="img/logo.png">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #FEF7E4; /* Vanilla Cream */
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                padding: 50px;
+
+            }
+
+            form {
+                max-width: 400px;
+                margin: 0 auto;
+                background-color: #FEF7E4;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin-top: 5%;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            select, input {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 16px;
+                box-sizing: border-box;
+                border: none;
+                border-radius: 4px;
+                background-color: #eee;
+            }
+
+            button {
+                background-color: #D91E36; /* Cherry Red */
+                color: #FFF;
+                padding: 15px 30px;
+                border: none;
+                border-radius: 5px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+            .error {
+                color: red;
+            </style>
+            <script>
+                function validateForm() {
+                    var title = document.getElementById('title').value;
+                    var name = document.getElementById('name').value;
+                    var surname = document.getElementById('surname').value;
+                    var idNumber = document.getElementById('idNumber').value;
+                    var phoneNumber = document.getElementById('phoneNumber').value;
+                    var email = document.getElementById('email').value;
+                    var password = document.getElementById('password').value;
+                    var confirmPassword = document.getElementById('confirmPassword').value;
+
+                    // Check if any of the input values contain only white spaces
+                    if (/^\s*$/.test(title) || /^\s*$/.test(name) || /^\s*$/.test(surname) || /^\s*$/.test(idNumber) ||
+                            /^\s*$/.test(phoneNumber) || /^\s*$/.test(email) || /^\s*$/.test(password) || /^\s*$/.test(confirmPassword)) {
+                        alert('Please enter valid values for all fields.');
+                        return false;
+                    }
+
+                    // Check if the password and confirm password match
+                    if (password !== confirmPassword) {
+                        alert('Password and Confirm Password do not match.');
+                        return false;
+                    }
+
+                    // If all inputs are valid, you can submit the form
+                    return true;
+                }
+            </script>
+
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -131,6 +278,7 @@
                 <input type="type" id="postal_code" name="postal_code" required=""/>
 
                 <br>
+
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
 
@@ -145,4 +293,8 @@
 
             </form>
         </body>
+
     </html>
+
+    </html>
+

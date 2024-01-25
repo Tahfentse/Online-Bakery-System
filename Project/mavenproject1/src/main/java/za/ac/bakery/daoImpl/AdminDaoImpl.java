@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -91,14 +93,14 @@ public class AdminDaoImpl implements AdminDao {
         Person p;
         Address a;
         try {
-            ps = con.prepareStatement("SELECT idNumber,name,surname,title,person.address_id,contactNo,email,password,ROLE,address.street_name,suburb,postal_code FROM person,address WHERE person.address_id =address.address_id AND   email = ?");
+            ps = con.prepareStatement("SELECT p.idNumber,p.name,p.surname,p.title,p.address_id,p.contactNo,p.mail,p.password,p.role,a.street_name,a.suburb,a.postal_code FROM person p,address a WHERE p.idNumber = a.address_id AND  p.email = ?");
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
 
                 a = new Address(rs.getString("address.street_name"), rs.getString("suburb"), rs.getString("postal_code"));
-                p = new Person(rs.getString("idNumber"), rs.getString("name"), rs.getString("surname"), rs.getString("title"), rs.getString("email"), rs.getString("contactNo"), a, rs.getString("password"));
+                p = new Person(rs.getString("idNumber"), rs.getString("name"), rs.getString("surname"), rs.getString("title"), rs.getString("email"), rs.getString("contactNo"), a, rs.getString("password"), rs.getString("role"));
                 return p;
             }
 
@@ -116,7 +118,7 @@ public class AdminDaoImpl implements AdminDao {
         Address a;
         List<Person> people;
         try {
-            ps = con.prepareStatement("SELECT idNumber,name,surname,title,person.address_id,contactNo,email,password,ROLE,address.street_name,suburb,postal_code FROM person,address WHERE person.address_id =address.address_id AND  person.role =?");
+            ps = con.prepareStatement("SELECT p.idNumber,p.name,p.surname,p.title,p.address_id,p.contactNo,p.email,p.password,p.role,a.street_name,a.suburb,a.postal_code FROM person p,address a WHERE p.address_id =a.address_id AND  p.role =?");
             ps.setString(1, "admin");
             people = new ArrayList();
 
@@ -124,8 +126,8 @@ public class AdminDaoImpl implements AdminDao {
 
             while (rs.next()) {
 
-                a = new Address(rs.getString("address.street_name"), rs.getString("suburb"), rs.getString("postal_code"));
-                p = new Person(rs.getString("idNumber"), rs.getString("name"), rs.getString("surname"), rs.getString("title"), rs.getString("email"), rs.getString("contactNo"), a, rs.getString("password"));
+                a = new Address(rs.getString("a.street_name"), rs.getString("a.suburb"), rs.getString("a.postal_code"));
+                p = new Person(rs.getString("p.idNumber"), rs.getString("p.name"), rs.getString("p.surname"), rs.getString("p.title"), rs.getString("p.email"), rs.getString("p.contactNo"), a, rs.getString("p.password"), rs.getString("p.role"));
 
                 people.add(p);
             }
@@ -223,8 +225,7 @@ public class AdminDaoImpl implements AdminDao {
             while (rs.next()) {
                 if (item == null) {
 
-                    item = new Item(rs.getInt("i.item_id"), rs.getString("item_title"), rs.getString("item_description"),
-                            rs.getString("item_warnings"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getInt("item_category"),
+                    item = new Item(rs.getInt("i.item_id"), rs.getString("item_title"), rs.getString("item_description"), rs.getString("item_warnings"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getString("item_category"), rs.getString("item_warnings"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getInt("item_category"),
                             ingridients, rs.getDouble("item_price"));
                 }
             }
@@ -259,14 +260,14 @@ public class AdminDaoImpl implements AdminDao {
             ps = con.prepareStatement("UPDATE item"
                     + "SET item_title=?, item_description=?, item_warnings=?, item_nutrients=?, item_category=?, item_price=?"
                     + "WHERE item_id=?");
-
             ps.setString(1, item.getItem_title());
             ps.setString(2, item.getItem_description());
-
-            ps.setString(4, item.getItem_nutrients());
-            ps.setInt(5, item.getItem_category());
-            ps.setDouble(6, item.getItem_price());
-            ps.setInt(7, item.getItem_id());
+            ps.setString(3, item.getItem_nutrients());
+            ps.setInt(4, item.getItem_category());
+            ps.setString(5, item.getItem_nutrients());
+            ps.setInt(6, item.getItem_category());
+            ps.setDouble(7, item.getItem_price());
+            ps.setInt(8, item.getItem_id());
 
             ps.executeUpdate();
 
@@ -296,6 +297,10 @@ public class AdminDaoImpl implements AdminDao {
 
         AdminDaoImpl dao = new AdminDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
+        Item item = dao.getItem(1);
+
+        System.out.println("Item : " + item.toString());
+
         Item a = new Item("Scones", "Made with love", "it has nuts", "olive oil,eegs,many moree", 1, 200.0);
 
         int id = dao.createItem(a);
@@ -304,32 +309,4 @@ public class AdminDaoImpl implements AdminDao {
 
     }
 
-    @Override
-    public int getItemId() {
-        Long lastInsertedId = null;
-        int id;
-        try (Statement st = con.createStatement();) {
-
-            String selectQuery = "SELECT LAST_INSERT_ID(item_id) AS item_id FROM item LIMIT 1";
-
-            try (ResultSet resultSet = st.executeQuery(selectQuery)) {
-                if (resultSet.next()) {
-                    lastInsertedId = resultSet.getLong("item_id");
-                    System.out.println("Last inserted ID: " + lastInsertedId);
-                } else {
-                    System.out.println("No ID obtained.");
-                }
-
-            } catch (SQLException ex) {
-                System.out.println("Error " + ex);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        id = Integer.valueOf(String.valueOf(lastInsertedId));
-
-        return id;
-    }
 }

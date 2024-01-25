@@ -14,7 +14,8 @@ import za.ac.bakery.model.Person;
  * @author Train
  */
 public interface AdminService {
-     public void createAdmin(Person Admin);
+
+    public void createAdmin(Person Admin);
 
     public void updateAdmin(Person Admin);
 

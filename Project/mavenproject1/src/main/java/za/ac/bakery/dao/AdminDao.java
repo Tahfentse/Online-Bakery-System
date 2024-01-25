@@ -35,6 +35,4 @@ public interface AdminDao {
 
     public void uploadPicture(InputStream is, int id);
 
-    public int getItemId();
-    
 }

@@ -63,10 +63,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerdao.addAddress(address, p);
     }
 
-    @Override
-    public String getPersonAddressId(String email) {
-        return customerdao.getPersonAddressId(email);
-    }
+   
 
     @Override
     public List<Person> people() {

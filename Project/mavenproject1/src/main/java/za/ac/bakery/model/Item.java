@@ -16,9 +16,11 @@ public class Item {
     private int item_id;
     private String item_title;
     private String item_description;
+
     private Blob pic;
     private String item_nutrients;
     private int item_category;
+
     private List<Ingridient> ingridients;
     private Double item_price;
 
@@ -29,7 +31,6 @@ public class Item {
         this.item_id = item_id;
         this.item_title = item_title;
         this.item_description = item_description;
-
         this.pic = pic;
         this.item_nutrients = item_nutrients;
         this.item_category = item_category;
@@ -66,6 +67,10 @@ public class Item {
         this.item_nutrients = item_nutrients;
         this.item_category = item_category;
         this.item_price = item_price;
+    }
+
+    public Item(int aInt, String string, String string0, String string1, Blob blob, String string2, String string3, String string4, Blob blob0, String string5, int aInt0, List<Ingridient> ingridients, double aDouble) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getItem_id() {
@@ -113,6 +118,7 @@ public class Item {
     }
 
     public void setItem_category(int item_category) {
+
         this.item_category = item_category;
     }
 
@@ -134,6 +140,7 @@ public class Item {
 
     @Override
     public String toString() {
+
         return "Item{" + "item_id=" + item_id + ", item_title=" + item_title + ", item_description=" + item_description + ", pic=" + pic + ", item_nutrients=" + item_nutrients + ", item_category=" + item_category + ", ingridients=" + ingridients + ", item_price=" + item_price + '}';
     }
 

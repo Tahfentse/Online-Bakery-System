@@ -28,8 +28,5 @@ public interface CustomerService {
     public List<Person> people();
 
     public void addAddress(Address address, Person p);
-
-    public String getPersonAddressId(String email);
-
-  
+ 
 }
