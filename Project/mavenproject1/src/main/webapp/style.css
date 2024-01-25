@@ -47,38 +47,37 @@ img {
     height: 25px;
     cursor: pointer;
     padding-left: 5px;
-<<<<<<< HEAD
-=======
+
     padding: 10px;
-    
->>>>>>> Ofentse-branch
+
+
 }
 
 .top-icons {
     display: flex;
     align-items: center;
-<<<<<<< HEAD
+
 }
 
-=======
-     
-}
+
+
+
 
 .top-icons i{
-    
+
     margin-right: 15px;
 }
 
 
->>>>>>> Ofentse-branch
+
 .top-icons img {
     margin: 0 5px; /* Reduced margin for smaller screens */
     height: 30px; /* Reduced height for smaller screens */
     max-width: 100%; /* Ensure icon images are responsive */
-<<<<<<< HEAD
-=======
+
+
     font-size: 30px;
->>>>>>> Ofentse-branch
+
 }
 
 nav {

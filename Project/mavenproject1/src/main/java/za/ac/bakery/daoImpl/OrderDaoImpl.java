@@ -27,8 +27,7 @@ import za.ac.bakery.dao.OrderDao;
  * @author Train
  */
 public class OrderDaoImpl implements OrderDao { // OrderDaoImpl == these are your interfaces, OrderDaoImpl
-    
-    
+
     private Dbmanager db;
     private Connection con;
     private List<Person> customers;
@@ -46,9 +45,8 @@ public class OrderDaoImpl implements OrderDao { // OrderDaoImpl == these are you
 
             ps = con.prepareStatement("INSERT INTO ordert (order_price,orderTimeStamp) VALUES(?,?)");
             ps.setDouble(1, 0);
-            ps.setTimestamp(2,order.getTimestamp());
-            
-            
+            ps.setTimestamp(2, order.getTimestamp());
+
             ps.executeUpdate();
 
         } catch (SQLException ex) {
@@ -107,11 +105,9 @@ public class OrderDaoImpl implements OrderDao { // OrderDaoImpl == these are you
                 String itemWarnings = rs.getString("item_warnings");
                 String itemNutrients = rs.getString("item_nutrients");
                 String itemPic = rs.getString("item_pic");
-<<<<<<< HEAD
-                String itemCategory = rs.getString("item_category");
-=======
+
                 int itemCategory = rs.getInt("item_category");
->>>>>>> Ofentse-branch
+
                 double itemPrice = rs.getDouble("item_price");
 
                 int ingredientId = rs.getInt("ingridient_id");
@@ -144,9 +140,9 @@ public class OrderDaoImpl implements OrderDao { // OrderDaoImpl == these are you
     @Override
     public void MappingItemWithOrder(Order order) {
         try {
-        
+
             ps = con.prepareStatement("INSERT INTO oderitemid (OrderId,ItemId) VALUES(?,? )");
-        
+
         } catch (SQLException ex) {
             Logger.getLogger(OrderDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }

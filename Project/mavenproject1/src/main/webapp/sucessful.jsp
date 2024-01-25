@@ -9,12 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+        <title>Success Page</title>
         <link rel="website icon" type="png" href="img/logo.png">
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
+        <link href="successful&Unsuccesful.css" rel="stylesheet" type="text/css"/>
+
+
     </head>
     <style>
         /*
@@ -117,38 +116,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
     </style>
     <body>
-        <%
-            String path = String.valueOf(session.getAttribute("path"));
-<<<<<<< HEAD
-            String sucess = String.valueOf(request.getAttribute("success"));
-=======
-        <link rel="website icon" type="png" href="img/logo.png">
-        <link href="successful&Unsuccesful.css" rel="stylesheet" type="text/css"/>
-    </head>
 
-    <body>
         <%
             String path = String.valueOf(session.getAttribute("path"));
-            String message = String.valueOf(request.getAttribute("message"));
->>>>>>> Ofentse-branch
-=======
-            String message = String.valueOf(request.getAttribute("message"));
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
+            String message = String.valueOf(session.getAttribute("message"));
+
         %>
 
         <form action="action">
             <div class="popup">
                 <div class="popup-content">
                     <img src="img/sucessful.png" alt="user">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <label class="question"><%=sucess%></label>
-=======
+
                     <label class="question">${message}</label>
->>>>>>> Ofentse-branch
-=======
-                    <label class="question"><%=message%></label>
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
+
                     <a href="<%=path%>" value="o" class="button" >OK</a>
                 </div>
             </div>

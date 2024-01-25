@@ -58,10 +58,10 @@
             .error {
                 color: red;
             </style>
-    </head>
-      <body>
+        </head>
+        <body>
             <form onsubmit="return validateForm();" action="AdminController" method="post" enctype="multipart/form-data" >
-               
+
 
                 <label for="add_item"><h1>ADD ITEM</h1></label>
                 <br>
@@ -81,28 +81,41 @@
                     <option value=3>Bread</option>
                 </select>
 
-
                 <label for="price">Price </label>
                 <input type="number" id="item_price" name="item_price" required>
 
-                
-                <label for="address_info"><h1> ADDS RECIPE </h1></label>
-                
-                <br>
-                <label for="item_recipe">Recipe </label>
-                <input type="text" id="item_recipe" name="item_recipe" required="">
 
-                <label for="suburb">Size </label>
-                <input type="text" id="size" name="size" required=""/>
+                <label for="add_recipe"><h1> ADD RECIPE </h1></label>
+
+
+                <label for="ingredients">Ingredients:</label>
+                <select id="ingredients" name="ingredients[]" size="1" multiple required>
+                    <option value="Flour">Flour</option>
+                    <option value="Sugar">Sugar</option>
+                    <option value="Eggs">Eggs</option>
+                </select><br>
+
+
+                <label for="ingredientSizes">Ingredient Sizes:</label>
+                <select id="ingredientSizes" name="ingredientSizes[]" size="1" multiple required>
+                    <option value="1 cup">1 cup</option>
+                    <option value="2 cups">2 cups</option>
+                    <option value="3">3</option>
+                </select><br>
                 
+                <input type="submit" value="select" name="select" />
+                
+                
+
                 <label> ITEM PICTURE </label>
                 <input type="file" name="item_pic" id="image" accept="image/*" required>
-                
+
                 <input type="hidden" name="act" value="additem"/>
 
                 <button type="submit">ADD ITEM</button>
 
-
+                <<script ></script>
+                
             </form>
         </body>
-</html>
+    </html>

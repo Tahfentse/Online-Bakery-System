@@ -13,10 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-<<<<<<< HEAD
-=======
+
 import za.ac.bakery.model.Address;
->>>>>>> Ofentse-branch
+
 import za.ac.bakery.model.Person;
 import za.ac.bakery.serviceImpl.CustomerServiceImpl;
 
@@ -35,29 +34,21 @@ public class CustomerController extends HttpServlet {
     private String password;
     private String action;
     private Person customer;
-<<<<<<< HEAD
-=======
+
     private Person existingCustomer;
->>>>>>> Ofentse-branch
+
     private CustomerServiceImpl customerservice;
     private String path;
     private HttpSession session;
     private String tempEmail;
     private List<Person> customers;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
     private String message;
     private String realpath;
     private String street_name;
     private String suburb;
     private String postalcode;
     private Address adress;
->>>>>>> Ofentse-branch
-=======
-    private String message;
-    private String realpath;
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
 
     public CustomerController() {
         customerservice = new CustomerServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
@@ -95,39 +86,7 @@ public class CustomerController extends HttpServlet {
                 contactno = request.getParameter("contactNo");
                 email = request.getParameter("email");
                 password = request.getParameter("password");
-<<<<<<< HEAD
 
-                customer = customerservice.getPerson(email);
-
-                if (customer.getEmail() == null) {
-
-                    customer = new Person(id, name, surname, title, email, contactno, password);
-                    customerservice.createCustomer(customer);
-
-                    message = "Account Succesfully Created!";
-
-                    realpath = "sign_in.jsp";
-
-                    path = "sucessful.jsp";
-
-                } else {
-
-                    message = "User Exist! sign in.";
-
-                    path = "unsuccesful.jsp";
-
-                    realpath = "sign_in.jsp";
-
-                }
-
-                session.setAttribute("path", realpath);
-                session.setAttribute("message", message);
-
-                request.getRequestDispatcher(path).forward(request, response);
-
-<<<<<<< HEAD
-            case "login":
-=======
                 street_name = request.getParameter("street_name");
                 suburb = request.getParameter("suburb");
                 postalcode = request.getParameter("postal_code");
@@ -170,42 +129,12 @@ public class CustomerController extends HttpServlet {
                 request.getRequestDispatcher(path).forward(request, response);
 
             case "signin":
->>>>>>> Ofentse-branch
-=======
-            case "signin":
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
 
                 email = request.getParameter("email");
                 password = request.getParameter("password");
 
                 customer = customerservice.getPerson(email);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                if (customer.getEmail() != null) {
-                    path = "home.jsp";
-=======
-
-                if (customer.getId_Number().length() > 1 && password.equals(customer.getPassword())) {
-
-                    realpath = "home.jsp";
-                    path = "sucessful.jsp";
-
-                    message = "Succesfully Logged In!";
-
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
-                } else {
-
-                    realpath = "sign_in.jsp";
-
-                    path = "unsuccesful.jsp";
-
-                    message = "Wrong Email or Password!";
-
-                }
-
-<<<<<<< HEAD
-=======
                 System.out.println("Email : " + customer.getEmail());
                 System.out.println("Password : " + customer.getPassword());
 
@@ -223,7 +152,7 @@ public class CustomerController extends HttpServlet {
                         } else {
 
                             path = "sucessful.jsp";
-                            realpath = "addRecipe.jsp";
+                            realpath = "addItem.jsp";
                             message = "Succesfully Logged In!";
 
                         }
@@ -250,14 +179,8 @@ public class CustomerController extends HttpServlet {
 
                 request.getRequestDispatcher(path).forward(request, response);
 
->>>>>>> Ofentse-branch
-=======
-                session.setAttribute("path", realpath);
-                session.setAttribute("message", message);
-
                 request.getRequestDispatcher(path).forward(request, response);
 
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
         }
 
     }

@@ -18,16 +18,9 @@ public class Person {
     private String contact_no;
     private Address Address;
     private String password;
-<<<<<<< HEAD
-
-    public Person() {
-<<<<<<< HEAD
-=======
     private String role;
 
     public Person() {
-=======
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
 
         this.id_Number = "";
         this.name = "";
@@ -36,11 +29,8 @@ public class Person {
         this.email = "";
         this.contact_no = "";
         this.password = "";
-<<<<<<< HEAD
-        this.role="";
->>>>>>> Ofentse-branch
-=======
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
+        this.role = "";
+
     }
 
     public Person(String id_Number, String name, String surname, String title, String email, String contact_no, String password) {
@@ -53,9 +43,7 @@ public class Person {
         this.password = password;
     }
 
-<<<<<<< HEAD
-=======
-    public Person(String id_Number, String name, String surname, String title, String email, String contact_no, Address Address, String password, String role) {
+    public Person(String id_Number, String name, String surname, String title, String email, String contact_no, Address Address, String password,String role) {
         this.id_Number = id_Number;
         this.name = name;
         this.surname = surname;
@@ -64,24 +52,11 @@ public class Person {
         this.contact_no = contact_no;
         this.Address = Address;
         this.password = password;
-        this.role = role;
-    }
-    
-
->>>>>>> Ofentse-branch
-    public Person(String id_Number, String name, String surname, String title, String email, String contact_no, Address Address, String password) {
-        this.id_Number = id_Number;
-        this.name = name;
-        this.surname = surname;
-        this.title = title;
-        this.email = email;
-        this.contact_no = contact_no;
-        this.Address = Address;
-        this.password = password;
+        this.role=role;
     }
 
-<<<<<<< HEAD
-=======
+
+
     public String getRole() {
         return role;
     }
@@ -90,8 +65,6 @@ public class Person {
         this.role = role;
     }
 
-    
->>>>>>> Ofentse-branch
     public Address getAddress() {
         return Address;
     }
@@ -158,15 +131,9 @@ public class Person {
 
     @Override
     public String toString() {
-<<<<<<< HEAD
-        return "Person{" + "id_Number=" + id_Number + ", name=" + name + ", surname=" + surname + ", title=" + title + ", email=" + email + ", contact_no=" + contact_no + ", Address=" + Address + ", password=" + password + '}';
+
+        return "Person{" + "id_Number=" + id_Number + ", name=" + name + ", surname=" + surname + ", title=" + title + ", email=" + email + ", contact_no=" + contact_no + ", Address=" + Address + ", password=" + password + ", role=" + role
+                + '}';
     }
 
-=======
-        return "Person{" + "id_Number=" + id_Number + ", name=" + name + ", surname=" + surname + ", title=" + title + ", email=" + email + ", contact_no=" + contact_no + ", Address=" + Address + ", password=" + password + ", role=" + role + '}';
-    }
-
-    
-
->>>>>>> Ofentse-branch
 }

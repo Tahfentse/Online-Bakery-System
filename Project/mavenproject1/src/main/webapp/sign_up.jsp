@@ -7,8 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,7 +76,7 @@
                 /^\s*$/.test(phoneNumber) || /^\s*$/.test(email) || /^\s*$/.test(password) || /^\s*$/.test(confirmPassword)) {
                 alert('Please enter valid values for all fields.');
                 return false;
-=======
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,7 +90,7 @@
                 padding: 0;
                 text-align: center;
                 padding: 50px;
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
+
             }
 
             form {
@@ -160,35 +159,6 @@
                 }
             </script>
 
-        <body>
-            <form onsubmit="return validateForm();" action="CustomerController" method="Post">
-                <h2>Sign Up</h2>
-
-                <label for="title">Title</label>
-                <select id="title" name="title">
-                    <option value="Mr.">Mr.</option>
-                    <option value="Mrs.">Mrs.</option>
-                    <option value="Miss">Miss</option>
-                    <option value="Dr">Dr</option>
-                </select>
-
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="surname">Surname</label>
-                <input type="text" id="surname" name="surname" required>
-
-<<<<<<< HEAD
-        <button type="submit">Sign Up</button>
-    </form>
-</body>
-</html>
-=======
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign Up</title>
-        <link rel="website icon" type="png" href="img/logo.png">
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -290,18 +260,10 @@
 
                 <label for="phoneNumber">Telephone Number (Mobile)</label>
                 <input type="tel" id="phoneNumber" name="contactNo" required>
-=======
-                <label for="idNumber">ID Number</label>
-                <input type="text" id="idNumber" name="idNumber" required>
-
-                <label for="phoneNumber">Telephone Number (Mobile)</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" required>
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
 
                 <label for="email">E-mail address</label>
                 <input type="email" id="email" name="email" required>
 
-<<<<<<< HEAD
                 
                 <label for="address_info"><h1>Address Info</h1></label>
                 
@@ -316,8 +278,7 @@
                 <input type="type" id="postal_code" name="postal_code" required=""/>
 
                 <br>
-=======
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
+
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
 
@@ -325,20 +286,15 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" required>
 
                 <input type="hidden" name="act" value="signup"/>
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
                 <button type="submit">Sign Up</button>
 
                 <p>Have an account ? <a href="sign_in.jsp">SIGN IN</a></p>
 
             </form>
         </body>
-<<<<<<< HEAD
+
     </html>
->>>>>>> Ofentse-branch
-=======
+
     </html>
->>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
+
