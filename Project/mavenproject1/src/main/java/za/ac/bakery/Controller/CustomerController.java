@@ -146,7 +146,7 @@ public class CustomerController extends HttpServlet {
                         } else {
 
                             path = "sucessful.jsp";
-                            realpath = "adminmenu.jsp";
+                            realpath = "addRecipe.jsp";
                             message = "Succesfully Logged In!";
 
                         }

@@ -12,6 +12,10 @@
         <servlet-name>AdminController</servlet-name>
         <servlet-class>za.ac.bakery.Controller.AdminController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddRecipeServlet</servlet-name>
+        <servlet-class>za.ac.bakery.Controller.AddRecipeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreatePerson</servlet-name>
         <url-pattern>/CreatePerson</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>AdminController</servlet-name>
         <url-pattern>/AdminController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddRecipeServlet</servlet-name>
+        <url-pattern>/AddRecipeServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

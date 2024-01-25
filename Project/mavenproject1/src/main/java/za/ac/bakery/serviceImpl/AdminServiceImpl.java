@@ -59,10 +59,9 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void createItem(Item item) {
+    public int createItem(Item item) {
 
-        admindao.createItem(item);
-
+        return admindao.createItem(item);
     }
 
     @Override

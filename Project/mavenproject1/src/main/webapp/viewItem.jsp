@@ -235,10 +235,6 @@
             </div>
 
             <div class="info-box">
-                <p>Item Warnings: If there are any warnings or special considerations, mention them here.</p>
-            </div>
-
-            <div class="info-box">
                 <p>Nutrient Information: Share relevant nutrient information about your item.</p>
             </div>
 

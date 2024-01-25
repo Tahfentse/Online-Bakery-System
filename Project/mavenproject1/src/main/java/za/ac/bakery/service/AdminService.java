@@ -24,7 +24,7 @@ public interface AdminService {
 
     public void deleteAdmin(String adminEmail);
 
-    public void createItem(Item item);
+    public int createItem(Item item);
 
     public Item getItem(int itemId);
 
