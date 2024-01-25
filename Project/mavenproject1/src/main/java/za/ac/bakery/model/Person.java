@@ -21,10 +21,13 @@ public class Person {
 <<<<<<< HEAD
 
     public Person() {
+<<<<<<< HEAD
 =======
     private String role;
 
     public Person() {
+=======
+>>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
 
         this.id_Number = "";
         this.name = "";
@@ -33,8 +36,11 @@ public class Person {
         this.email = "";
         this.contact_no = "";
         this.password = "";
+<<<<<<< HEAD
         this.role="";
 >>>>>>> Ofentse-branch
+=======
+>>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
     }
 
     public Person(String id_Number, String name, String surname, String title, String email, String contact_no, String password) {

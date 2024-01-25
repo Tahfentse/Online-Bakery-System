@@ -11,6 +11,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        <link rel="website icon" type="png" href="img/logo.png">
+>>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
     </head>
     <style>
         /*
@@ -115,6 +119,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     <body>
         <%
             String path = String.valueOf(session.getAttribute("path"));
+<<<<<<< HEAD
             String sucess = String.valueOf(request.getAttribute("success"));
 =======
         <link rel="website icon" type="png" href="img/logo.png">
@@ -126,6 +131,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
             String path = String.valueOf(session.getAttribute("path"));
             String message = String.valueOf(request.getAttribute("message"));
 >>>>>>> Ofentse-branch
+=======
+            String message = String.valueOf(request.getAttribute("message"));
+>>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
         %>
 
         <form action="action">
@@ -133,10 +141,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
                 <div class="popup-content">
                     <img src="img/sucessful.png" alt="user">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <label class="question"><%=sucess%></label>
 =======
                     <label class="question">${message}</label>
 >>>>>>> Ofentse-branch
+=======
+                    <label class="question"><%=message%></label>
+>>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
                     <a href="<%=path%>" value="o" class="button" >OK</a>
                 </div>
             </div>

@@ -77,11 +77,16 @@
 
     <body>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <form onsubmit="return validateForm(); action ">
 =======
         <form onsubmit="return validateForm();" action="CustomerController" method="Post" >
 
 >>>>>>> Ofentse-branch
+=======
+        <form onsubmit="return validateForm();" action="CustomerController" method="Post" >
+
+>>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
             <h2>Sign In</h2>
 
 
@@ -90,6 +95,7 @@
             <input type="email" id="email" name="email" required>
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required />
+<<<<<<< HEAD
 <<<<<<< HEAD
 
             <button type="submit">Login</button>
@@ -101,6 +107,14 @@
             
             <p>Don't have an account ? <a href="sign_up.jsp">SIGN Up</a></p>
 >>>>>>> Ofentse-branch
+=======
+            
+            <input type="hidden" name="act" value="signin"/>
+
+            <button type="submit">Login</button>
+            
+            <p>Don't have an account ? <a href="sign_up.jsp">SIGN Up</a></p>
+>>>>>>> 29a28ec8dcf04c716bcba143e4abbd3c8f89a26d
 
         </form>
     </body>
