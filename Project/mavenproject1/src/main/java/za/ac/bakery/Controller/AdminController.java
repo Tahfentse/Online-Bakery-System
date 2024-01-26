@@ -49,7 +49,8 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        session = request.getSession();
+        
         List products = new ArrayList<>();
 
         products = adminservice.getItems();
@@ -57,10 +58,11 @@ public class AdminController extends HttpServlet {
         products.forEach(System.out::println);
 
         session.setAttribute("items", products);
-
+        response.setHeader("Content-Type", "image/jpg"); 
         path = "startuppage.jsp";
 
         request.getRequestDispatcher(path).forward(request, response);
+
     }
 
     @Override
