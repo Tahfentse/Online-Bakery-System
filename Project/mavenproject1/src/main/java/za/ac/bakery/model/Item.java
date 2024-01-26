@@ -5,6 +5,7 @@
 package za.ac.bakery.model;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(int item_id, String item_title, String item_description, String item_warnings, Blob pic, String item_nutrients, int item_category, List<Ingridient> ingridients, Double item_price) {
+    public Item(int item_id, String item_title, String item_description, Blob pic, String item_nutrients, int item_category, List<Ingridient> ingridients, Double item_price) {
         this.item_id = item_id;
         this.item_title = item_title;
         this.item_description = item_description;
@@ -69,9 +70,7 @@ public class Item {
         this.item_price = item_price;
     }
 
-    public Item(int aInt, String string, String string0, String string1, Blob blob, String string2, String string3, String string4, Blob blob0, String string5, int aInt0, List<Ingridient> ingridients, double aDouble) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     public int getItem_id() {
         return item_id;

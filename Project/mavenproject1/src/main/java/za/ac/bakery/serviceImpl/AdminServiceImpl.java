@@ -5,6 +5,7 @@
 package za.ac.bakery.serviceImpl;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import za.ac.bakery.daoImpl.AdminDaoImpl;
 import za.ac.bakery.model.Item;
@@ -87,6 +88,27 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void uploadPicture(InputStream is, int id) {
         admindao.uploadPicture(is, id);
+    }
+
+    @Override
+    public List<Item> getItems() {
+        List<Item> items = admindao.getItems();
+
+        if (items.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return items;
+    }
+    
+    public static void main(String[] args) {
+        List<Item> items;
+        
+        AdminServiceImpl service = new AdminServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
+        
+        items =service.getItems();
+        
+        items.forEach(System.out::println);
+        
     }
 
 }

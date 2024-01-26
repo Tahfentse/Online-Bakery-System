@@ -36,6 +36,7 @@ public class AdminController extends HttpServlet {
     private Ingridient ingridient;
     private List<Ingridient> ingridients;
     private String message;
+    private List<Item> items;
 
     private AdminServiceImpl adminservice;
     private InputStream in;
@@ -49,6 +50,17 @@ public class AdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        List products = new ArrayList<>();
+
+        products = adminservice.getItems();
+
+        products.forEach(System.out::println);
+
+        session.setAttribute("items", products);
+
+        path = "startuppage.jsp";
+
+        request.getRequestDispatcher(path).forward(request, response);
     }
 
     @Override
@@ -78,7 +90,7 @@ public class AdminController extends HttpServlet {
                 }
 
                 ingridients = new ArrayList<>();
-                
+
                 session.setAttribute("in", in);
 
                 ingridient = new Ingridient("Milk", 2.0);

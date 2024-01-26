@@ -13,7 +13,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import za.ac.bakery.databaseManager.Dbmanager;
@@ -225,8 +227,7 @@ public class AdminDaoImpl implements AdminDao {
             while (rs.next()) {
                 if (item == null) {
 
-                    item = new Item(rs.getInt("i.item_id"), rs.getString("item_title"), rs.getString("item_description"), rs.getString("item_warnings"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getString("item_category"), rs.getString("item_warnings"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getInt("item_category"),
-                            ingridients, rs.getDouble("item_price"));
+                    item = new Item(rs.getInt("i.item_id"), rs.getString("item_title"), rs.getString("item_description"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getInt("item_category"), new ArrayList<>(), rs.getDouble("item_price"));
                 }
             }
 
@@ -297,16 +298,46 @@ public class AdminDaoImpl implements AdminDao {
 
         AdminDaoImpl dao = new AdminDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
-        Item item = dao.getItem(1);
+        List<Item> items = dao.getItems();
 
-        System.out.println("Item : " + item.toString());
+        if (items.isEmpty()) {
+            System.out.println("Hello Im EMPTY");
+        } else {
+            items.forEach(System.out::println);
+        }
 
-        Item a = new Item("Scones", "Made with love", "it has nuts", "olive oil,eegs,many moree", 1, 200.0);
+    }
 
-        int id = dao.createItem(a);
+    public List<Item> getItems() {
+        List<Item> items = new ArrayList<>();
 
-        System.out.println("Item : " + id);
+        try {
+            ps = con.prepareStatement("SELECT i.item_id, item_title, item_description, item_nutrients,item_pic, item_category, item_price,ingredient_id,ing.ingredient_name,ing.ingredient_size,r.recipeid,r.item_recipe,r.size FROM item i, ingredient ing,recipe r,recipe_ingredient ri WHERE i.item_id=ri.recipeId AND ri.recipeIngredient =ing.ingredient_id AND ri.recipeId =r.recipeid",
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
+            ResultSet rs = ps.executeQuery();
+
+            Map<Integer, Item> itemMap = new HashMap<>();
+
+            while (rs.next()) {
+                int currentItemId = rs.getInt("i.item_id");
+
+                if (!itemMap.containsKey(currentItemId)) {
+                    Item item = new Item(currentItemId, rs.getString("item_title"), rs.getString("item_description"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getInt("item_category"), new ArrayList<>(), rs.getDouble("item_price"));
+                    itemMap.put(currentItemId, item);
+                    items.add(item);
+                }
+
+                Item currentItem = itemMap.get(currentItemId);
+                currentItem.getIngridients().add(new Ingridient(rs.getInt("ingredient_id"), rs.getString("ingredient_name"),
+                        rs.getDouble("ingredient_size")));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return items;
     }
 
 }

@@ -34,5 +34,7 @@ public interface AdminDao {
     public void updateItem(Item item);
 
     public void uploadPicture(InputStream is, int id);
+    
+    public List<Item> getItems();
 
 }
