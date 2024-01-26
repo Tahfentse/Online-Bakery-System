@@ -1,68 +1,69 @@
-
+<!--//working on-->
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <script src="https://kit.fontawesome.com/ad78bb0d17.js" crossorigin="anonymous"></script>
-
-        <title>To 2Pie4 Bakery</title>
-        <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-        <link href="style.css" rel="stylesheet" type="text/css"/>
-        <script src="https://kit.fontawesome.com/ad78bb0d17.js" crossorigin="anonymous"></script>
+        <title>2Pie4 Bakery</title>
         <link rel="website icon" type="png" href="img/logo.png">
-
+        <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <!-- Top SECTION -->
-        <div class="container">
-            <div class="top-section">
-                <a href="home.jsp" class="logo"><img src="img/Screenshot (99).png"></a>
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                    <br>
-        
-                    <a href="search.jsp" alt="search" onclick="performSearch()" ><i class="fa fa-search" aria-hidden="true"></i></a>
-                </div>
-                <div class="top-icons">
-                    <a href="cart.jsp" class="logo"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a><!--onclick="addToCart()"-->
 
-                    <a href="sign_in.jsp" class="profile"><i class="fa fa-user" aria-hidden="true"></i></a>
+        <!-- Header SECTION -->
+        <header class="header">
+            <a href="#home" class="logo"> 2<i class="fas fa-chart-pie"></i> 4 Bakery </a>
 
-                </div>
-            </div>
-            <!--End Top SECTION -->
-            <!-- Nav SECTION -->
-            <nav>
-                <a href="#">Menu</a>
-                <a href="#">Cookies</a>
-                <a href="#">Cakes</a>
-                <a href="#">Cupcakes</a>
-                <a href="#">Fresh Bread</a>
-                <a href="#">Pastries</a>
-                <a href="#">Pies</a>
-                <a href="#">Brownies</a>
-                <a href="#">Contact Us</a> 
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+            <nav class="navbar">                
+                <a href="#category">Category</a>
+                <a href="#products">Products</a>
+                <a href="#about">About</a>
+                <a href="#reviews">Review</a>
+                <a href="#contact">Contact</a>
             </nav>
-            <!--End Nav SECTION -->
-            <!-- Welcome SECTION -->
-            <div class="welcome-section">
+
+            <div class="icons">
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div id="search" class="fas fa-search" ></div>
+                <a id="cart-btn" href="cart.jsp">
+                    <div id="cart-btn" class="fas fa-shopping-cart"></div>
+                </a>               
+                <a id="login-btn" href="sign_in.jsp">
+                    <div id="login-btn" class="fas fa-user"></div>
+                </a> 
+            </div>
+
+            <div class="search">
+                <input type="search" placeholder="search...">
+            </div>
+
+        </header>
+        <!--End Header SECTION -->
+
+        <!-- Welcome SECTION -->
+        <div class="welcome-section" id="home">
+            <div class="container">
                 <h1>Welcome to 2Pie4 Bakery</h1>
                 <p>Indulge your senses in our delicious and freshly baked treats. From cookies to cakes, we have it all!</p>
             </div>
-            <!--End Welcome SECTION -->
-            <!-- HERO SLIDER SECTION -->
-            <div class="mobile-toggle">          
-            </div>                         
+        </div>   
+        <!--End Welcome SECTION -->
+
+        <!-- Category SECTION -->
+        <section class="category" id="category">
+
+            <h1 class="title"> our <span>category</span> </h1>
             <div class="mobile-toggle">          
             </div>                         
             <div class="hero">
 
                 <div class="swiper">
                     <div class="swiper-wrapper">
-                        <!-- slide -->
+                        <!--slide--> 
                         <div class="swiper-slide">
                             <div class="hero__slide">
                                 <div class="hero__slide__txt">
@@ -76,8 +77,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end slide -->
-                        <!-- slide -->
+                        <!--end slide 
+                                slide -->
                         <div class="swiper-slide">
                             <div class="hero__slide">
                                 <div class="hero__slide__txt">
@@ -89,8 +90,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end slide -->
-                        <!-- slide -->
+                        <!--end slide 
+                                slide -->
                         <div class="swiper-slide">
                             <div class="hero__slide">
                                 <div class="hero__slide__txt">
@@ -102,8 +103,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end slide -->
-                        <!-- slide -->
+                        <!--end slide 
+                                slide -->
                         <div class="swiper-slide">
                             <div class="hero__slide">
                                 <div class="hero__slide__txt">
@@ -115,8 +116,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end slide -->
-                        <!-- slide -->
+                        <!--end slide 
+                                slide -->
                         <div class="swiper-slide">
                             <div class="hero__slide">
                                 <div class="hero__slide__txt">
@@ -129,8 +130,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end slide -->
-                        <!-- slide -->
+                        <!--end slide 
+                                slide -->
                         <div class="swiper-slide">
                             <div class="hero__slide">
                                 <div class="hero__slide__txt">
@@ -142,8 +143,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end slide -->
-                        <!-- slide -->
+                        <!--end slide 
+                                slide -->
                         <div class="swiper-slide">
                             <div class="hero__slide">
                                 <div class="hero__slide__txt">
@@ -155,101 +156,289 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- end slide -->
+                        <!--end slide--> 
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>                           
             </div>
 
-            <!-- Swiper JS -->
+            <!--Swiper JS--> 
             <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-            <!-- App JS -->
+            <!--App JS--> 
             <script src="./app/js/app.js"></script>
-            <!-- END HERO SLIDER -->
-            <!-- ABOUT SECTION -->
-            <div class="section">                               
-                <div class="about">
-                    <div class="about__img">
-                        <img src="./img/cupcake (8).png" alt="">
-                    </div>
-                    <div class="about__info">
-                        <div class="section__header">About Us</div>
-                        <h2 class="about__info__title">2Pie4<span class="txt-main">Bakery</span></h2>                                        					
-                        <p class="about__info__description">
-                            At 2π4 Bakery, we are passionate about creating delicious and delightful treats
-                            that match your taste buds to haven. Our journey began in 2019 when our founder, Mrs Pat Cake.,
-                            decided to turn her love for baking into a business.
-                        </p >
-                        <p class="about__info__description">
-                            Since then, we have been dedicated to crafting high-quality pie, cakes, cookies, and
-                            other sweet treats using the finest ingredients. Our commitment to excellence and creativity
-                            has made us a beloved bakery in the community.
-                        </p>
 
+        </section>
+        <!--End Category SECTION -->
+
+        <!-- Products SECTION -->
+        <section class="products" id="products">
+
+            <h1 class="title"> our <span>products</span> <a href="#">view all >></a> </h1>
+
+            <div class="box-container">
+
+                <div class="box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-shopping-cart"></a>
+                        <a href="Item.jsp" class="fas fa-eye"></a>
+                    </div>
+                    <div class="img">
+                        <img decoding="async" src="./category/cupcake/lunchbar.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Lunch Bar Cupcake</h3>
+                        <div class="price">R9.99</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-shopping-cart"></a>
+                        <a href="Item.jsp" class="fas fa-eye"></a>
+                    </div>
+                    <div class="img">
+                        <img decoding="async" src="./category/donuts/strawberry.png"  alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Donut with strawberry glaze</h3>
+                        <div class="price">R19.99</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-shopping-cart"></a>
+                        <a href="Item.jsp" class="fas fa-eye"></a>
+                    </div>
+                    <div class="img">
+                        <img decoding="async" src="./category/pies/mulberry.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Mulberry Pie</h3>
+                        <div class="price">R39.99</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-shopping-cart"></a>
+                        <a href="Item.jsp" class="fas fa-eye"></a>
+                    </div>
+                    <div class="img">
+                        <img decoding="async" src="./category/cookies/choc_biscuit.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Chocolate cookies</h3>
+                        <div class="price">R29.99</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-shopping-cart"></a>
+                        <a href="Item.jsp" class="fas fa-eye"></a>
+                    </div>
+                    <div class="img">
+                        <img decoding="async" src="./category/brownies/brownies.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Brownies with cherries</h3>
+                        <div class="price">R25.99</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
                     </div>
                 </div>
 
             </div>
-            <!-- END ABOUT SECTION -->                            
-            <!-- Footer -->
-            <div class="footer">
-                <div class="footer-content">
-                    <div class="footer-section contact-info">
-                        <h3>Contact Us</h3>
-                        <p>Email: info@2Pie4bakery.com</p>
-                        <p>Phone: +1 (123) 456-7890</p>
-                    </div>
+        </section>
+        <!--End Products SECTION -->   
 
-                    <div class="footer-section social-media">
-                        <h3>Follow Us</h3>
-                        <a href="#" target="_blank"><img src="img/facebook.png" alt="Facebook"></a>
-                        <a href="#" target="_blank"><img src="img/twitter.png" alt="Twitter"></a>
-                        <a href="#" target="_blank"><img src="img/instagram.png" alt="Instagram"></a>
-                    </div>
+        <!--About SECTION -->
+        <section class="about" id="about">
+
+            <h1 class="title"> About <span>Us</span><a href="#"></a></h1>
+            <div class="about">
+                <div class="about__img">
+                    <img src="./img/cupcake (8).png" alt="">
+                </div>
+                <div class="about__info">
+                    <h2 class="about__info__title">2Pie4<span class="txt-main">Bakery</span></h2>                                        					
+                    <p class="about__info__description">
+                        At 2π4 Bakery, we are passionate about creating delicious and delightful treats
+                        that match your taste buds to haven. Our journey began in 2019 when our founder, Mrs Pat Cake.,
+                        decided to turn her love for baking into a business.
+                    </p >
+                    <p class="about__info__description">
+                        Since then, we have been dedicated to crafting high-quality pie, cakes, cookies, and
+                        other sweet treats using the finest ingredients. Our commitment to excellence and creativity
+                        has made us a beloved bakery in the community.
+                    </p>
+
                 </div>
 
-                <div class="footer-section copyright">
-                    <p>&copy; 2024 2Pie4 Bakery. All rights reserved.</p>
-                </div>
             </div>
-            <!--End Footer -->
-        </div>
+        </section>
+        <!--End About SECTION -->
+
+        <!--Reviews SECTION -->
+        <section class="review" id="reviews">
+            <h1 class="title"> Customer <span>Reviews</span></h1>
+            <div class="review">
+                <div class="box">
+                    <div class="user">
+                        <img decoding="async" src="img/pic-4.png" alt="">
+                        <div class="info">
+                            <h3>mary bey</h3>
+                        </div>
+                    </div>
+                    <p>I've been a regular customer for years, the customer service is as excellent as the pastries section is impressive.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="user">
+                        <img decoding="async" src="img/pic-1.png" alt="">
+                        <div class="info">
+                            <h3>edward Riches</h3>
+                        </div>
+                    </div>
+                    <p>Their bread is amazing, especially the oat one. The aroma in the bakery is heavenly.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="user">
+                        <img decoding="async" src="img/pic-2.png" alt="">
+                        <div class="info">
+                            <h3>kate barkers</h3>
+                        </div>
+                    </div>
+                    <p>Great bakery! I love their pastries and cakes. The quality is always top-notch.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+
+                <div class="box">
+                    <div class="user">
+                        <img decoding="async" src="img/pic-6.png" alt="">
+                        <div class="info">
+                            <h3>lisa Song</h3>
+                        </div>
+                    </div>
+                    <p>Their cupcakes are to die for! Always fresh,tasty and beautifully decorated.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+
+                </div>    
+        </section>
+        <!--End Reviews SECTION -->
+
+        <div class="space"></div>       
+
+        <!--Footer SECTION -->
+        <section class="footer">
+            <div class="box-container">
+                <div class="box">
+                    <h3>quick links</h3>
+                    <a href="#home"> <i class="fas fa-arrow-right"></i> Home</a>
+                    <a href="#about"> <i class="fas fa-arrow-right"></i>About</a>
+                    <a href="#products"> <i class="fas fa-arrow-right"></i>Products</a>
+                    <a href="#review"> <i class="fas fa-arrow-right"></i> Review</a>
+                </div>
+
+                <div class="box">
+                    <h3>extra links</h3>
+                    <a href="#"> <i class="fas fa-arrow-right"></i>  my order </a>
+                    <a href="#"> <i class="fas fa-arrow-right"></i>  my account </a>
+                    <a href="#"> <i class="fas fa-arrow-right"></i>  terms or use </a>
+                </div>
+
+                <div class="box">
+                    <h3>follow us</h3>
+                    <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+                    <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                    <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                    <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+                </div>
+
+                <div class="box" id="contact">
+                    <h3>contact us</h3>
+                    <p>Email: info@2Pie4bakery.com</p>
+                    <p>Phone: 012 461 3724</p>
+                </div>
+
+            </div>
+        </section>
+        <!--End Footer SECTION -->
+
+        <section class="credit"><p>&copy; 2024 2Pie4 Bakery. All rights reserved.</p></section>
         <script>
-                    function myFunction() {
-                        var x = document.querySelector("nav");
-                        if (x.className === "") {
-                            x.className = "responsive";
-                        } else {
-                            x.className = "";
-                        }
-                    }
+            let search = document.querySelector('.search');
+            document.querySelector('#search').onclick = () => {
+                search.classList.toggle('active');
+            };
 
-// adding to cart
-                    let cartCount = 0;
+            var cartBtn = document.getElementById('cart-btn');
+            cartBtn.addEventListener('click', function () {
+                window.location.href = "cart.jsp";
+            });
 
-                    function addToCart() {
-                        // Increment the cart count
-                        cartCount++;
-
-                        // Update the cart count element
-                        document.getElementById('cart-count').innerText = cartCount;
-                    }
-
-                    function performSearch() {
-                        // Your search functionality goes here
-                        alert('Performing search...');
-
-
-
-
-                    }
         </script>
-    </body>
-
+        <script src="main.js" defer data-deferred="1"></script> </body>
 
 </html>
-
-</script>
-</body>
-</html>
-

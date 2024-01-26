@@ -8,291 +8,293 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Page - To Pie Four Bakery</title>
-     <link rel="website icon" type="png" href="img/logo.png">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #FEF7E4; /* Vanilla Cream */
-            color: #5C3D2E; /* Chocolate Brown */
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Item Page - To Pie Four Bakery</title>
+        <link rel="website icon" type="png" href="img/logo.png">
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #FEF7E4; /* Vanilla Cream */
+                color: #5C3D2E; /* Chocolate Brown */
+            }
 
-        .container {
-            margin: 0 100px; /* 100px space from both left and right */
-        }
-
-        .single-item {
-            display: flex; /* Use flexbox for layout */
-            align-items: center; /* Center vertically */
-            text-align: left;
-            padding: 30px 0; /* Reduced padding for better spacing */
-        }
-
-        .single-item img {
-            width: 100%; /* Make the image responsive */
-            max-width: 400px; /* Set max-width for larger screens */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 10px;
-            margin-right: 20px; /* Add space between image and text */
-        }
-
-        .item-details {
-            flex: 1; /* Take remaining width */
-        }
-
-        .item-details h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .info-box {
-            background-color: #F2E3CC; /* Light Yellow */
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .info-box p {
-            margin: 0;
-            font-size: 18px; /* Increased font size for better readability */
-        }
-
-        .add-to-cart-button {
-            background-color: #D91E36; /* Cherry Red */
-            color: #FFF; /* White text */
-            padding: 20px 40px; /* Increased padding for a larger button */
-            border: none;
-            border-radius: 10px; /* Rounded corners for the button */
-            font-size: 20px; /* Increased font size for better visibility */
-            cursor: pointer;
-            transition: background-color 0.3s; /* Added transition for a smooth hover effect */
-        }
-
-        .add-to-cart-button:hover {
-            background-color: #985f28; /* Darker Cherry Red on hover */
-        }
-        
-        .top-section {
-            background-color: #F2E3CC;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-        }
-
-        .logo img {
-            height: 50px;
-            max-width: 100%; /* Ensure logo image is responsive */
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-bar input {
-            width: 70%; /* Full width on smaller screens */
-            padding: 15px;
-            border: none;
-            border-radius: 4px;
-            margin-left: 15%; /* No left margin on smaller screens */
-        }
-
-        .search-bar img {
-            height: 25px;
-            cursor: pointer;
-            padding-left: 5px;
-        }
-
-        .top-icons {
-            display: flex;
-            align-items: center;
-        }
-
-        .top-icons img {
-            margin: 0 5px; /* Reduced margin for smaller screens */
-            height: 30px; /* Reduced height for smaller screens */
-            max-width: 100%; /* Ensure icon images are responsive */
-        }
-
-        nav {
-            background-color:  #F2E3CC;
-            overflow: hidden;
-        }
-
-        nav a {
-            float: left;
-            display: block;
-            color: #5C3D2E; /* Chocolate Brown */
-            text-align: center;
-            padding: 20px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            transition: background-color 0.3s; /* Added transition for smooth hover effect */
-        }
-
-        nav a:hover {
-            background-color: #985f28; /* Cherry Red */
-            color: #FFF; /* White text on hover */
-        }
-
-        @media screen and (max-width: 600px) {
             .container {
-                margin: 0 20px; /* Adjusted space for smaller screens */
+                margin: 0 100px; /* 100px space from both left and right */
             }
 
             .single-item {
-                flex-direction: column; /* Stack items vertically on smaller screens */
+                display: flex; /* Use flexbox for layout */
+                align-items: center; /* Center vertically */
+                text-align: left;
+                padding: 30px 0; /* Reduced padding for better spacing */
             }
 
             .single-item img {
-                margin-right: 0; /* No right margin on smaller screens */
-                margin-bottom: 20px; /* Add space between image and text on smaller screens */
+                width: 100%; /* Make the image responsive */
+                max-width: 400px; /* Set max-width for larger screens */
+                height: auto; /* Maintain aspect ratio */
+                border-radius: 10px;
+                margin-right: 20px; /* Add space between image and text */
             }
+
+            .item-details {
+                flex: 1; /* Take remaining width */
+            }
+
+            .item-details h2 {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+
+            .info-box {
+                background-color: #F2E3CC; /* Light Yellow */
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .info-box p {
+                margin: 0;
+                font-size: 18px; /* Increased font size for better readability */
+            }
+
+            .add-to-cart-button {
+                background-color: #5C3D2E; /* Chocolate brown */
+                color: #FFF; /* White text */
+                padding: 20px 40px; /* Increased padding for a larger button */
+                border: none;
+                border-radius: 10px; /* Rounded corners for the button */
+                font-size: 1.5rem;
+                font-weight: 600; /* Increased font size for better visibility */
+                cursor: pointer;
+                transition: background-color 0.3s; /* Added transition for a smooth hover effect */
+            }
+
+            .add-to-cart-button:hover {
+                background-color: #985f28; /* Brownish */
+                box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
+            }
+
+            .top-section {
+                background-color: #F2E3CC;
+                height: 70px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+
+            .logo img {
+                height: 50px;
+                max-width: 100%; /* Ensure logo image is responsive */
+            }
+
+            .search-bar {
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+            }
+
             .search-bar input {
-                width: 80%; /* Adjusted width for smaller screens */
+                width: 70%; /* Full width on smaller screens */
+                padding: 15px;
+                border: none;
+                border-radius: 4px;
+                margin-left: 15%; /* No left margin on smaller screens */
+            }
+
+            .search-bar img {
+                height: 25px;
+                cursor: pointer;
+                padding-left: 5px;
+            }
+
+            .top-icons {
+                display: flex;
+                align-items: center;
             }
 
             .top-icons img {
-                height: 25px; /* Further reduced height for smaller screens */
+                margin: 0 5px; /* Reduced margin for smaller screens */
+                height: 30px; /* Reduced height for smaller screens */
+                max-width: 100%; /* Ensure icon images are responsive */
+            }
+
+            nav {
+                background-color:  #F2E3CC;
+                overflow: hidden;
             }
 
             nav a {
-                padding: 10px; /* Further reduced padding for smaller screens */
-                font-size: 14px; /* Further reduced font size for smaller screens */
+                float: left;
+                display: block;
+                color: #5C3D2E; /* Chocolate Brown */
+                text-align: center;
+                padding: 20px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 16px;
+                transition: background-color 0.3s; /* Added transition for smooth hover effect */
             }
+
             nav a:hover {
                 background-color: #985f28; /* Cherry Red */
-            }
-        }
-        @media screen and (max-width: 400px) {
-            .top-icons img {
-                display: none; /* Hide icons on even smaller screens */
-            }
-        }
-        @media screen and (min-width: 601px) {
-            nav a.icon {
-                display: none;
+                color: #FFF; /* White text on hover */
             }
 
-            nav a {
-                display: block;
+            @media screen and (max-width: 600px) {
+                .container {
+                    margin: 0 20px; /* Adjusted space for smaller screens */
+                }
+
+                .single-item {
+                    flex-direction: column; /* Stack items vertically on smaller screens */
+                }
+
+                .single-item img {
+                    margin-right: 0; /* No right margin on smaller screens */
+                    margin-bottom: 20px; /* Add space between image and text on smaller screens */
+                }
+                .search-bar input {
+                    width: 80%; /* Adjusted width for smaller screens */
+                }
+
+                .top-icons img {
+                    height: 25px; /* Further reduced height for smaller screens */
+                }
+
+                nav a {
+                    padding: 10px; /* Further reduced padding for smaller screens */
+                    font-size: 14px; /* Further reduced font size for smaller screens */
+                }
+                nav a:hover {
+                    background-color: #985f28; /* Cherry Red */
+                }
             }
-
-            nav .dropdown {
-                display: none;
+            @media screen and (max-width: 400px) {
+                .top-icons img {
+                    display: none; /* Hide icons on even smaller screens */
+                }
             }
-        }
-    </style>
-</head>
-<body>
+            @media screen and (min-width: 601px) {
+                nav a.icon {
+                    display: none;
+                }
 
-<div class="container">
-    
-    <div class="top-section">
-        <a href="#" class="logo"><img src="img/Screenshot (99).png"></a>
-        <div class="search-bar">
-            <input type="text" placeholder="Search...">
-            <img src="img/search.png" alt="Search" onclick="performSearch()">
-        </div>
-        <div class="top-icons">
-            <img src="img/cart.png" id="cart-icon" onclick="addToCart()">
-            <span id="cart-count" class="cart-count">0</span>
-            <img src="img/profile-user.png">
-        </div>
-    </div>
+                nav a {
+                    display: block;
+                }
 
-    <nav>
-        <a href="#">Menu</a>
-        <a href="#">Cookies</a>
-        <a href="#">Cakes</a>
-        <a href="#">Cupcakes</a>
-        <a href="#">Fresh Bread</a>
-        <a href="#">Pastries</a>
-        <a href="#">Pies</a>
-        <a href="#">Brownies</a>
-        <a href="#">Contact Us</a> 
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-    </nav>
-    
-    
-    <div class="single-item">
-        <img src="img/cupcake (5).png" alt="Your Item Image">
-        
-        <div class="item-details">
-            <h2>Your Item Title</h2>
+                nav .dropdown {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <!--    <div class="top-section">
+                    <a href="#" class="logo"><img src="img/Screenshot (99).png"></a>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search...">
+                        <img src="img/search.png" alt="Search" onclick="performSearch()">
+                    </div>
+                    <div class="top-icons">
+                        <img src="img/cart.png" id="cart-icon" onclick="addToCart()">
+                        <span id="cart-count" class="cart-count">0</span>
+                        <img src="img/profile-user.png">
+                    </div>
+                </div>
             
-            <div class="info-box">
-                <p>Item Description: Provide a brief description of your item here.</p>
-            </div>
+                <nav>
+                    <a href="#">Menu</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Cakes</a>
+                    <a href="#">Cupcakes</a>
+                    <a href="#">Fresh Bread</a>
+                    <a href="#">Pastries</a>
+                    <a href="#">Pies</a>
+                    <a href="#">Brownies</a>
+                    <a href="#">Contact Us</a> 
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+                </nav>-->
 
-            <div class="info-box">
-                <p>Item Warnings: If there are any warnings or special considerations, mention them here.</p>
-            </div>
 
-            <div class="info-box">
-                <p>Nutrient Information: Share relevant nutrient information about your item.</p>
-            </div>
+            <div class="single-item">
+                <img src="img/cupcake (5).png" alt="Your Item Image">
 
-            <div class="info-box">
-                <p>Ingredients: List the ingredients used in your item.</p>
-            </div>
+                <div class="item-details">
+                    <h2>Your Item Title</h2>
 
-            <div class="info-box">
-                <p>Category: Specify the category to which your item belongs.</p>
-            </div>
+                    <div class="info-box">
+                        <p>Item Description: Provide a brief description of your item here.</p>
+                    </div>
 
-            <button onclick="addToCart()" class="add-to-cart-button">Add to Cart</button>
+                    <div class="info-box">
+                        <p>Item Warnings: If there are any warnings or special considerations, mention them here.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <p>Nutrient Information: Share relevant nutrient information about your item.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <p>Ingredients: List the ingredients used in your item.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <p>Category: Specify the category to which your item belongs.</p>
+                    </div>
+
+                    <button onclick="addToCart()" class="add-to-cart-button">Add to Cart</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-    
-<script>
-    function addToCart() {
-        // Replace this with your actual logic to add the item to the cart
-        alert('Item added to cart!');
-        
-        }
-        //navbar and top section
-        function myFunction() {
-        var x = document.querySelector("nav");
-        if (x.className === "") {
-            x.className = "responsive";
-        } else {
-            x.className = "";
-        }
-    }   
 
-        // adding to cart
-        let cartCount = 0;
+        <script>
+            function addToCart() {
+                // Replace this with your actual logic to add the item to the cart
+                alert('Item added to cart!');
 
-        function addToCart() {
-            // Increment the cart count
-            cartCount++;
+            }
+            //navbar and top section
+            function myFunction() {
+                var x = document.querySelector("nav");
+                if (x.className === "") {
+                    x.className = "responsive";
+                } else {
+                    x.className = "";
+                }
+            }
 
-            // Update the cart count element
-            document.getElementById('cart-count').innerText = cartCount;
-        }
+            // adding to cart
+            let cartCount = 0;
 
-        function performSearch() {
-            // Your search functionality goes here
-            alert('Performing search...');
+            function addToCart() {
+                // Increment the cart count
+                cartCount++;
+
+                // Update the cart count element
+                document.getElementById('cart-count').innerText = cartCount;
+            }
+
+            function performSearch() {
+                // Your search functionality goes here
+                alert('Performing search...');
 
 
 
-        }
-    
-</script>
+            }
 
-</body>
+        </script>
+
+    </body>
 </html>
 
 
