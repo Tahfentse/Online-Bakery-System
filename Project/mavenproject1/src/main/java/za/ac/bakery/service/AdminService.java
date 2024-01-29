@@ -6,6 +6,7 @@ package za.ac.bakery.service;
 
 import java.io.InputStream;
 import java.util.List;
+import za.ac.bakery.model.Catergory;
 import za.ac.bakery.model.Item;
 import za.ac.bakery.model.Person;
 
@@ -36,5 +37,9 @@ public interface AdminService {
     public void uploadPicture(InputStream is, int id);
     
      public List<Item> getItems();
+     
+     public List<Catergory> catergories();
+     
+     public List<Item> getItemWithCategoryId(int id);
 
 }

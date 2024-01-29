@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import za.ac.bakery.daoImpl.AdminDaoImpl;
+import za.ac.bakery.model.Catergory;
 import za.ac.bakery.model.Item;
 import za.ac.bakery.model.Person;
 import za.ac.bakery.service.AdminService;
@@ -99,16 +100,38 @@ public class AdminServiceImpl implements AdminService {
         }
         return items;
     }
-    
+
     public static void main(String[] args) {
         List<Item> items;
-        
+
         AdminServiceImpl service = new AdminServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
-        
-        items =service.getItems();
-        
+
+        items = service.getItems();
+
         items.forEach(System.out::println);
-        
+
+    }
+
+    @Override
+    public List<Catergory> catergories() {
+        List<Catergory> catergorys = admindao.catergories();
+
+        if (catergorys.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return catergorys;
+    }
+
+    @Override
+    public List<Item> getItemWithCategoryId(int id) {
+
+        List<Item> items = admindao.getItemWithCategoryId(id);
+
+        if (items.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return items;
     }
 
 }

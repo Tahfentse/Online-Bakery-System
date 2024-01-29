@@ -28,6 +28,16 @@ public class Item {
     public Item() {
     }
 
+    public Item(int item_id, String item_title, String item_description, String item_nutrients, Blob pic, Double item_price) {
+        this.item_id = item_id;
+        this.item_title = item_title;
+        this.item_description = item_description;
+        this.pic = pic;
+        this.item_nutrients = item_nutrients;
+
+        this.item_price = item_price;
+    }
+
     public Item(int item_id, String item_title, String item_description, Blob pic, String item_nutrients, int item_category, List<Ingridient> ingridients, Double item_price) {
         this.item_id = item_id;
         this.item_title = item_title;
@@ -69,8 +79,6 @@ public class Item {
         this.item_category = item_category;
         this.item_price = item_price;
     }
-
-   
 
     public int getItem_id() {
         return item_id;

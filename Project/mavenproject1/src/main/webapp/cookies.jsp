@@ -4,12 +4,15 @@
     Author     : Train
 --%>
 
+<%@page import="java.sql.Blob"%>
+<%@page import="za.ac.bakery.model.Item"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cookies Page</title>
+        <title> ${catergorytitle}</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -75,37 +78,48 @@
         <div class="container">
             <!-- END Service SECTION -->
             <div class="services">
-                <h1>Our Cookies</h1>
-                <div class="service_box">
-                    <div class="item">
-                        <img src="./category/cookies/choc_biscuit.png" alt="Category 1">
-                        <h3>Chocolate cookies</h3>
-                        <button class="add-to-cart-btn">Add to Cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="./category/cookies/ginger_bread.png" alt="Category 1">
-                        <h3>Ginger bread cookies</h3>
-                        <button class="add-to-cart-btn">Add to Cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="./category/cookies/macaroons.png" alt="Category 1">
-                        <h3>Macaroons</h3>
-                        <button class="add-to-cart-btn">Add to Cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="./category/cookies/pinwheel.png" alt="Category 1">
-                        <h3>Pinwheel</h3>
-                        <button class="add-to-cart-btn">Add to Cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="./category/cookies/vegan_chocolate_chip.png" alt="Category 1">
-                        <h3>Vegan Chocolate chip</h3>
-                        <button class="add-to-cart-btn">Add to Cart</button>
-                    </div>
+                <h1>${catergorytitle}</h1>
 
-                </div>
+                <form action="AdminController" method="POST">
+
+                    <%
+                        List<Item> items = (List<Item>) session.getAttribute("items");
+
+                        for (Item item : items) {
+                            ;
+
+                            Blob imageBlob = item.getPic();
+                            if (imageBlob != null) {
+                                byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
+                                String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
+
+                                // Assuming the image is a PNG for this example, adjust as needed
+                                String imgSrc = "data:image/png;base64, " + base64Image;
+
+
+                    %>
+                    <div class="service_box">
+
+                        <div class="item">
+
+                            <img src="<%=imgSrc%>" alt="Category 1">
+
+                            <h3><%=item.getItem_title()%></h3>
+                            <h1><%= item.getItem_price()%></h1>
+
+                            <input type="hidden" name="" value="">
+                            <button class="add-to-cart-btn">Add to Cart</button>
+                        </div>  
+
+                        <%}%>
+                        <%}%>
+
+                </form>
             </div>
-            <!-- END Service SECTION -->
+
+
         </div>
-    </body>
+
+    </div>
+</body>
 </html>

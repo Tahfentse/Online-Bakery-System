@@ -1,3 +1,4 @@
+<%@page import="za.ac.bakery.model.Catergory"%>
 <%@page import="java.sql.Blob"%>
 <%@page import="za.ac.bakery.model.Item"%>
 <%@page import="java.util.List"%>
@@ -15,20 +16,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <% List<Item> items = (List<Item>) session.getAttribute("items");
-    for (int i = 0; i < items.size(); i++) { 
-        
-    
-     Blob imageBlob = items.get(i).getPic();
 
-                if (imageBlob != null) {
-                    byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
-                    String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
-
-                    // Assuming the image is a PNG for this example, adjust as needed
-                    String imgSrc = "data:image/png;base64, " + base64Image;
-    
-    %>
     <header class="header">
         <a href="#home" class="logo"> 2<i class="fas fa-chart-pie"></i> 4 Bakery </a>
         <nav class="navbar">                
@@ -59,99 +47,74 @@
         </div>
     </div>   
     <section class="category" id="category">
-        <h1 class="title"> our <span>category</span> </h1>
-        <div class="mobile-toggle">          
-        </div>                         
-        <div class="hero">
-            <div class="swiper">
-                <div class="swiper-wrapper">
-                    <!--slide--> 
-                    <div class="swiper-slide">
-                        <div class="hero__slide">
-                            <div class="hero__slide__txt">
-                                Cookies
-                            </div>
-                            <div class="hero__slide__img">
-                                <img src="<%=imgSrc%>" alt="Image">
-                                <a href="cookies.jsp">
-                                    <button class="btn btn-left" data-speed="-5"><%=items.get(i).getItem_title()%></button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="hero__slide">
-                            <div class="hero__slide__txt">
-                                Cakes
-                            </div>
-                            <div class="hero__slide__img">
-                                <img src="./category/cakes/fruity.png" alt="Category 2">
-                                <button class="btn btn-left" data-speed="-5">Get Cakes</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="hero__slide">
-                            <div class="hero__slide__txt">
-                                Cupcakes
-                            </div>
-                            <div class="hero__slide__img">
-                                <img src="./category/cupcake/lunchbar.png" alt="Category 3">
-                                <button class="btn btn-left" data-speed="-5">Get Cakecups</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="hero__slide">
-                            <div class="hero__slide__txt">
-                                Brownies
-                            </div>
-                            <div class="hero__slide__img">
-                                <img src="./category/brownies/brownies.png" alt="Category 4">
-                                <button class="btn btn-left" data-speed="-5">Get Brownies</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="hero__slide">
-                            <div class="hero__slide__txt">
-                                Fresh Bread
-                            </div>
-                            <div class="hero__slide__img">
-                                <img src="./category/bread/oat.png" alt="Category 5">
 
-                                <button class="btn btn-left" data-speed="-5">Get Fresh Bread</button>
+        <form method="POST">
+
+            <% List<Catergory> categories = (List<Catergory>) session.getAttribute("categories");
+
+                if (categories != null && !categories.isEmpty()) {
+            %>
+            <h1 class="title">Our <span>Categories</span></h1>
+            <div class="mobile-toggle"></div>
+            <div class="hero">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+
+                        <% for (Catergory category : categories) {
+                                Blob imageBlob = category.getCatergory_pic();
+
+                                if (imageBlob != null) {
+                                    byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
+                                    String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
+
+                                    // Assuming the image is a PNG for this example, adjust as needed
+                                    String imgSrc = "data:image/png;base64, " + base64Image;
+                        %>
+
+
+
+                        <div class="swiper-slide">
+                            <div class="hero__slide">
+                                <div class="hero__slide__txt">
+                                    <%= category.getCatergory_title()%>
+                                </div>
+                                <div class="hero__slide__img">
+                                    <img src="<%= imgSrc%>" alt="<%= category.getCatergory_title()%>">
+
+                                    <input type="hidden"  name="act" value="viewcatergory">
+                                    <input type="hidden" name="catergoryid" value="<%=category.getCatergory()%>">
+
+                                    <input type="hidden"  name="catergorytitle" value="<%=category.getCatergory_title()%>">
+
+                                    <button class="btn btn-left" data-speed="-5">Get <%= category.getCatergory_title()%></button>
+
+                                    </a>
+                                </div>
                             </div>
                         </div>
+
+                        <%
+                                }
+                            } %>
+
+
                     </div>
-                    <div class="swiper-slide">
-                        <div class="hero__slide">
-                            <div class="hero__slide__txt">
-                                Pies
-                            </div>
-                            <div class="hero__slide__img">
-                                <img src="./category/pies/chicken.png" alt="Category 6">
-                                <button class="btn btn-left" data-speed="-5">Get Pies</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="hero__slide">
-                            <div class="hero__slide__txt">
-                                Donuts
-                            </div>
-                            <div class="hero__slide__img">
-                                <img src="./category/donuts/bubble_gum_with_sprinkles.png" alt="Category 7">
-                                <button class="btn btn-left" data-speed="-5">Get Donut</button>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <div class="swiper-pagination"></div>
-            </div>                           
-        </div>
-        <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-        <script src="./app/js/app.js"></script>
+
+                <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+                <script src="./app/js/app.js"></script>
+            </div>
+
+            <%
+            } else {
+                // Handle the case where there are no categories
+            %>
+            <p>No categories available.</p>
+            <%
+                }
+            %>
+        </form>
     </section>
     <section class="products" id="products">
         <h1 class="title"> our <span>products</span> <a href="#">view all >></a> </h1>
@@ -376,8 +339,7 @@
                 <p>Phone: 012 461 3724</p>
             </div>
         </div>
-        <%}%>
-        <%}%>
+
     </section>
     <section class="credit"><p>&copy; 2024 2Pie4 Bakery. All rights reserved.</p></section>
     <script>

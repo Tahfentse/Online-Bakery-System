@@ -24,6 +24,7 @@ import za.ac.bakery.model.Ingridient;
 import za.ac.bakery.model.Item;
 import za.ac.bakery.model.Person;
 import za.ac.bakery.dao.AdminDao;
+import za.ac.bakery.model.Catergory;
 
 /**
  *
@@ -298,12 +299,18 @@ public class AdminDaoImpl implements AdminDao {
 
         AdminDaoImpl dao = new AdminDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
-        List<Item> items = dao.getItems();
+        List<Item> items = dao.getItemWithCategoryId(4);
 
-        if (items.isEmpty()) {
-            System.out.println("Hello Im EMPTY");
-        } else {
-            items.forEach(System.out::println);
+        for (int i = 0; i < items.size(); i++) {
+
+            if (items.isEmpty()) {
+                System.out.println("Hello Im EMPTY");
+            } else {
+
+                System.out.println("Catergory ID :" + items.get(i).getItem_title());
+                System.out.println("Catergory title : " + items.get(i).getItem_description());
+            }
+
         }
 
     }
@@ -337,6 +344,48 @@ public class AdminDaoImpl implements AdminDao {
             Logger.getLogger(AdminDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        return items;
+    }
+
+    @Override
+    public List<Catergory> catergories() {
+        Catergory catergory = new Catergory();
+        List<Catergory> catergorys = new ArrayList<>();
+        try {
+            ps = con.prepareStatement("SELECT categoryId,name,catergory_pic FROM category ");
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                catergory = new Catergory(rs.getInt("categoryId"), rs.getString("name").toUpperCase(), rs.getBlob("catergory_pic"));
+                catergorys.add(catergory);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return catergorys;
+    }
+
+    @Override
+    public List<Item> getItemWithCategoryId(int id) {
+        List<Item> items = new ArrayList<>();
+        try {
+            ps = con.prepareStatement("SELECT i.item_id,i.item_title,i.item_description,i.item_nutrients,i.item_pic,i.item_price FROM category c,item i WHERE c.categoryId = i.item_category AND c.categoryId =?;");
+
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Item item = new Item(rs.getInt("i.item_id"), rs.getString("i.item_title"), rs.getString("i.item_description"), rs.getString("i.item_nutrients"), rs.getBlob("i.item_pic"), rs.getDouble("i.item_price"));
+                items.add(item);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return items;
     }
 

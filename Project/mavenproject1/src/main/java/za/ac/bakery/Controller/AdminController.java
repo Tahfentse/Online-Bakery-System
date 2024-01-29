@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import za.ac.bakery.model.Catergory;
 import za.ac.bakery.model.Ingridient;
 import za.ac.bakery.model.Item;
 import za.ac.bakery.model.Person;
@@ -50,15 +52,15 @@ public class AdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         session = request.getSession();
-        
-        List products = new ArrayList<>();
 
-        products = adminservice.getItems();
+        List<Catergory> categories = new ArrayList<>();
 
-        products.forEach(System.out::println);
+        categories = adminservice.catergories();
 
-        session.setAttribute("items", products);
-        response.setHeader("Content-Type", "image/jpg"); 
+        categories.forEach(System.out::println);
+
+        session.setAttribute("categories", categories);
+        //      response.setHeader("Content-Type", "image/jpg"); 
         path = "startuppage.jsp";
 
         request.getRequestDispatcher(path).forward(request, response);
@@ -120,6 +122,25 @@ public class AdminController extends HttpServlet {
 
             case "updateItem":
 
+                break;
+
+            case "viewcatergory":
+
+                String categoryId = request.getParameter("catergoryid");
+
+                String catergorytitle = request.getParameter("catergorytitle");
+                
+                int catergoryidI = Integer.parseInt(categoryId);
+                
+                System.out.println("Catergory : " + catergoryidI);
+                System.out.println("Catergory : " + catergorytitle);
+
+                List<Item> items = adminservice.getItemWithCategoryId(catergoryidI);
+
+                session.setAttribute("items", items);
+                session.setAttribute("catergorytitle", catergorytitle);
+
+                request.getRequestDispatcher("cookies.jsp").forward(request, response);
                 break;
 
         }
