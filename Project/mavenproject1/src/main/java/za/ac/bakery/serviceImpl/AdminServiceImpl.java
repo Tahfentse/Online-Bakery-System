@@ -134,4 +134,15 @@ public class AdminServiceImpl implements AdminService {
         return items;
     }
 
+    @Override
+    public List<Item> getAllItems() {
+        List<Item> items = admindao.getAllItems();
+        if (items.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return items;
+
+    }
+
 }

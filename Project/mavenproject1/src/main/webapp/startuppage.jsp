@@ -61,9 +61,7 @@
                     <div class="swiper-wrapper">
 
                         <% for (Catergory category : categories) {
-                                if (category.getCatergory() == 5) {
-                                    continue;
-                                }
+
                                 Blob imageBlob = category.getCatergory_pic();
 
                                 byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
@@ -117,7 +115,24 @@
         </form>
     </section>
     <section class="products" id="products">
-        <h1 class="title"> our <span>products</span> <a href="#">view all >></a> </h1>
+        <h1 class="title"> our <span>products</span> <a href="/mavenproject1/AdminController.do?action=POST&act=viewall">view all </a> </h1>
+        <%
+            List<Item> items = (List<Item>) session.getAttribute("items");
+
+            for (Item item : items) {
+                item.getItem_title();
+                
+
+                Blob imageBlob = item.getPic();
+
+                byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
+                String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
+
+                // Assuming the image is a PNG for this example, adjust as needed
+                String imgSrc = "data:image/png;base64, " + base64Image;
+
+
+        %>
         <div class="box-container">
             <div class="box">
                 <div class="icons">
@@ -125,91 +140,11 @@
                     <a href="Item.jsp" class="fas fa-eye"></a>
                 </div>
                 <div class="img">
-                    <img decoding="async" src="./category/cupcake/lunchbar.png" alt="">
+                    <img decoding="async" src="<%=imgSrc%>" alt="">
                 </div>
                 <div class="content">
-                    <h3>Lunch Bar Cupcake</h3>
-                    <div class="price">R9.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <div class="icons">
-                    <a href="#" class="fas fa-shopping-cart"></a>
-                    <a href="Item.jsp" class="fas fa-eye"></a>
-                </div>
-                <div class="img">
-                    <img decoding="async" src="./category/donuts/strawberry.png"  alt="">
-                </div>
-                <div class="content">
-                    <h3>Donut with strawberry glaze</h3>
-                    <div class="price">R19.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <div class="icons">
-                    <a href="#" class="fas fa-shopping-cart"></a>
-                    <a href="Item.jsp" class="fas fa-eye"></a>
-                </div>
-                <div class="img">
-                    <img decoding="async" src="./category/pies/mulberry.png" alt="">
-                </div>
-                <div class="content">
-                    <h3>Mulberry Pie</h3>
-                    <div class="price">R39.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <div class="icons">
-                    <a href="#" class="fas fa-shopping-cart"></a>
-                    <a href="Item.jsp" class="fas fa-eye"></a>
-                </div>
-                <div class="img">
-                    <img decoding="async" src="./category/cookies/choc_biscuit.png" alt="">
-                </div>
-                <div class="content">
-                    <h3>Chocolate cookies</h3>
-                    <div class="price">R29.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <div class="icons">
-                    <a href="#" class="fas fa-shopping-cart"></a>
-                    <a href="Item.jsp" class="fas fa-eye"></a>
-                </div>
-                <div class="img">
-                    <img decoding="async" src="./category/brownies/brownies.png" alt="">
-                </div>
-                <div class="content">
-                    <h3>Brownies with cherries</h3>
-                    <div class="price">R25.99</div>
+                    <h3><%=item.getItem_title()%></h3>
+                    <div class="price"><%=item.getItem_price()%></div>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -220,6 +155,7 @@
                 </div>
             </div>
         </div>
+        <%}%>
     </section>
     <section class="about" id="about">
         <h1 class="title"> About <span>Us</span><a href="#"></a></h1>
@@ -309,6 +245,7 @@
                     <i class="far fa-star"></i>
                 </div>
             </div>    
+        </div>
     </section>
     <div class="space"></div>       
     <section class="footer">

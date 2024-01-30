@@ -52,39 +52,51 @@ public class AdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         session = request.getSession();
-        
+
         if (request.getParameter("action") == null) {
 
             List<Catergory> categories = new ArrayList<>();
+            List<Item> items = new ArrayList<>();
+
             System.out.println(request.getParameter("f"));
+
             categories = adminservice.catergories();
 
-//        categories.forEach(System.out::println);
+            items = adminservice.getItems();
+
             session.setAttribute("categories", categories);
-            //      response.setHeader("Content-Type", "image/jpg"); 
+            session.setAttribute("items", items);
+
             path = "startuppage.jsp";
             request.getRequestDispatcher(path).forward(request, response);
+
         } else {
 
-            switch(request.getParameter("act").toLowerCase()){
+            switch (request.getParameter("act").toLowerCase()) {
                 case "viewcatergory":
 
-                String categoryId = request.getParameter("catergoryid");
+                    String categoryId = request.getParameter("catergoryid");
 
-                String catergorytitle = request.getParameter("catergorytitle");
+                    String catergorytitle = request.getParameter("catergorytitle");
 
-                int catergoryidI = Integer.parseInt(categoryId);
+                    int catergoryidI = Integer.parseInt(categoryId);
 
-                System.out.println("Catergory : " + catergoryidI);
-                System.out.println("Catergory : " + catergorytitle);
+                    System.out.println("Catergory : " + catergoryidI);
+                    System.out.println("Catergory : " + catergorytitle);
 
-                List<Item> items = adminservice.getItemWithCategoryId(catergoryidI);
+                    List<Item> items = adminservice.getItemWithCategoryId(catergoryidI);
 
-                session.setAttribute("items", items);
-                session.setAttribute("catergorytitle", catergorytitle);
+                    session.setAttribute("items", items);
+                    session.setAttribute("catergorytitle", catergorytitle);
 
-                request.getRequestDispatcher("cookies.jsp").forward(request, response);
-                break;
+                    request.getRequestDispatcher("cookies.jsp").forward(request, response);
+                case "viewall":
+                    List<Item> allItems = adminservice.getAllItems();
+
+                    session.setAttribute("items", allItems);
+                    request.getRequestDispatcher("viewall.jsp").forward(request, response);
+
+                    break;
             }
         }
 

@@ -41,5 +41,7 @@ public interface AdminDao {
     public List<Catergory> catergories();
 
     public List<Item> getItemWithCategoryId(int id);
+    
+    public List<Item> getAllItems();
 
 }

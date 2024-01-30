@@ -299,7 +299,7 @@ public class AdminDaoImpl implements AdminDao {
 
         AdminDaoImpl dao = new AdminDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
-        List<Item> items = dao.getItemWithCategoryId(4);
+        List<Item> items = dao.getAllItems();
 
         for (int i = 0; i < items.size(); i++) {
 
@@ -319,7 +319,7 @@ public class AdminDaoImpl implements AdminDao {
         List<Item> items = new ArrayList<>();
 
         try {
-            ps = con.prepareStatement("SELECT i.item_id, item_title, item_description, item_nutrients,item_pic, item_category, item_price,ingredient_id,ing.ingredient_name,ing.ingredient_size,r.recipeid,r.item_recipe,r.size FROM item i, ingredient ing,recipe r,recipe_ingredient ri WHERE i.item_id=ri.recipeId AND ri.recipeIngredient =ing.ingredient_id AND ri.recipeId =r.recipeid",
+            ps = con.prepareStatement("SELECT i.item_id, item_title, item_description, item_nutrients,item_pic, item_category, item_price,ingredient_id,ing.ingredient_name,ing.intgredient_qty,r.recipeid,r.item_recipe FROM item i, ingredient ing,recipe r,recipe_ingredient ri WHERE i.item_id=ri.recipeId AND ri.recipeIngredient =ing.ingredient_id AND ri.recipeId =r.recipeid",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
             ResultSet rs = ps.executeQuery();
@@ -337,7 +337,7 @@ public class AdminDaoImpl implements AdminDao {
 
                 Item currentItem = itemMap.get(currentItemId);
                 currentItem.getIngridients().add(new Ingridient(rs.getInt("ingredient_id"), rs.getString("ingredient_name"),
-                        rs.getDouble("ingredient_size")));
+                        rs.getDouble("intgredient_qty")));
             }
 
         } catch (SQLException ex) {
@@ -380,6 +380,24 @@ public class AdminDaoImpl implements AdminDao {
             while (rs.next()) {
 
                 Item item = new Item(rs.getInt("i.item_id"), rs.getString("i.item_title"), rs.getString("i.item_description"), rs.getString("i.item_nutrients"), rs.getBlob("i.item_pic"), rs.getDouble("i.item_price"));
+                items.add(item);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return items;
+    }
+
+    @Override
+    public List<Item> getAllItems() {
+        List<Item> items = new ArrayList<>();
+        try {
+            ps = con.prepareStatement("SELECT item_id,item_title,item_description,item_nutrients,item_pic,item_price FROM item");
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Item item = new Item(rs.getInt("item_id"), rs.getString("item_title"), rs.getString("item_description"), rs.getString("item_nutrients"), rs.getBlob("item_pic"), rs.getDouble("item_price"));
                 items.add(item);
             }
 
