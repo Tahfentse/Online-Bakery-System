@@ -4,13 +4,14 @@
  */
 package za.ac.bakery.model;
 
+
 import java.sql.Blob;
 
 /**
  *
  * @author Train
  */
-public class Catergory {
+public class Catergory{
 
     private int catergory;
     private String catergory_title;

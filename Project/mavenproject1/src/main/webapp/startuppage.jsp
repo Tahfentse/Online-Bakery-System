@@ -48,7 +48,7 @@
     </div>   
     <section class="category" id="category">
 
-        <form method="POST">
+        <form action="AdminController.do" method="POST">
 
             <% List<Catergory> categories = (List<Catergory>) session.getAttribute("categories");
 
@@ -61,40 +61,40 @@
                     <div class="swiper-wrapper">
 
                         <% for (Catergory category : categories) {
+                                if (category.getCatergory() == 5) {
+                                    continue;
+                                }
                                 Blob imageBlob = category.getCatergory_pic();
 
-                                if (imageBlob != null) {
-                                    byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
-                                    String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
+                                byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
+                                String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
 
-                                    // Assuming the image is a PNG for this example, adjust as needed
-                                    String imgSrc = "data:image/png;base64, " + base64Image;
+                                // Assuming the image is a PNG for this example, adjust as needed
+                                String imgSrc = "data:image/png;base64, " + base64Image;
                         %>
 
 
 
                         <div class="swiper-slide">
+
                             <div class="hero__slide">
                                 <div class="hero__slide__txt">
                                     <%= category.getCatergory_title()%>
                                 </div>
                                 <div class="hero__slide__img">
-                                    <img src="<%= imgSrc%>" alt="<%= category.getCatergory_title()%>">
+                                    <input type="hidden" name="catergoryid" value="<%=category.getCatergory()%>" >
 
-                                    <input type="hidden"  name="act" value="viewcatergory">
-                                    <input type="hidden" name="catergoryid" value="<%=category.getCatergory()%>">
-
-                                    <input type="hidden"  name="catergorytitle" value="<%=category.getCatergory_title()%>">
-
-                                    <button class="btn btn-left" data-speed="-5">Get <%= category.getCatergory_title()%></button>
-
+                                    <input type="hidden"  name="catergorytitle" value="<%=category.getCatergory_title()%>" >
+                                    <a href="/mavenproject1/AdminController.do?action=POST&catergoryid=<%=category.getCatergory()%>&act=viewcatergory&catergorytitle=<%=category.getCatergory_title()%>">
+                                        <img src="<%= imgSrc%>" alt="<%= category.getCatergory_title()%>">
                                     </a>
+                                    <input type="hidden"  name="act" value="viewcatergory">
                                 </div>
                             </div>
                         </div>
 
                         <%
-                                }
+
                             } %>
 
 

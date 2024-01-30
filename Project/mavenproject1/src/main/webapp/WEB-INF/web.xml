@@ -17,27 +17,27 @@
 
   
 
-        <servlet-mapping>
-            <servlet-name>CustomerController</servlet-name>
-            <url-pattern>/CustomerController</url-pattern>
-        </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerController</servlet-name>
+        <url-pattern>/CustomerController</url-pattern>
+    </servlet-mapping>
 
-        <servlet-mapping>
-            <servlet-name>AdminController</servlet-name>
-            <url-pattern>/AdminController.do</url-pattern>
-        </servlet-mapping>
-        <servlet-mapping>
-            <servlet-name>AddRecipeServlet</servlet-name>
-            <url-pattern>/AddRecipeServlet</url-pattern>
-        </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/AdminController.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddRecipeServlet</servlet-name>
+        <url-pattern>/AddRecipeServlet</url-pattern>
+    </servlet-mapping>
 
-        <session-config>
-            <session-timeout>
-                30
-            </session-timeout>
-        </session-config>
-        <welcome-file-list>
-            <welcome-file>index.html</welcome-file>
-            <welcome-file>home.jsp</welcome-file>
-        </welcome-file-list>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>home.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
