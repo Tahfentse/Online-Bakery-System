@@ -89,7 +89,7 @@ public class AdminController extends HttpServlet {
                     session.setAttribute("items", items);
                     session.setAttribute("catergorytitle", catergorytitle);
 
-                    request.getRequestDispatcher("cookies.jsp").forward(request, response);
+                    request.getRequestDispatcher("Category.jsp").forward(request, response);
                 case "viewall":
                     List<Item> allItems = adminservice.getAllItems();
 
