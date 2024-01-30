@@ -17,6 +17,7 @@
 </head>
 <body>
 
+<!-- Header SECTION -->
     <header class="header">
         <a href="#home" class="logo"> 2<i class="fas fa-chart-pie"></i> 4 Bakery </a>
         <nav class="navbar">                
@@ -40,12 +41,18 @@
             <input type="search" placeholder="search...">
         </div>
     </header>
+    <!--End Header SECTION -->
+    
+    <!-- Welcome SECTION -->   
     <div class="welcome-section" id="home">
         <div class="container">
             <h1>Welcome to 2Pie4 Bakery</h1>
             <p>Indulge your senses in our delicious and freshly baked treats. From cookies to cakes, we have it all!</p>
         </div>
-    </div>   
+    </div> 
+    <!--End Welcome SECTION -->   
+    
+    <!-- Category SECTION -->
     <section class="category" id="category">
 
         <form action="AdminController.do" method="POST">
@@ -61,7 +68,9 @@
                     <div class="swiper-wrapper">
 
                         <% for (Catergory category : categories) {
-
+                                if (category.getCatergory() == 5) {
+                                    continue;
+                                }
                                 Blob imageBlob = category.getCatergory_pic();
 
                                 byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
@@ -114,25 +123,11 @@
             %>
         </form>
     </section>
+    <!--End Category SECTION -->
+        
+    <!-- Products SECTION -->
     <section class="products" id="products">
-        <h1 class="title"> our <span>products</span> <a href="/mavenproject1/AdminController.do?action=POST&act=viewall">view all </a> </h1>
-        <%
-            List<Item> items = (List<Item>) session.getAttribute("items");
-
-            for (Item item : items) {
-                item.getItem_title();
-                
-
-                Blob imageBlob = item.getPic();
-
-                byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
-                String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
-
-                // Assuming the image is a PNG for this example, adjust as needed
-                String imgSrc = "data:image/png;base64, " + base64Image;
-
-
-        %>
+        <h1 class="title"> our <span>products</span> <a href="#">view all >></a> </h1>
         <div class="box-container">
             <div class="box">
                 <div class="icons">
@@ -140,11 +135,91 @@
                     <a href="Item.jsp" class="fas fa-eye"></a>
                 </div>
                 <div class="img">
-                    <img decoding="async" src="<%=imgSrc%>" alt="">
+                    <img decoding="async" src="./category/cupcake/lunchbar.png" alt="">
                 </div>
                 <div class="content">
-                    <h3><%=item.getItem_title()%></h3>
-                    <div class="price"><%=item.getItem_price()%></div>
+                    <h3>Lunch Bar Cupcake</h3>
+                    <div class="price">R9.99</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fas fa-shopping-cart"></a>
+                    <a href="Item.jsp" class="fas fa-eye"></a>
+                </div>
+                <div class="img">
+                    <img decoding="async" src="./category/donuts/strawberry.png"  alt="">
+                </div>
+                <div class="content">
+                    <h3>Donut with strawberry glaze</h3>
+                    <div class="price">R19.99</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fas fa-shopping-cart"></a>
+                    <a href="Item.jsp" class="fas fa-eye"></a>
+                </div>
+                <div class="img">
+                    <img decoding="async" src="./category/pies/mulberry.png" alt="">
+                </div>
+                <div class="content">
+                    <h3>Mulberry Pie</h3>
+                    <div class="price">R39.99</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fas fa-shopping-cart"></a>
+                    <a href="Item.jsp" class="fas fa-eye"></a>
+                </div>
+                <div class="img">
+                    <img decoding="async" src="./category/cookies/choc_biscuit.png" alt="">
+                </div>
+                <div class="content">
+                    <h3>Chocolate cookies</h3>
+                    <div class="price">R29.99</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icons">
+                    <a href="#" class="fas fa-shopping-cart"></a>
+                    <a href="Item.jsp" class="fas fa-eye"></a>
+                </div>
+                <div class="img">
+                    <img decoding="async" src="./category/brownies/brownies.png" alt="">
+                </div>
+                <div class="content">
+                    <h3>Brownies with cherries</h3>
+                    <div class="price">R25.99</div>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -155,8 +230,10 @@
                 </div>
             </div>
         </div>
-        <%}%>
     </section>
+    <!--End Products SECTION -->
+    
+    <!-- About SECTION -->
     <section class="about" id="about">
         <h1 class="title"> About <span>Us</span><a href="#"></a></h1>
         <div class="about">
@@ -178,6 +255,9 @@
             </div>
         </div>
     </section>
+    <!--End About SECTION -->
+    
+    <!--Review SECTION -->
     <section class="review" id="reviews">
         <h1 class="title"> Customer <span>Reviews</span></h1>
         <div class="review">
@@ -245,9 +325,11 @@
                     <i class="far fa-star"></i>
                 </div>
             </div>    
-        </div>
     </section>
-    <div class="space"></div>       
+    <!--End Review SECTION -->
+    <div class="space"></div>   
+
+    <!--Footer SECTION -->
     <section class="footer">
         <div class="box-container">
             <div class="box">
@@ -279,6 +361,8 @@
 
     </section>
     <section class="credit"><p>&copy; 2024 2Pie4 Bakery. All rights reserved.</p></section>
+    <!--End Footer SECTION -->
+    
     <script>
         let search = document.querySelector('.search');
         document.querySelector('#search').onclick = () => {
