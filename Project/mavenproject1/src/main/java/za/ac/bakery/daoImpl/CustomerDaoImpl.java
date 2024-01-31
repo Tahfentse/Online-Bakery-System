@@ -37,6 +37,9 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public void createCustomer(Person customer) {
         
+        
+     
+        
         try {
             
             ps = con.prepareStatement("INSERT INTO person (idNumber,name,surname,title,contactNo,email,password,role) VALUES(?,?,?,?,?,?,?,?)");

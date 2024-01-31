@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-
     <servlet>
         <servlet-name>CustomerController</servlet-name>
         <servlet-class>za.ac.bakery.Controller.CustomerController</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>AdminController</servlet-name>
         <servlet-class>za.ac.bakery.Controller.AdminController</servlet-class>
@@ -14,14 +12,10 @@
         <servlet-name>AddRecipeServlet</servlet-name>
         <servlet-class>za.ac.bakery.Controller.AddRecipeServlet</servlet-class>
     </servlet>
-
-  
-
     <servlet-mapping>
         <servlet-name>CustomerController</servlet-name>
         <url-pattern>/CustomerController</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>AdminController</servlet-name>
         <url-pattern>/AdminController.do</url-pattern>
@@ -30,7 +24,6 @@
         <servlet-name>AddRecipeServlet</servlet-name>
         <url-pattern>/AddRecipeServlet</url-pattern>
     </servlet-mapping>
-
     <session-config>
         <session-timeout>
             30
@@ -40,4 +33,8 @@
         <welcome-file>index.html</welcome-file>
         <welcome-file>home.jsp</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <exception-type>UserExist</exception-type>
+        <location>/unsuccesful.jsp</location>
+    </error-page>
 </web-app>

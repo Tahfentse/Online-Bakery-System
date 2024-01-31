@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import za.ac.Exception.UserExist;
 
 import za.ac.bakery.model.Address;
 
@@ -69,7 +70,7 @@ public class CustomerController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, UserExist {
 
         session = request.getSession(true);
 
@@ -116,9 +117,8 @@ public class CustomerController extends HttpServlet {
                 } else {
 
                     message = "User Exist! sign in.";
-
                     path = "unsuccesful.jsp";
-
+                    
                     realpath = "sign_in.jsp";
 
                 }
