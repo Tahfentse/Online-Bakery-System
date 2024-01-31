@@ -17,6 +17,7 @@
 </head>
 <body>
 
+    <!-- Header SECTION -->
     <header class="header">
         <a href="#home" class="logo"> 2<i class="fas fa-chart-pie"></i> 4 Bakery </a>
         <nav class="navbar">                
@@ -40,12 +41,18 @@
             <input type="search" placeholder="search...">
         </div>
     </header>
+    <!--End Header SECTION -->
+
+    <!-- Welcome SECTION -->   
     <div class="welcome-section" id="home">
         <div class="container">
             <h1>Welcome to 2Pie4 Bakery</h1>
             <p>Indulge your senses in our delicious and freshly baked treats. From cookies to cakes, we have it all!</p>
         </div>
-    </div>   
+    </div> 
+    <!--End Welcome SECTION -->   
+
+    <!-- Category SECTION -->
     <section class="category" id="category">
 
         <form action="AdminController.do" method="POST">
@@ -60,7 +67,8 @@
                 <div class="swiper">
                     <div class="swiper-wrapper">
 
-                        <% for (Catergory category : categories) { 
+
+                        <% for (Catergory category : categories) {
 
                                 Blob imageBlob = category.getCatergory_pic();
 
@@ -114,13 +122,17 @@
             %>
         </form>
     </section>
+    <!--End Category SECTION -->
+
+    <!-- Products SECTION -->
     <section class="products" id="products">
+
         <h1 class="title"> our <span>products</span> <a href="/mavenproject1/AdminController.do?action=POST&act=viewall">view all </a> </h1>
         <%
             List<Item> items = (List<Item>) session.getAttribute("items");
 
             for (Item item : items) {
-                item.getItem_title();
+         
 
                 Blob imageBlob = item.getPic();
 
@@ -132,6 +144,7 @@
 
 
         %>
+
         <div class="box-container">
             <div class="box">
                 <div class="icons">
@@ -139,7 +152,7 @@
                     <a href="Item.jsp" class="fas fa-eye"></a>
                 </div>
                 <div class="img">
-                    <img decoding="async" src="<%=imgSrc%>" alt="">
+                    <img decoding="async" src="./category/cupcake/lunchbar.png" alt="">
                 </div>
                 <div class="content">
                     <h3><%=item.getItem_title()%></h3>
@@ -155,7 +168,11 @@
             </div>
         </div>
         <%}%>
+
     </section>
+    <!--End Products SECTION -->
+
+    <!-- About SECTION -->
     <section class="about" id="about">
         <h1 class="title"> About <span>Us</span><a href="#"></a></h1>
         <div class="about">
@@ -177,6 +194,9 @@
             </div>
         </div>
     </section>
+    <!--End About SECTION -->
+
+    <!--Review SECTION -->
     <section class="review" id="reviews">
         <h1 class="title"> Customer <span>Reviews</span></h1>
         <div class="review">
@@ -244,9 +264,11 @@
                     <i class="far fa-star"></i>
                 </div>
             </div>    
-        </div>
     </section>
-    <div class="space"></div>       
+    <!--End Review SECTION -->
+    <div class="space"></div>   
+
+    <!--Footer SECTION -->
     <section class="footer">
         <div class="box-container">
             <div class="box">
@@ -278,6 +300,8 @@
 
     </section>
     <section class="credit"><p>&copy; 2024 2Pie4 Bakery. All rights reserved.</p></section>
+    <!--End Footer SECTION -->
+
     <script>
         let search = document.querySelector('.search');
         document.querySelector('#search').onclick = () => {
