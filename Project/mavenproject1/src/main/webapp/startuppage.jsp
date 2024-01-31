@@ -60,7 +60,7 @@
                 <div class="swiper">
                     <div class="swiper-wrapper">
 
-                        <% for (Catergory category : categories) {
+                        <% for (Catergory category : categories) { 
 
                                 Blob imageBlob = category.getCatergory_pic();
 
@@ -121,7 +121,6 @@
 
             for (Item item : items) {
                 item.getItem_title();
-                
 
                 Blob imageBlob = item.getPic();
 
