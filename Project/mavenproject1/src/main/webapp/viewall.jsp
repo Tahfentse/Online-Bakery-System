@@ -65,8 +65,8 @@
                     <img decoding="async" src="<%= imgSrc%>" alt="Item Image">
                     </div>
                     <div class="content">
-                    <div class="item-title"><%= item.getItem_title()%></div>
-                    <div class="item-price">R<%= item.getItem_price()%></div>
+                    <h3><%=item.getItem_title()%></h3>
+                    <div class="price">R<%= item.getItem_price()%></div>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
