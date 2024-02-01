@@ -149,7 +149,7 @@
             <div class="box">
                 <div class="icons">
                     <a href="#" class="fas fa-shopping-cart"></a>
-                    <a href="Item.jsp" class="fas fa-eye"></a>
+                    <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
                 </div>
                 <div class="img">
                     <img decoding="async" src="./category/cupcake/lunchbar.png" alt="">

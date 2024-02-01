@@ -4,6 +4,10 @@
     Author     : brill
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="za.ac.bakery.model.Ingridient"%>
+<%@page import="java.sql.Blob"%>
+<%@page import="za.ac.bakery.model.Item"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -227,29 +231,55 @@
 
 
             <div class="single-item">
-                <img src="img/cupcake (5).png" alt="Your Item Image">
+                <%
 
+                    Item item = (Item) session.getAttribute("item");
+
+                    Blob imageBlob = item.getPic();
+
+               
+                        byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
+                        String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
+
+                        // Assuming the image is a PNG for this example, adjust as needed
+                        String imgSrc = "data:image/png;base64, " + base64Image;
+                %>
+                <img src="<%=imgSrc%>" alt="Your Item Image">
+ 
                 <div class="item-details">
-                    <h2>Your Item Title</h2>
+                    <h2><%=item.getItem_title()%></h2>
 
                     <div class="info-box">
-                        <p>Item Description: Provide a brief description of your item here.</p>
+                        <p>Item Description: <%=item.getItem_description()%></p>
                     </div>
 
                     <div class="info-box">
-                        <p>Item Warnings: If there are any warnings or special considerations, mention them here.</p>
+                        <p>Enter  Warnings:<input type="text" name="warning"></p>
                     </div>
 
                     <div class="info-box">
-                        <p>Nutrient Information: Share relevant nutrient information about your item.</p>
+                        <p>Nutrient Information:<%=item.getItem_nutrients()%>.</p>
                     </div>
+                    <%
+
+                        List<Ingridient> ingridients = item.getIngridients();
+
+                        if (ingridients.isEmpty()) {
+                    %>
+                    <div class="info-box">
+                        <p>Ingredients: Empty!</p>
+                    </div>
+                    <%} else {%>
+                    <%  for (int i = 0; i < ingridients.size(); i++) {
+                    %>
+                    <div class="info-box">
+                        <p>Ingredients: <%=ingridients.get(i)%></p>
+                    </div>
+                    <%}%>
+                    <%}%>
 
                     <div class="info-box">
-                        <p>Ingredients: List the ingredients used in your item.</p>
-                    </div>
-
-                    <div class="info-box">
-                        <p>Category: Specify the category to which your item belongs.</p>
+                        <p>Price :R<%=item.getItem_price()%></p>
                     </div>
 
                     <button onclick="addToCart()" class="add-to-cart-button">Add to Cart</button>

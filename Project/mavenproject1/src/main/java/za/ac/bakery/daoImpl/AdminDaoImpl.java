@@ -211,16 +211,16 @@ public class AdminDaoImpl implements AdminDao {
         List<Ingridient> ingridients = new ArrayList<>();
 
         try {
-            ps = con.prepareStatement("SELECT i.item_id, item_title, item_description, item_warnings, item_nutrients, "
-                    + "item_pic, item_category, item_price, ingridient_id, ingridient_name, ingridient_size "
-                    + "FROM item i, ingridient ing WHERE i.item_id = ing.item_id AND i.item_id = ?",
+            ps = con.prepareStatement("SELECT i.item_id, item_title, item_description, item_nutrients,item_pic, item_category, item_price, ingredient_id, ingredient_name, intgredient_qty\n"
+                    + "FROM item i,recipe r,ingredient ing,recipe_ingredient ri \n"
+                    + "WHERE item_id =r.recipeid AND ri.recipeId =r.recipeid AND ri.recipeIngredient =ing.ingredient_id AND item_id=?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ps.setInt(1, itemId);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                ingridients.add(new Ingridient(rs.getInt("ingridient_id"), rs.getString("ingridient_name"), rs.getDouble("ingridient_size")));
+                ingridients.add(new Ingridient(rs.getInt("ingredient_id"), rs.getString("ingredient_name"), rs.getDouble("intgredient_qty")));
             }
 
             rs.beforeFirst();
@@ -299,19 +299,9 @@ public class AdminDaoImpl implements AdminDao {
 
         AdminDaoImpl dao = new AdminDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
-        List<Item> items = dao.getAllItems();
+        Item item = dao.getItem(14);
 
-        for (int i = 0; i < items.size(); i++) {
-
-            if (items.isEmpty()) {
-                System.out.println("Hello Im EMPTY");
-            } else {
-
-                System.out.println("Catergory ID :" + items.get(i).getItem_title());
-                System.out.println("Catergory title : " + items.get(i).getItem_description());
-            }
-
-        }
+        System.out.println(item.toString());
 
     }
 

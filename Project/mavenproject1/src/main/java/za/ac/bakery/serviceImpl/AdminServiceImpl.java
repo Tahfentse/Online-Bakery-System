@@ -106,9 +106,9 @@ public class AdminServiceImpl implements AdminService {
 
         AdminServiceImpl service = new AdminServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
-        items = service.getItems();
+        Item item = service.getItem(1);
 
-        items.forEach(System.out::println);
+        System.out.println(item.toString());
 
     }
 

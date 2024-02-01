@@ -71,8 +71,12 @@ public class AdminController extends HttpServlet {
             request.getRequestDispatcher(path).forward(request, response);
 
         } else {
+            String action = request.getParameter("act");
 
-            switch (request.getParameter("act").toLowerCase()) {
+            action = action.toLowerCase();
+
+            switch (action) {
+
                 case "viewcatergory":
 
                     String categoryId = request.getParameter("catergoryid");
@@ -97,6 +101,15 @@ public class AdminController extends HttpServlet {
                     request.getRequestDispatcher("viewall.jsp").forward(request, response);
 
                     break;
+                case "viewitem":
+
+                    int itemId = Integer.parseInt(request.getParameter("itemid"));
+
+                    Item item = adminservice.getItem(itemId);
+
+                    session.setAttribute("item", item);
+                    path = "Item.jsp";
+                    request.getRequestDispatcher(path).forward(request, response);
             }
         }
 
