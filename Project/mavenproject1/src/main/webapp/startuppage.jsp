@@ -55,7 +55,7 @@
     <!-- Category SECTION -->
     <section class="category" id="category">
 
-        <form action="AdminController.do" method="POST">
+        <form action="AdminController" method="POST">
 
             <% List<Catergory> categories = (List<Catergory>) session.getAttribute("categories");
 

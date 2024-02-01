@@ -39,6 +39,7 @@ public class AdminController extends HttpServlet {
     private List<Ingridient> ingridients;
     private String message;
     private List<Item> items;
+    private int item_id;
 
     private AdminServiceImpl adminservice;
     private InputStream in;
@@ -101,6 +102,7 @@ public class AdminController extends HttpServlet {
                     request.getRequestDispatcher("viewall.jsp").forward(request, response);
 
                     break;
+
                 case "viewitem":
 
                     int itemId = Integer.parseInt(request.getParameter("itemid"));
@@ -110,6 +112,7 @@ public class AdminController extends HttpServlet {
                     session.setAttribute("item", item);
                     path = "Item.jsp";
                     request.getRequestDispatcher(path).forward(request, response);
+
             }
         }
 
