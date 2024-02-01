@@ -1,9 +1,3 @@
-<%-- 
-    Document   : cookies
-    Created on : Jan 22, 2024, 11:59:38 AM
-    Author     : Train
---%>
-
 <%@page import="java.sql.Blob"%>
 <%@page import="za.ac.bakery.model.Item"%>
 <%@page import="java.util.List"%>
@@ -20,7 +14,7 @@
     </head>
     <body>
         <section class="products">
-    <h1 class="title">Our <span>${catergorytitle}</span></h1>
+            <h1 class="title">Our <span>${catergorytitle}</span></h1>
     <div class="box-container">
 
         <%
@@ -32,7 +26,6 @@
                     byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
                     String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
 
-                    // Assuming the image is a PNG for this example, adjust as needed
                     String imgSrc = "data:image/png;base64, " + base64Image;
                 %>
                 
