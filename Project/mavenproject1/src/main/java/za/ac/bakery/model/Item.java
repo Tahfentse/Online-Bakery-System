@@ -26,6 +26,13 @@ public class Item {
     private Double item_price;
 
     public Item() {
+      this.item_id = 0;
+        this.item_title = item_title;
+        this.item_description = item_description;
+        this.pic = pic;
+        this.item_nutrients = item_nutrients;
+
+        this.item_price = item_price;   
     }
 
     public Item(int item_id, String item_title, String item_description, String item_nutrients, Blob pic, Double item_price) {

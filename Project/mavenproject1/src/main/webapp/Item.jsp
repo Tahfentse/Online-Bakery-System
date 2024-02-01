@@ -234,6 +234,8 @@
                 <%
 
                     Item item = (Item) session.getAttribute("item");
+                    
+                    if(item.getItem_id()!=0){
 
                     Blob imageBlob = item.getPic();
 
@@ -284,6 +286,10 @@
 
                     <button onclick="addToCart()" class="add-to-cart-button">Add to Cart</button>
                 </div>
+                    <%}else{%>
+                    <p>No Item found !</p>
+                    <%}%>
+                    
             </div>
         </div>
 

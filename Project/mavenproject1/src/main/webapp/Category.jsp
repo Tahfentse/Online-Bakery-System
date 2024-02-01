@@ -11,8 +11,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" href="style.css">
-        <<<<<<< Updated upstream
-        =======
+
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -124,7 +123,7 @@
                                 <input type="hidden" name="quantity" value="1"> <!-- You can adjust the quantity as needed -->
                                 <button type="submit" class="fas fa-shopping-cart" style="background: none; border: none; cursor: pointer;"></button>
 
-                                <a href="Item.jsp" class="fas fa-eye"></a>
+                                <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
                             </div>
                         </div>  
 
@@ -132,14 +131,10 @@
                         <%}%>
 
 
+
+
+                    </div>
                 </form>
-
-                <%
-                    }
-                }
-                %>
-
-            </div>
         </section>
     </body>
 </html>

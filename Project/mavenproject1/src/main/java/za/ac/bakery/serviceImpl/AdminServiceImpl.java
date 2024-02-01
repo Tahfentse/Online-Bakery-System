@@ -68,8 +68,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Item getItem(int itemId) {
+        Item item = admindao.getItem(itemId);
 
-        return admindao.getItem(itemId);
+        return item;
 
     }
 

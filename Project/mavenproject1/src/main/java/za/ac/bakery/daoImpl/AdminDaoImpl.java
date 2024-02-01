@@ -229,6 +229,8 @@ public class AdminDaoImpl implements AdminDao {
                 if (item == null) {
 
                     item = new Item(rs.getInt("i.item_id"), rs.getString("item_title"), rs.getString("item_description"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getInt("item_category"), new ArrayList<>(), rs.getDouble("item_price"));
+                
+                    return item;
                 }
             }
 
@@ -236,7 +238,7 @@ public class AdminDaoImpl implements AdminDao {
             Logger.getLogger(AdminDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return item;
+        return new Item();
     }
 
     @Override
@@ -299,7 +301,7 @@ public class AdminDaoImpl implements AdminDao {
 
         AdminDaoImpl dao = new AdminDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
-        Item item = dao.getItem(14);
+        Item item = dao.getItem(90);
 
         System.out.println(item.toString());
 
