@@ -60,7 +60,7 @@
             </style>
         </head>
         <body>
-            <form onsubmit="return validateForm();" action="AdminController" method="post" enctype="multipart/form-data" >
+            <form onsubmit="return validateForm();" action="StoreController.do" method="post" enctype="multipart/form-data" >
 
 
                 <label for="add_item"><h1>ADD ITEM</h1></label>

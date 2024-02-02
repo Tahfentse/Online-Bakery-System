@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import za.ac.Exception.UserExist;
 
 import za.ac.bakery.model.Address;
+import za.ac.bakery.model.Customer;
 
 import za.ac.bakery.model.Person;
 import za.ac.bakery.serviceImpl.CustomerServiceImpl;
@@ -34,7 +35,7 @@ public class CustomerController extends HttpServlet {
     private String email;
     private String password;
     private String action;
-    private Person customer;
+    private Customer customer;
 
     private Person existingCustomer;
 
@@ -92,13 +93,13 @@ public class CustomerController extends HttpServlet {
                 suburb = request.getParameter("suburb");
                 postalcode = request.getParameter("postal_code");
 
-                existingCustomer = customerservice.getPerson(email);
+                existingCustomer = customerservice.getCustomer(email);
 
                 System.out.println("Customer Email : " + existingCustomer.getEmail());
 
                 if (existingCustomer.getEmail().isEmpty() && existingCustomer.getId_Number().length() > 2) {
 
-                    customer = new Person(id, name, surname, title, email, contactno, password);
+                    customer = new Customer(id, name, surname, title, email, contactno, password);
 
                     adress = new Address(street_name, suburb, postalcode);
 
@@ -118,7 +119,7 @@ public class CustomerController extends HttpServlet {
 
                     message = "User Exist! sign in.";
                     path = "unsuccesful.jsp";
-                    
+
                     realpath = "sign_in.jsp";
 
                 }
@@ -127,60 +128,7 @@ public class CustomerController extends HttpServlet {
                 session.setAttribute("message", message);
 
                 request.getRequestDispatcher(path).forward(request, response);
-
-            case "signin":
-
-                email = request.getParameter("email");
-                password = request.getParameter("password");
-
-                customer = customerservice.getPerson(email);
-
-                System.out.println("Email : " + customer.getEmail());
-                System.out.println("Password : " + customer.getPassword());
-
-                System.out.println("Role :" + customer.getRole());
-
-                if (customer.getEmail().length() > 2) {
-
-                    if (customer.getPassword().equals(password)) {
-
-                        if (customer.getRole().equalsIgnoreCase("customer")) {
-
-                            path = "sucessful.jsp";
-                            realpath = "customerMenu.jsp";
-                            message = "Succesfully Logged In!";
-                        } else {
-
-                            path = "sucessful.jsp";
-                            realpath = "addItem.jsp";
-                            message = "Succesfully Logged In!";
-
-                        }
-
-                    } else {
-
-                        path = "unsuccesful.jsp";
-                        realpath = "sign_in.jsp";
-                        message = "Wrong Password !";
-
-                    }
-
-                } else {
-
-                    path = "unsuccesful.jsp";
-                    realpath = "sign_up.jsp";
-
-                    message = "User don't exit! SIGN UP!";
-
-                }
-
-                session.setAttribute("message", message);
-                session.setAttribute("path", realpath);
-
-                request.getRequestDispatcher(path).forward(request, response);
-
-                request.getRequestDispatcher(path).forward(request, response);
-
+                break;
         }
 
     }

@@ -26,22 +26,5 @@ public interface AdminDao {
 
     public void deleteAdmin(String adminEmail);
 
-    public int createItem(Item item);
-
-    public Item getItem(int itemId);
-
-    public void deleteItem(int ItemId);
-
-    public void updateItem(Item item);
-
-    public void uploadPicture(InputStream is, int id);
-
-    public List<Item> getItems();
-
-    public List<Catergory> catergories();
-
-    public List<Item> getItemWithCategoryId(int id);
-    
-    public List<Item> getAllItems();
 
 }

@@ -6,6 +6,7 @@ package za.ac.bakery.dao;
 
 import java.util.List;
 import za.ac.bakery.model.Address;
+import za.ac.bakery.model.Customer;
 import za.ac.bakery.model.Person;
 
 /**
@@ -14,19 +15,18 @@ import za.ac.bakery.model.Person;
  */
 public interface CustomerDao {
 
-    public void createCustomer(Person customer);
+    public void createCustomer(Customer customer);
 
     public void deleteCustomer(String email);
 
-    public void updateCustomer(Person customer,String email);
+    public void updateCustomer(Customer customer, String email);
 
-    public Person getPerson(String email);
+    public Customer getCustomer(String email);
 
-    public List<Person> person();
-    
-    public void addAddress(Address address,Person p);
-    
+    public List<Customer> customers();
+
+    public void addAddress(Address address, Customer c);
 
     public String getPersonAddressId(String email);
-    
+
 }

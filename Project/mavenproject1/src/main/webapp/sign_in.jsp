@@ -70,8 +70,8 @@
         </style>
         <script>
             <script>
-
-            function validateLoginForm() {
+            
+    function validateLoginForm() {
                     var password = document.getElementById('password').value;
             var email = document.getElementById('email').value;
             // Check if any of the input values contain only white spaces
@@ -119,11 +119,11 @@
                     document.getElementById('forgotPasswordForm').style.display = 'none';
             document.getElementById('loginForm').style.display = 'block';
             };
-    </script>
+            </script>
 
         <body>
 
-            <form onsubmit="return submitLoginForm();" id="loginForm" action="CustomerController" method="Post">
+            <form onsubmit="return submitLoginForm();" id="loginForm" action="StoreController.do" method="Post">
                 <h2>Sign In</h2>
                 <label for="email">E-mail address</label>
                 <input autocorrect="on" autocapitalise="none" autocomplete="off" type="email" id="email" name="email" required>
@@ -131,8 +131,11 @@
                 <input type="password" id="password" name="password" required />   
                 <input type="hidden" name="act" value="signin"/>
 
-                <button type="submit">Login</button>
 
+
+<input type="submit" value="Login">
+
+</form>
                 <p>Don't have an account ? <a href="sign_up.jsp">SIGN UP</a></p>
 
                 <button onclick="showForgotPasswordForm()">Forgot Password?</button>
@@ -141,7 +144,7 @@
 
             <div id="forgotPasswordForm">
     <h2>Forgot Password</h2>
-    <form onsubmit="return submitForgotPasswordForm();" action="CustomerController" method="get">
+    <form onsubmit="return submitForgotPasswordForm();" action="StoreController.do" method="get">
         <label for="forgotEmail">Enter your E-mail address</label>
         <input type="email" id="forgotEmail" name="forgotEmail" required>
         <input type="hidden" name="act" value="forgotpassword"/>

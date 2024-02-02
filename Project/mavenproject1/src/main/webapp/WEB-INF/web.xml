@@ -12,6 +12,14 @@
         <servlet-name>AddRecipeServlet</servlet-name>
         <servlet-class>za.ac.bakery.Controller.AddRecipeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StoreController</servlet-name>
+        <servlet-class>za.ac.bakery.Controller.StoreController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>za.ac.bakery.Controller.Controller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CustomerController</servlet-name>
         <url-pattern>/CustomerController</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>AddRecipeServlet</servlet-name>
         <url-pattern>/AddRecipeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StoreController</servlet-name>
+        <url-pattern>/StoreController.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/Controller.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -7,6 +7,7 @@ package za.ac.bakery.service;
 import java.io.InputStream;
 import java.util.List;
 import za.ac.bakery.model.Address;
+import za.ac.bakery.model.Customer;
 import za.ac.bakery.model.Item;
 import za.ac.bakery.model.Order;
 import za.ac.bakery.model.Person;
@@ -17,16 +18,16 @@ import za.ac.bakery.model.Person;
  */
 public interface CustomerService {
 
-    public void createCustomer(Person customer);
+    public void createCustomer(Customer customer);
 
     public void deleteCustomer(String email);
 
-    public void updateCustomer(Person customer, String email);
+    public void updateCustomer(Customer customer, String email);
 
-    public Person getPerson(String email);
+    public Customer getCustomer(String email);
 
-    public List<Person> people();
+    public List<Customer> customers();
 
-    public void addAddress(Address address, Person p);
+    public void addAddress(Address address, Customer c);
  
 }

@@ -16,18 +16,19 @@ import za.ac.bakery.model.Item;
 import za.ac.bakery.model.OrderItemCart;
 import za.ac.bakery.service.CartService;
 import za.ac.bakery.serviceImpl.CartServiceImpl;
+import za.ac.bakery.serviceImpl.StoreServiceImpl;
 
 
 
 @WebServlet(name = "AddToCart", urlPatterns = {"/AddToCart"})
-public class AddToCart extends HttpServlet {
+public class CartController extends HttpServlet {
 
     private final CartServiceImpl cartservice;
-    private final AdminDaoImpl admindao;
+    private final StoreServiceImpl admindao;
     
-    public AddToCart() {
+    public CartController() {
          this.cartservice = new CartServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
-         this.admindao = new AdminDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
+         this.admindao = new StoreServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
         } 
     

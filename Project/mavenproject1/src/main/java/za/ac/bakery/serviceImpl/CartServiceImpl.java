@@ -14,10 +14,10 @@ public class CartServiceImpl implements CartService {
     private Map<Integer, OrderItemCart> cart;
     
     
-    private AdminDaoImpl admindao;
+    private StoreServiceImpl admindao;
 
     public CartServiceImpl(String url, String username, String password) {
-        this.admindao = new AdminDaoImpl(url, username, password);
+        this.admindao = new StoreServiceImpl(url, username, password);
         cart = new HashMap();
     }
 

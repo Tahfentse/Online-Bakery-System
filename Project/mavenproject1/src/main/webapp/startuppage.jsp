@@ -55,7 +55,7 @@
     <!-- Category SECTION -->
     <section class="category" id="category">
 
-        <form action="AdminController" method="POST">
+        <form action="StoreController.do" method="POST">
 
             <% List<Catergory> categories = (List<Catergory>) session.getAttribute("categories");
 
@@ -91,7 +91,7 @@
                                     <input type="hidden" name="catergoryid" value="<%=category.getCatergory()%>" >
 
                                     <input type="hidden"  name="catergorytitle" value="<%=category.getCatergory_title()%>" >
-                                    <a href="/mavenproject1/AdminController.do?action=POST&catergoryid=<%=category.getCatergory()%>&act=viewcatergory&catergorytitle=<%=category.getCatergory_title()%>">
+                                    <a href="/mavenproject1/StoreController.do?action=POST&catergoryid=<%=category.getCatergory()%>&act=viewcatergory&catergorytitle=<%=category.getCatergory_title()%>">
                                         <img src="<%= imgSrc%>" alt="<%= category.getCatergory_title()%>">
                                     </a>
                                     <input type="hidden"  name="act" value="viewcatergory">
@@ -127,7 +127,7 @@
     <!-- Products SECTION -->
     <section class="products" id="products">
 
-        <h1 class="title"> our <span>products</span> <a href="/mavenproject1/AdminController.do?action=POST&act=viewall">view all </a> </h1>
+        <h1 class="title"> our <span>products</span> <a href="/mavenproject1/StoreController.do?action=POST&act=viewall">view all </a> </h1>
         <%
             List<Item> items = (List<Item>) session.getAttribute("items");
 
@@ -149,7 +149,7 @@
             <div class="box">
                 <div class="icons">
                     <a href="#" class="fas fa-shopping-cart"></a>
-                    <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
+                    <a href="/mavenproject1/StoreController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
                 </div>
                 <div class="img">
                     <img decoding="async" src="./category/cupcake/lunchbar.png" alt="">

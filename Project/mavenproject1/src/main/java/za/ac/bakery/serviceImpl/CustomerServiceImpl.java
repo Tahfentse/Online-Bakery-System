@@ -11,6 +11,7 @@ import za.ac.bakery.daoImpl.CustomerDaoImpl;
 import za.ac.bakery.daoImpl.OrderDaoImpl;
 import za.ac.bakery.daoImpl.StockDaoImpl;
 import za.ac.bakery.model.Address;
+import za.ac.bakery.model.Customer;
 import za.ac.bakery.model.Item;
 import za.ac.bakery.model.Order;
 import za.ac.bakery.model.Person;
@@ -31,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void createCustomer(Person customer) {
+    public void createCustomer(Customer customer) {
 
         customerdao.createCustomer(customer);
 
@@ -43,30 +44,28 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void updateCustomer(Person customer, String email) {
+    public void updateCustomer(Customer customer, String email) {
         customerdao.updateCustomer(customer, email);
     }
 
     @Override
-    public Person getPerson(String email) {
-        Person person = customerdao.getPerson(email);
+    public Customer getCustomer(String email) {
+        Customer customer = customerdao.getCustomer(email);
 
-        if (person.getEmail() != null) {
-            return person;
+        if (customer.getEmail() != null) {
+            return customer;
         }
-        
-        return new Person();
+
+        return new Customer();
     }
 
     @Override
-    public void addAddress(Address address, Person p) {
+    public void addAddress(Address address, Customer p) {
         customerdao.addAddress(address, p);
     }
 
-   
-
-    @Override
-    public List<Person> people() {
-        return customerdao.person();
+    public List<Customer> customers() {
+        return customerdao.customers();
     }
+
 }
