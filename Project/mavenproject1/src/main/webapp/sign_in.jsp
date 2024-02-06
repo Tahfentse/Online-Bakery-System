@@ -80,17 +80,17 @@
             box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
         }
 
-        #forgotPasswordForm {
+/*        #forgotPasswordForm {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            /*background: #fff;*/
+            background: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-        }
+        }*/
     </style>
 
     <script>
