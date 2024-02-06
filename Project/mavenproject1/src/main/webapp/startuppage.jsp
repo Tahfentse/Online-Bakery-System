@@ -142,30 +142,23 @@
     <section class="products" id="products">
 
         <h1 class="title"> our <span>products</span> <a href="/mavenproject1/StoreController.do?action=POST&act=viewall">view all </a> </h1>
+        <div class="box-container">
         <%
             List<Item> items = (List<Item>) session.getAttribute("items");
 
             for (Item item : items) {
-         
 
                 Blob imageBlob = item.getPic();
 
                 byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
                 String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
 
-                // Assuming the image is a PNG for this example, adjust as needed
                 String imgSrc = "data:image/png;base64, " + base64Image;
-
-
-        %>
-
-        <div class="box-container">
+        %>     
             <div class="box">
                 <div class="icons">
-
-                     <a href="/mavenproject1/AddToCart?action=GET&quantity=1&itemId=<%=item.getItem_id()%>" class="fas fa-shopping-cart" name="itemId"></a>
+                    <a href="/mavenproject1/AddToCart?action=GET&quantity=1&itemId=<%=item.getItem_id()%>" class="fas fa-shopping-cart" name="itemId"></a>
                     <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
-
                 </div>
                 <div class="img">
                     <img decoding="async" src="<%=imgSrc%>" alt="">
@@ -178,13 +171,14 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
                     </div>
                 </div>
-            </div>
+            </div>      
+        <%
+            }
+        %>
         </div>
-        <%}%>
-
     </section>
     <!--End Products SECTION -->
 
