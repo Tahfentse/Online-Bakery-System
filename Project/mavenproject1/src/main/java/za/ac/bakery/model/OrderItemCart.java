@@ -9,6 +9,7 @@ public class OrderItemCart implements Serializable{
     
     private int orderitem_qty;
     private Item item;
+    private double subtotal;
 
     public OrderItemCart() {
     }
@@ -17,6 +18,14 @@ public class OrderItemCart implements Serializable{
         this.orderitem_qty = orderitem_qty;
         this.item = item;
     }
+
+    public OrderItemCart(int orderitem_qty, Item item, double subtotal) {
+        this.orderitem_qty = orderitem_qty;
+        this.item = item;
+        this.subtotal = subtotal;
+    }
+    
+    
 
     public int getOrderitem_qty() {
         return orderitem_qty;
@@ -33,6 +42,16 @@ public class OrderItemCart implements Serializable{
     public void setItem(Item item) {
         this.item = item;
     }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+    
+    
 
     @Override
     public int hashCode() {
@@ -63,11 +82,11 @@ public class OrderItemCart implements Serializable{
         return true;
     }
 
-    
-
     @Override
     public String toString() {
-        return "OrderItem{" + "orderitem_qty=" + orderitem_qty + ", item=" + item + '}';
+        return "OrderItemCart{" + "orderitem_qty=" + orderitem_qty + ", item=" + item + ", subtotal=" + subtotal + '}';
     }
+
+    
    
 }

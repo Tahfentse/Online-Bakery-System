@@ -15,6 +15,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+<style>
+   .cart-popup {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+</style>
 <body>
 
     <!-- Header SECTION -->
@@ -30,8 +43,9 @@
         <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>
             <div id="search" class="fas fa-search" ></div>
-            <a id="cart-btn" href="cart.jsp">
+            <a id="cart-btn" href="cart_test.jsp">
                 <div id="cart-btn" class="fas fa-shopping-cart"></div>
+                <div id="cart-count">0</div>
             </a>               
             <a id="login-btn" href="sign_in.jsp">
                 <div id="login-btn" class="fas fa-user"></div>
@@ -148,21 +162,23 @@
         <div class="box-container">
             <div class="box">
                 <div class="icons">
-                    <a href="#" class="fas fa-shopping-cart"></a>
-                    <a href="/mavenproject1/StoreController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
+
+                     <a href="/mavenproject1/AddToCart?action=GET&quantity=1&itemId=<%=item.getItem_id()%>" class="fas fa-shopping-cart" name="itemId"></a>
+                    <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
+
                 </div>
                 <div class="img">
                     <img decoding="async" src="<%=imgSrc%>" alt="">
                 </div>
                 <div class="content">
                     <h3><%=item.getItem_title()%></h3>
-                    <div class="price"><%=item.getItem_price()%></div>
+                    <div class="price">R<%=item.getItem_price()%></div>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
                 </div>
             </div>
@@ -312,7 +328,74 @@
         cartBtn.addEventListener('click', function () {
             window.location.href = "cart.jsp";
         });
+        
+        
+        
+        
+        
+
 
     </script>
+    
+    
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const cartIcon = document.getElementById('cart-icon');
+          const cartCount = document.getElementById('cart-count');
+          const cartPopup = document.getElementById('cart-popup');
+
+          let itemCount = 0;
+
+          // Function to increment cart count
+          function incrementCart() {
+            itemCount++;
+            cartCount.innerText = itemCount;
+          }
+
+          // Function to decrement cart count
+          function decrementCart() {
+            if (itemCount > 0) {
+              itemCount--;
+              cartCount.innerText = itemCount;
+            }
+          }
+
+          // Show cart popup when icon is clicked
+          cartIcon.addEventListener('click', function(event) {
+            event.preventDefault();
+            cartPopup.style.display = 'block';
+            // You can fetch and display cart items here
+          });
+
+          // Hide cart popup when user clicks outside of it
+          document.addEventListener('click', function(event) {
+            if (!cartPopup.contains(event.target) && event.target !== cartIcon) {
+              cartPopup.style.display = 'none';
+            }
+          });
+
+          // Example of adding an item to the cart
+          const addToCartButton = document.querySelector('.icons a');
+          addToCartButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            incrementCart();
+            // You can add logic here to fetch and add item to the cart
+          });
+
+          // Example of removing an item from the cart
+          // Assuming you have a remove button for each item in the cart
+          document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('remove-item')) {
+              decrementCart();
+              // You can add logic here to remove item from the cart
+            }
+          });
+        });
+</script>
+
+    
+    
     <script src="main.js" defer data-deferred="1"></script> </body>
 </html>

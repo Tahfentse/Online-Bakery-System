@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,13 +50,13 @@ public class RemoveFromCart extends HttpServlet {
                 session.setAttribute("userCart", userCart);
             }
 
-            
             Item item = admindao.getItem(itemId);
 
-            boolean removedFromCart = cartservice.removeFromCart(item);
+            boolean removedFromCart = userCart.removeFromCart(item);
 
             if (removedFromCart) {
                 response.getWriter().println("Item removed from cart successfully");
+                response.sendRedirect(request.getContextPath() + "/cart_test.jsp");
             } else {
                 response.getWriter().println("Failed to remove item from cart. Item may not be in the cart.");
             }
@@ -63,7 +64,6 @@ public class RemoveFromCart extends HttpServlet {
             response.getWriter().println("Invalid item ID. Please provide a valid numeric item ID.");
         } catch (IOException e) {
             response.getWriter().println("An error occurred while processing your request.");
-            
         }
     }
 }

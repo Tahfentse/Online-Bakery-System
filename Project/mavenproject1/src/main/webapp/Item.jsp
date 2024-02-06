@@ -203,7 +203,7 @@
 
         <div class="container">
 
-            <!--    <div class="top-section">
+<!--                <div class="top-section">
                     <a href="#" class="logo"><img src="img/Screenshot (99).png"></a>
                     <div class="search-bar">
                         <input type="text" placeholder="Search...">
@@ -229,7 +229,7 @@
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                 </nav>-->
 
-
+            <form action="AddToCart" method="POST">
             <div class="single-item">
                 <%
 
@@ -252,15 +252,15 @@
                     <h2><%=item.getItem_title()%></h2>
 
                     <div class="info-box">
-                        <p>Item Description: <%=item.getItem_description()%></p>
+                        <p>Item Description:<br> <%=item.getItem_description()%></p>
                     </div>
 
                     <div class="info-box">
-                        <p>Enter  Warnings:<input type="text" name="warning"></p>
+                        <p>Enter  Allergies:<input type="text" name="warning"></p>
                     </div>
 
                     <div class="info-box">
-                        <p>Nutrient Information:<%=item.getItem_nutrients()%>.</p>
+                        <p>Nutrient Information:<br><%=item.getItem_nutrients()%>.</p>
                     </div>
                     <%
 
@@ -283,15 +283,19 @@
                     <div class="info-box">
                         <p>Price :R<%=item.getItem_price()%></p>
                     </div>
-
-                    <button onclick="addToCart()" class="add-to-cart-button">Add to Cart</button>
+                    
+                    <input type="hidden" name="itemId" value="<%= item.getItem_id() %>">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="add-to-cart-button">Add to Cart</button>
                 </div>
                     <%}else{%>
                     <p>No Item found !</p>
                     <%}%>
                     
             </div>
+                    </form>
         </div>
+                    
 
         <script>
             function addToCart() {

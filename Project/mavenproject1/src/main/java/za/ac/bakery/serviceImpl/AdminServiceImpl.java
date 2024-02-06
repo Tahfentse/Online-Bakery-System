@@ -26,6 +26,7 @@ public class AdminServiceImpl implements AdminService {
 
     }
 
+    @Override
     public void createAdmin(Person Admin) {
 
         admindao.createAdmin(Admin);

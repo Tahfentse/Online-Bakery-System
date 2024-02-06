@@ -162,10 +162,10 @@ public class AdminDaoImpl implements AdminDao {
     }
 
 
+
     public static void main(String[] args) {
 
         AdminDaoImpl dao = new AdminDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
     }
-
 
 }
