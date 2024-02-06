@@ -152,7 +152,7 @@
                     <a href="/mavenproject1/StoreController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
                 </div>
                 <div class="img">
-                    <img decoding="async" src="./category/cupcake/lunchbar.png" alt="">
+                    <img decoding="async" src="<%=imgSrc%>" alt="">
                 </div>
                 <div class="content">
                     <h3><%=item.getItem_title()%></h3>

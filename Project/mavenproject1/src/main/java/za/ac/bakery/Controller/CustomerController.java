@@ -78,7 +78,6 @@ public class CustomerController extends HttpServlet {
         action = request.getParameter("act");
 
         switch (action) {
-
             case "signup":
 
                 title = request.getParameter("title");
@@ -97,31 +96,27 @@ public class CustomerController extends HttpServlet {
 
                 System.out.println("Customer Email : " + existingCustomer.getEmail());
 
-                if (existingCustomer.getEmail().isEmpty() && existingCustomer.getId_Number().length() > 2) {
+                if (existingCustomer != null && existingCustomer.getId_Number().length() > 2 && existingCustomer.getEmail().length() > 2) {
+
+                    message = "User Exist! Sign in.";
+                    path = "unsuccesful.jsp";
+                    realpath = "sign_in.jsp";
+
+                } else {
 
                     customer = new Customer(id, name, surname, title, email, contactno, password);
-
                     adress = new Address(street_name, suburb, postalcode);
 
                     System.out.println("Customer : " + customer.getEmail());
 
                     customerservice.createCustomer(customer);
-
                     customerservice.addAddress(adress, customer);
 
                     message = "Account Succesfully Created!";
-
-                    realpath = "sign_in.jsp";
+                    String outcome = customerservice.RegisteringEmailOutcome(customer);
 
                     path = "sucessful.jsp";
-
-                } else {
-
-                    message = "User Exist! sign in.";
-                    path = "unsuccesful.jsp";
-
                     realpath = "sign_in.jsp";
-
                 }
 
                 session.setAttribute("path", realpath);

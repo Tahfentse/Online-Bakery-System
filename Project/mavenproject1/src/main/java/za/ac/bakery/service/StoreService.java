@@ -33,5 +33,8 @@ public interface StoreService {
     public List<Item> getItemWithCategoryId(int id);
     
     public List<Item> getAllItems();  
-     public List<Person> getAllPeople();
+    
+    public List<Person> getAllPeople();
+    
+    public String forgotPassword(String email);
 }

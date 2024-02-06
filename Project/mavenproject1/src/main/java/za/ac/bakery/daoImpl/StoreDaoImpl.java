@@ -179,6 +179,7 @@ public class StoreDaoImpl implements StoreDao {
 
     }
 
+    @Override
     public List<Item> getItems() {
         List<Item> items = new ArrayList<>();
 
@@ -270,10 +271,11 @@ public class StoreDaoImpl implements StoreDao {
         }
         return items;
     }
+    
 
     @Override
     public List<Person> getAllPeople() {
-        List<Person> people = null;
+        List<Person> people = new ArrayList<>();
         Person p;
         Address a;
 
@@ -292,12 +294,17 @@ public class StoreDaoImpl implements StoreDao {
         } catch (SQLException ex) {
             Logger.getLogger(StoreDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(people.isEmpty()){
-            return new ArrayList();
-        }
-
+      
         return people;
 
     }
 
+    public static void main(String[] args) {
+        
+        StoreDaoImpl dao = new StoreDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
+        
+        List<Person> people = dao.getAllPeople();
+        people.forEach(System.out::println);
+        
+    }
 }

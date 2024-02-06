@@ -29,8 +29,6 @@ import za.ac.bakery.serviceImpl.StoreServiceImpl;
  *
  * @author Train
  */
-
-
 public class StoreController extends HttpServlet {
 
     private String action;
@@ -64,7 +62,7 @@ public class StoreController extends HttpServlet {
 
         session = request.getSession();
 
-        if (request.getParameter("action") == null) {
+        if (request.getParameter("act") == null) {
 
             List<Catergory> categories = new ArrayList<>();
             List<Item> items = new ArrayList<>();
@@ -128,6 +126,9 @@ public class StoreController extends HttpServlet {
 
                 case "signin":
 
+                    person = new Person();
+                    adres = new Address();
+                    customer = new Customer();
                     email = request.getParameter("email");
                     password = request.getParameter("password");
 
@@ -142,19 +143,18 @@ public class StoreController extends HttpServlet {
                             person.setTitle(people.get(i).getTitle());
                             person.setEmail(people.get(i).getEmail());
                             person.setContact_no(person.getContact_no());
-                            
+
                             adres.setAddress_Id(people.get(i).getAddress().getAddress_Id());
                             adres.setPostal_code(people.get(i).getAddress().getPostal_code());
                             adres.setStreet_name(people.get(i).getAddress().getStreet_name());
                             adres.setPostal_code(people.get(i).getAddress().getPostal_code());
                             person.setAddress(adres);
                             person.setPassword(people.get(i).getPassword());
-                            
-                            person.setRole(people.get(i).getRole());
-                            
 
-                        }else{
-                          person = new Person();
+                            person.setRole(people.get(i).getRole());
+
+                        } else {
+                            person = new Person();
                         }
 
                     }
@@ -204,7 +204,31 @@ public class StoreController extends HttpServlet {
                     request.getRequestDispatcher(path).forward(request, response);
 
                     request.getRequestDispatcher(path).forward(request, response);
+                    break;
+                case "forgotpassword":
+                    email = request.getParameter("email");
 
+                    String outcome = storeservice.forgotPassword(email);
+
+                    if (outcome.equalsIgnoreCase("success")) {
+
+                        path = "sucessful.jsp";
+                        realpath = "sign_in.jsp";
+                        message = "Succesfully Sent your Password\n"
+                                + "to your Email.";
+                    } else {
+                        path = "unsuccesful.jsp";
+                        realpath = "sign_in.jsp";
+                        message = "User don't exit! SIGN UP!";
+
+                    }
+
+                    session.setAttribute("message", message);
+                    session.setAttribute("path", realpath);
+
+                    request.getRequestDispatcher(path).forward(request, response);
+
+                    break;
             }
         }
 
@@ -265,6 +289,10 @@ public class StoreController extends HttpServlet {
 
             case "updateItem":
 
+                break;
+                
+            case "":
+                
                 break;
 
         }
