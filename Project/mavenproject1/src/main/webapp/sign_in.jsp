@@ -49,7 +49,7 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #5C3D2E
+            color: #5C3D2E;
         }
 
         select,
@@ -77,7 +77,6 @@
         }
         button:hover{
             background-color: #985f28;
-            /*box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);*/
             box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
         }
 
