@@ -87,7 +87,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            background: #fff;
+            /*background: #fff;*/
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             z-index: 1000;
         }
@@ -169,8 +169,9 @@
         </form>
 
         <div id="forgotPasswordForm">
-            <h2>Forgot Password</h2>
+            
             <form onsubmit="return submitForgotPasswordForm();" action="StoreController.do" method="get">
+                <h2>Forgot Password</h2>
                 <label for="forgotEmail">Enter your E-mail address</label>
                 <input type="email" id="forgotEmail" name="email" required>
                 <input type="hidden" name="act" value="forgotpassword" />
