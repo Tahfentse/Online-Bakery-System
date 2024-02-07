@@ -39,7 +39,7 @@
 
         form h2 {
             font-size: 2rem;
-            color: #5C3D2E  /*Chocolate Brown */;
+            color: #5C3D2E;
         }
         
         a{

@@ -23,46 +23,7 @@
                 list-style: none;
             }
 
-            .container{
-                position: absolute;
-                width: 100%;
-                top: 20%;
-                left: 15%;
-                background: #fff;
-
-            }
-
-            .content-table{
-                border-collapse: collapse;
-                margin: 20px 0;
-                font-size: 0.9em;
-                min-width: 400px;
-                border-radius: 5px 5px 0 0;
-                overflow: hidden;
-                box-shadow: 0 0 5px #424543;
-            }
-            .content-table thead tr{
-                background-color: #009879;
-                color: #fff;
-                text-align: left;
-                font-weight: bold;
-            }
-            .content-table th, .content-table td{
-                padding: 12px 15px;
-            }
-            .content-table tbody tr{
-                border-bottom: 1px solid #dddddd;
-            }
-            .content-table tbody tr:nth-of-type(even){
-                background-color: #f3f3f3;
-            }
-            .content-table tbody tr:nth-last-of-type{
-                border-bottom: 2px solid  #009879;
-
-            }
-
             .popup{
-                background-color: #424543;
                 width: 100%;
                 height: 100%;
                 position: absolute;
@@ -71,16 +32,21 @@
                 justify-content: center;
                 align-items: center;
                 text-align: center;
-
+                background-color: rgba(0, 0, 0, 0.5);
             }
 
             .popup-content{
+                background-color: #FEF7E4;
                 height: 250px;
                 width:500px;
                 padding: 20px;
-                background: #fff;
-                border-radius: 20px;
                 position:relative;
+                border-radius: 10px;
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+            }
+
+            .popup-content:hover{
+                box-shadow: 0 0 10px rgba(152, 95, 40, 0.8);
             }
 
             img{
@@ -91,38 +57,48 @@
                 margin: 20px auto;
                 padding: 8px;
                 display: block;
+                color: #5C3D2E;
+                font-size: 1rem;
             }
 
-            a.button, a:hover{
-                display: inline;
-                border: 1px solid #1b9bff;
-                background: #1b9bff;
-                padding: 10px;
-                border-radius: 20px;
-                width: 10%;
+            button{
+                background-color: #5C3D2E;
+                color: white;
+                padding: 15px 30px;
+                border: none;
+                border-radius: 5px;
+                font-size: 18px;
+                cursor: pointer;
+                transition: box-shadow 0.3s ease;
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+
             }
-
-
+            button:hover{
+                background-color: #985f28;
+                box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
+            }
+            a{
+                color: #FFF;
+            }
         </style>
 
-        <link href="successful&Unsuccesful.css" rel="stylesheet" type="text/css"/>
+        <!--        <link href="successful&Unsuccesful.css" rel="stylesheet" type="text/css"/>-->
 
     </head>
     <body>
-        <%
-            String path = String.valueOf(session.getAttribute("path"));
-
-            String message = String.valueOf(request.getAttribute("message"));
-        %>
-
         <form action="action">
+            <%
+                String path = String.valueOf(session.getAttribute("path"));
+                String message = String.valueOf(request.getAttribute("message"));
+            %>
+
+
             <div class="popup">
                 <div class="popup-content">
                     <img src="img/unsuccesful.png" alt="user">
 
                     <label class="question">${message}</label>
-
-                    <a href="<%=path%>" value="o" class="button" >OK</a>
+                    <button><a href="<%=path%>" class="button" >OK</a></button>
                 </div>
             </div>
         </form>
