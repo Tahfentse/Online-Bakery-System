@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Unsuccessful popup</title>
         <link rel="website icon" type="png" href="img/logo.png">
         <link rel="stylesheet" href="un-successful.css">
     </head>
