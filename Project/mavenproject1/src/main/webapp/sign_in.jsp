@@ -63,7 +63,7 @@
             background-color: #eee;
             color: #5C3D2E
         }
-
+ 
         button {
             background-color: #5C3D2E;
             color: #FFF;
@@ -80,17 +80,20 @@
             box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
         }
 
-/*        #forgotPasswordForm {
+        #forgotPasswordForm {
             display: none;
             position: fixed;
-            top: 50%;
+            top: 30%;
             left: 50%;
             transform: translate(-50%, -50%);
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            background: #FEF7E4;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
             z-index: 1000;
-        }*/
+        }
+        #forgotPasswordForm:hover{
+            box-shadow: 0 0 10px rgba(152, 95, 40, 0.5);
+        }
     </style>
 
     <script>
@@ -167,18 +170,16 @@
             <button  type="button" onclick="showForgotPasswordForm();">Forgot Password?</button>
 
         </form>
-
-        <div id="forgotPasswordForm">
             
-            <form onsubmit="return submitForgotPasswordForm();" action="StoreController.do" method="get">
+            <form id="forgotPasswordForm" onsubmit="return submitForgotPasswordForm();" action="StoreController.do" method="get">
                 <h2>Forgot Password</h2>
                 <label for="forgotEmail">Enter your E-mail address</label>
                 <input type="email" id="forgotEmail" name="email" required>
                 <input type="hidden" name="act" value="forgotpassword" />
                 <button type="submit">Submit</button>
+                <button onclick="showLoginForm()">Cancel</button>
             </form>
-            <button onclick="showLoginForm()">Cancel</button>
-        </div>
+            
 
     </body>
 
