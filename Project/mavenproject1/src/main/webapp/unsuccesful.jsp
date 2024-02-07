@@ -21,7 +21,6 @@
                 String message = String.valueOf(request.getAttribute("message"));
             %>
 
-
             <div class="popup">
                 <div class="popup-content">
                     <img src="img/unsuccesful.png" alt="user">
