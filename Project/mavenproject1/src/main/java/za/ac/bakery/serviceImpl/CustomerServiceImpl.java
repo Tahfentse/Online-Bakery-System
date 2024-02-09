@@ -134,5 +134,10 @@ public class CustomerServiceImpl implements CustomerService {
             return "error";
         }
     }
+    
+    
+    public static void main(String[] args) {
+   
+    }
 
 }

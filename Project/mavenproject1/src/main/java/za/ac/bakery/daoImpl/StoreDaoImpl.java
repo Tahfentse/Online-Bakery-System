@@ -5,6 +5,7 @@
 package za.ac.bakery.daoImpl;
 
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -87,40 +88,47 @@ public class StoreDaoImpl implements StoreDao {
     @Override
     public Item getItem(int itemId) {
         Item item = null;
-        List<Ingridient> ingridients = new ArrayList<>();
 
         try {
-            ps = con.prepareStatement("SELECT i.item_id, item_title, item_description, item_nutrients,item_pic, item_category, item_price, ingredient_id, ingredient_name, intgredient_qty\n"
-                    + "FROM item i,recipe r,ingredient ing,recipe_ingredient ri \n"
-                    + "WHERE item_id =r.recipeid AND ri.recipeId =r.recipeid AND ri.recipeIngredient =ing.ingredient_id AND item_id=?",
+            ps = con.prepareStatement("SELECT i.item_id, item_title, item_description, item_nutrients, item_pic, item_category, item_price, ingredient_id, ingredient_name, intgredient_qty "
+                    + "FROM item i "
+                    + "JOIN recipe r ON i.item_id = r.recipeid "
+                    + "JOIN recipe_ingredient ri ON r.recipeid = ri.recipeId "
+                    + "JOIN ingredient ing ON ri.recipeIngredient = ing.ingredient_id "
+                    + "WHERE i.item_id = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ps.setInt(1, itemId);
 
             ResultSet rs = ps.executeQuery();
 
+            List<Ingridient> ingredients = new ArrayList<>();
+
             while (rs.next()) {
-                ingridients.add(new Ingridient(rs.getInt("ingredient_id"), rs.getString("ingredient_name"), rs.getDouble("intgredient_qty")));
+                // If item is not initialized, initialize it with item details
+                if (item == null) {
+                    Blob imageBlob = rs.getBlob("item_pic");
+                    item = new Item(rs.getInt("item_id"), rs.getString("item_title"), rs.getString("item_description"), imageBlob, rs.getString("item_nutrients"), rs.getInt("item_category"), new ArrayList<>(), rs.getDouble("item_price"));
+                }
+
+                // Retrieve ingredient details
+                int ingredientId = rs.getInt("ingredient_id");
+                String ingredientName = rs.getString("ingredient_name");
+                double ingredientQty = rs.getDouble("intgredient_qty");
+                // Create ingredient object and add to the ingredients list
+                ingredients.add(new Ingridient(ingredientId, ingredientName, ingredientQty));
             }
 
-            rs.beforeFirst();
-
-            while (rs.next()) {
-                if (item == null) {
-
-                    item = new Item(rs.getInt("i.item_id"), rs.getString("item_title"), rs.getString("item_description"), rs.getBlob("item_pic"), rs.getString("item_nutrients"), rs.getInt("item_category"), new ArrayList<>(), rs.getDouble("item_price"));
-
-                }
+            // Set the ingredients list to the item
+            if (item != null) {
+                item.setIngridients(ingredients);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(AdminDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if (item == null) {
-            return new Item();
-        }
-
-        return item;
+        // Return the populated item object
+        return item != null ? item : new Item();
     }
 
     @Override
@@ -271,7 +279,6 @@ public class StoreDaoImpl implements StoreDao {
         }
         return items;
     }
-    
 
     @Override
     public List<Person> getAllPeople() {
@@ -294,17 +301,17 @@ public class StoreDaoImpl implements StoreDao {
         } catch (SQLException ex) {
             Logger.getLogger(StoreDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+
         return people;
 
     }
 
     public static void main(String[] args) {
-        
+
         StoreDaoImpl dao = new StoreDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
-        
+
         List<Person> people = dao.getAllPeople();
         people.forEach(System.out::println);
-        
+
     }
 }

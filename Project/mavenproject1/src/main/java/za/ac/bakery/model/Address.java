@@ -18,9 +18,10 @@ public class Address {
     }
 
     public Address(String street_name, String suburb, String postal_code) {
-        this.street_name = street_name;
-        this.suburb = suburb;
-        this.postal_code = postal_code;
+        this.address_Id="1";
+        this.street_name = "Maputo";
+        this.suburb = "planned";
+        this.postal_code = "111";
     }
 
     public Address(String address_Id, String street_name, String suburb, String postal_code) {

@@ -1,157 +1,70 @@
-<%-- 
-    Document   : cart_test
-    Created on : Feb 2, 2024, 8:35:42 AM
-    Author     : Train
---%>
-
-<%--<%@page import="java.util.Set"%>--%>
+<%@page import="za.ac.bakery.model.Customer"%>
+<%@page import="java.util.Set"%>
 <%@page import="java.util.Map.Entry"%>
 <%@page import="za.ac.bakery.model.OrderItemCart"%>
+<%@page import="java.util.List"%>
 <%@page import="za.ac.bakery.model.Item"%>
-<%@page import="za.ac.bakery.service.CartService"%>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
     <head>
+
         <link rel="website icon" type="png" href="img/logo.png">
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css">
         <title>Your Cart</title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     </head>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #FEF7E4;
-        }
-
-        h1 {
-            text-align: center;
-            color: #5C3D2E;
-            font-size: 30px;
-            margin-top: 10px;
-        }
-
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background-color: #FEF7E4;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        th,
-        td {
-            padding: 15px;
-            text-align: left;
-            color: #5C3D2E;
-            font-size: 25px;
-        }
-
-        th {
-            background-color: #FEF7E4;
-            color: #5C3D2E;
-        }
-
-        tfoot td {
-            font-weight: bold;
-            background-color: #FEF7E4;
-            color: #5C3D2E;
-        }
-
-        table:hover {
-            box-shadow: 0 0 10px rgba(152, 95, 40, 0.5);
-        }
-
-        .checkout-button {
-            background-color: #5C3D2E;
-            color: #FFF;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 18px;
-            cursor: pointer;
-            transition: box-shadow 0.3s ease;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
-            margin-left: 20px;
-        }
-
-        .checkout-button:hover{
-            background-color: #985f28;
-            box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
-        }
-
-        button {
-            background-color: #5C3D2E;
-            color: #FFF;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: box-shadow 0.3s ease;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
-        }
-
-        button:hover{
-            background-color: #985f28;
-            box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
-        }
-
-        .adjust-button
-        {
-            margin-top: 10px;
-        }
-
-        @media (max-width: 600px) {
-            table {
-                width: 70%;
-            }
-
-            th,
-            td {
-                font-size: 15px; /* Adjust the font size for smaller text */
-            }
-
-            .adjust-button,
-            .remove-button{
-                width: 30%;
-                margin: 5px 0;
-            }
-
-            .checkout-button
-            {
-                width: 20%;
-                padding: 8px 15px; /* Adjust the padding for smaller buttons */
-                font-size: 14px; /* Adjust the font size for smaller text */
-                margin: 10px 0;
-            }
-
-            .checkout-button {
-                margin-left: 0;
-            }
-        }
-    </style>
     <body>
-        <!--Header SECTION -->
+
         <%@ include file="header.jsp" %>
-        <!--End Header SECTION -->
-        <div class="space"></div>
 
-        <h1 class="title">Your <span>$Cart</span></h1>
+        <header class="header">
+            <a href="startuppage.jsp" class="logo"> 2<i class="fas fa-chart-pie"></i> 4 Bakery </a>
+            <nav class="navbar">                
+                <a href="#category">Category</a>
+                <a href="#products">Products</a>
+                <a href="#about">About</a>
+                <a href="#reviews">Review</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="icons">
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div id="search" class="fas fa-search" ></div>
 
+
+
+                <a id="cart-link" href="#" ">
+                    <div id="cart-icon" class="fas fa-shopping-cart">
+                        <span id="cart-count">0</span>
+
+                    </div>
+                </a>
+
+                <%
+                    Customer customer = (Customer) session.getAttribute("customer");
+
+                    if (customer == null) {
+                %>
+                <a id="login-btn" href="sign_in.jsp">
+                    <div id="login-btn" class="fas fa-user"></div>
+                </a> 
+                <%} else {%>
+                <a id="login-btn" href="viewCustomer.jsp">
+                    <div id="login-btn" class="fas fa-user"></div>
+                </a> 
+                <%}%>
+            </div>
+            <div class="search">
+                <input type="search" placeholder="search...">
+            </div>
+        </header>
+        <h1>Your Cart</h1>
         <%
-            Map<Integer, OrderItemCart> cartItems = (Map<Integer, OrderItemCart>) session.getAttribute("cartItems");
-            double totalAmount = (Double) session.getAttribute("totalAmount");
-
-            if (cartItems != null && !cartItems.isEmpty()) {
+            List<Item> items = (List<Item>) session.getAttribute("items");
+            if (items != null && !items.isEmpty()) {
+                double totalAmount = 0.0;
         %>
         <table border="1" class="cart-table">
             <thead>
@@ -165,123 +78,109 @@
             </thead>
             <tbody>
                 <%
-                    for (Map.Entry<Integer, OrderItemCart> entry : cartItems.entrySet()) {
-                        OrderItemCart orderItemCart = entry.getValue();
-                        Item item = orderItemCart.getItem();
-                        double subtotal = item.getItem_price() * orderItemCart.getOrderitem_qty();
-                %>
-                <tr>
-                    <td><%= item.getItem_title()%></td>
-                    <td><%= item.getItem_price()%></td>
-                    <td>
-                        <form onsubmit="adjustQuantity(event, '<%= item.getItem_id()%>', <%= item.getItem_price()%>, <%= subtotal%>); return false;">
-                            <button class="adjust-button" type="button"
-                                    onclick="adjustQuantityAction('<%= item.getItem_id()%>', 'increase', <%= item.getItem_price()%>);">+</button>
-                            <span name="quantity" id="quantity_<%= item.getItem_id()%>"><%= orderItemCart.getOrderitem_qty()%></span>
-                            <button class="adjust-button" type="button"
-                                    onclick="adjustQuantityAction('<%= item.getItem_id()%>', 'decrease', <%= item.getItem_price()%>);">-</button>
-                        </form>
-                    </td>
-                    <td>
-                        <button class="remove-button"  type="button"
-                                onclick="removeItem('<%= item.getItem_id()%>', <%= item.getItem_price()%>);">Remove</button>
-                    </td>
-                    <td name="subtotal" id="subtotal_<%= item.getItem_id()%>"><%= subtotal%></td>
-                </tr>
-                <%
-                    }
-                %>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4">Total Amount:</td>
-                    <td><span name="totalAmount" id="totalAmount"><%= totalAmount%></span></td>
-                </tr>
-                <tr>
-                    <td colspan="5">
-                        <a href="javascript:void(0);" class="checkout-button" onclick="checkout()">Checkout</a>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
+                    for (Item item : items) {
+                        double subtotal = item.getItem_price() * item.getQty(); // Calculate subtotal using the qty attribute
+                        totalAmount += subtotal; // Add subtotal to totalAmount
+%>
+            <td><%= item.getItem_title()%></td>
+            <td><%= item.getItem_price()%></td>
+            <td>
+                <form onsubmit="adjustQuantity(event, '<%= item.getItem_id()%>', <%= item.getItem_price()%>, <%= subtotal%>); return false;">
+                    <button class="adjust-button" type="button"
+                            onclick="adjustQuantityAction('<%= item.getItem_id()%>', 'increase', <%= item.getItem_price()%>);">+</button>
+                    <span name="quantity" id="quantity_<%= item.getItem_id()%>"><%= item.getQty()%></span>
+                    <button class="adjust-button" type="button"
+                            onclick="adjustQuantityAction('<%= item.getItem_id()%>', 'decrease', <%= item.getItem_price()%>);">-</button>
+                </form>
+            </td>
+            <td>
 
+                <form action="AddToCart" method="get">
+                    <input type="hidden" name="itemId" value="<%= item.getItem_id()%>"/>
+                    <input type="hidden" name="act" value="removeitem" />
+                    <button type="submit">Remove</button> 
+                </form>
+
+            </td>
+            <td name="subtotal" id="subtotal_<%= item.getItem_id()%>"><%= subtotal%></td>
+        </tr>
         <%
-            } else {
-                out.println("<p>Your cart is empty.</p>");
             }
         %>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">Total Amount:</td>
+            <td><span name="totalAmount" id="totalAmount"><%= totalAmount%></span></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <a href="javascript:void(0);" class="checkout-button" onclick="checkout()">Checkout</a>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<%} else {%>
 
-        <!--Footer SECTION -->
-        <%@ include file="footer.jsp" %>
-        <!--End Footer SECTION -->
-        
-        <script>
-            function adjustQuantityAction(itemId, action, itemPrice) {
-                var quantitySpan = document.getElementById("quantity_" + itemId);
-                var currentQuantity = parseInt(quantitySpan.innerText);
-                var subtotalCell = document.getElementById("subtotal_" + itemId);
-                var currentSubtotal = parseFloat(subtotalCell.innerText);
+<%}%>
 
-                if (action === 'increase') {
-                    currentQuantity += 1;
-                } else if (action === 'decrease' && currentQuantity > 1) {
-                    currentQuantity -= 1;
-                }
 
-                quantitySpan.innerText = currentQuantity;
 
-                // Update Subtotal
-                var newSubtotal = currentQuantity * itemPrice;
-                subtotalCell.innerText = newSubtotal.toFixed(2);
 
-                // Update Total Amount
-                updateTotalAmount();
-            }
 
-            function removeItem(itemId, itemPrice) {
-                var quantitySpan = document.getElementById("quantity_" + itemId);
-                var currentQuantity = parseInt(quantitySpan.innerText);
-                var subtotalCell = document.getElementById("subtotal_" + itemId);
+<script>
+    function adjustQuantityAction(itemId, action, itemPrice) {
+        var quantitySpan = document.getElementById("quantity_" + itemId);
+        var currentQuantity = parseInt(quantitySpan.innerText);
+        var subtotalCell = document.getElementById("subtotal_" + itemId);
+        var currentSubtotal = parseFloat(subtotalCell.innerText);
+        if (action === 'increase') {
+            currentQuantity += 1;
+        } else if (action === 'decrease' && currentQuantity > 1) {
+            currentQuantity -= 1;
+        }
+        quantitySpan.innerText = currentQuantity; // This line updates the displayed quantity
+        var newSubtotal = currentQuantity * itemPrice;
+        subtotalCell.innerText = newSubtotal.toFixed(2);
+        updateTotalAmount();
+    }
+    function updateTotalAmount() {
+        var totalAmountElement = document.getElementById("totalAmount");
+        var subtotals = document.querySelectorAll("[id^='subtotal_']");
+        var totalAmount = 0;
 
-                // Remove the entire row from the table
-                var row = quantitySpan.closest('tr');
-                row.remove();
+        subtotals.forEach(function (subtotal) {
+            totalAmount += parseFloat(subtotal.innerText);
+        });
+        totalAmountElement.innerText = totalAmount.toFixed(2);
+    }
+    function adjustQuantity(event, itemId, itemPrice, currentSubtotal) {
+        event.preventDefault();
+    }
+    function checkout() {
+        var totalAmountElement = document.getElementById("totalAmount");
+        var totalAmount = parseFloat(totalAmountElement.innerText);
 
-                // Update Total Amount after removing the item
-                updateTotalAmount();
-            }
+        if (totalAmount === 0) {
+            alert("Your cart is empty. Cannot proceed to checkout.");
+        } else {
+            window.location.href = 'checkout.jsp';
+        }
+    }
 
-            function updateTotalAmount() {
-                var totalAmountElement = document.getElementById("totalAmount");
-                var subtotals = document.querySelectorAll("[id^='subtotal_']");
-                var totalAmount = 0;
+    function removeItem(itemId, itemPrice) {
+        // Remove item from the DOM
+        var row = document.getElementById("subtotal_" + itemId).parentNode;
+        row.parentNode.removeChild(row);
 
-                subtotals.forEach(function (subtotal) {
-                    totalAmount += parseFloat(subtotal.innerText);
-                });
+        // Update Total Amount
+        updateTotalAmount();
 
-                totalAmountElement.innerText = totalAmount.toFixed(2);
-            }
+        // Optionally, you might want to send a request to the server to remove the item from the session/cart
+        // You can use AJAX for this purpose
+    }
+</script>
+<%@ include file="footer.jsp" %>
+</body>
 
-            function adjustQuantity(event, itemId, itemPrice, currentSubtotal) {
-                event.preventDefault();
-            }
-
-            function checkout() {
-
-                var totalAmountElement = document.getElementById("totalAmount");
-                var totalAmount = parseFloat(totalAmountElement.innerText);
-
-                if (totalAmount === 0) {
-
-                    alert("Your cart is empty. Cannot proceed to checkout.");
-                } else {
-
-                    window.location.href = 'checkout.jsp'; // Replace 'checkout.jsp' with the actual path to your JSP page
-                }
-            }
-
-        </script>
-       
-    </body>
 </html>

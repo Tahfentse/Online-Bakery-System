@@ -65,6 +65,13 @@ public class StoreController extends HttpServlet {
         if (request.getParameter("act") == null) {
 
             List<Catergory> categories = new ArrayList<>();
+
+            List<Item> UserItems = (List<Item>) session.getAttribute("items");
+
+            if (UserItems == null) {
+                session.setAttribute("useritem", new ArrayList<>());
+            }
+
             List<Item> items = new ArrayList<>();
 
             System.out.println(request.getParameter("f"));
@@ -76,7 +83,7 @@ public class StoreController extends HttpServlet {
             session.setAttribute("categories", categories);
             session.setAttribute("items", items);
 
-            session.setAttribute("user", customer);
+            session.setAttribute("customer", customer);
 
             path = "startuppage.jsp";
             request.getRequestDispatcher(path).forward(request, response);
@@ -127,15 +134,21 @@ public class StoreController extends HttpServlet {
                 case "signin":
 
                     person = new Person();
+
                     adres = new Address();
                     customer = new Customer();
                     email = request.getParameter("email");
                     password = request.getParameter("password");
 
                     people = storeservice.getAllPeople();
+                    people.forEach(System.out::println);
 
                     for (int i = 0; i < people.size(); i++) {
+
+                        //Checking the person from the Database
                         if (people.get(i).getEmail().equalsIgnoreCase(email)) {
+
+                            System.out.println("Person" + people.get(i));
 
                             person.setId_Number(people.get(i).getId_Number());
                             person.setName(people.get(i).getName());
@@ -154,55 +167,56 @@ public class StoreController extends HttpServlet {
                             person.setRole(people.get(i).getRole());
 
                         } else {
+                            //When the person  has not been found from the database,so that you din't get a null pointer!
                             person = new Person();
                         }
 
-                    }
+                        System.out.println("Email : " + person.getEmail());
+                        System.out.println("Password : " + person.getPassword());
 
-                    System.out.println("Email : " + person.getEmail());
-                    System.out.println("Password : " + person.getPassword());
+                        System.out.println("Role :" + customer.getRole());
 
-                    System.out.println("Role :" + customer.getRole());
+                        if (person.getEmail().length() > 2) {
 
-                    if (person.getEmail().length() > 2) {
+                            if (person.getPassword().equals(password)) {
 
-                        if (person.getPassword().equals(password)) {
+                                if (person.getRole().equalsIgnoreCase("customer")) {
+                                    customer = new Customer(person.getId_Number(), person.getName(), person.getSurname(), person.getTitle(), person.getEmail(), person.getContact_no(), person.getAddress(), person.getPassword(), person.getRole());
+                                    session.setAttribute("customer", customer);
+                                    path = "sucessful.jsp";
+                                    realpath = "/mavenproject1/StoreController.do?action=GET";
+                                    message = "Succesfully Logged In!";
+                                    session.setAttribute("user", customer);
+                                } else {
 
-                            if (person.getRole().equalsIgnoreCase("customer")) {
+                                    path = "sucessful.jsp";
+                                    realpath = "sign_up.jsp";
+                                    message = "Succesfully Logged\n Your being Directed to the Admin Page!";
 
-                                path = "sucessful.jsp";
-                                realpath = "customerMenu.jsp";
-                                message = "Succesfully Logged In!";
+                                }
+
                             } else {
 
-                                path = "sucessful.jsp";
-                                realpath = "addItem.jsp";
-                                message = "Succesfully Logged In!";
+                                path = "unsuccesful.jsp";
+                                realpath = "sign_in.jsp";
+                                message = "Wrong Password !";
 
                             }
 
                         } else {
 
                             path = "unsuccesful.jsp";
-                            realpath = "sign_in.jsp";
-                            message = "Wrong Password !";
+                            realpath = "sign_up.jsp";
+
+                            message = "User don't exit! SIGN UP!";
 
                         }
 
-                    } else {
-
-                        path = "unsuccesful.jsp";
-                        realpath = "sign_up.jsp";
-
-                        message = "User don't exit! SIGN UP!";
+                        session.setAttribute("message", message);
+                        session.setAttribute("path", realpath);
+                        session.setAttribute("orders", new ArrayList<>());
 
                     }
-
-                    session.setAttribute("message", message);
-                    session.setAttribute("path", realpath);
-
-                    request.getRequestDispatcher(path).forward(request, response);
-
                     request.getRequestDispatcher(path).forward(request, response);
                     break;
                 case "forgotpassword":
@@ -290,9 +304,9 @@ public class StoreController extends HttpServlet {
             case "updateItem":
 
                 break;
-                
+
             case "":
-                
+
                 break;
 
         }

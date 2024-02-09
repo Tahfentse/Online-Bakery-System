@@ -25,14 +25,15 @@ public class Item {
     private List<Ingridient> ingridients;
     private Double item_price;
 
+    private int qty;
+
     public Item() {
-      this.item_id = 0;
+        this.item_id = 0;
         this.item_title = item_title;
         this.item_description = item_description;
         this.pic = pic;
         this.item_nutrients = item_nutrients;
-
-        this.item_price = item_price;   
+        this.item_price = item_price;
     }
 
     public Item(int item_id, String item_title, String item_description, String item_nutrients, Blob pic, Double item_price) {
@@ -43,6 +44,7 @@ public class Item {
         this.item_nutrients = item_nutrients;
 
         this.item_price = item_price;
+        this.qty = 1;
     }
 
     public Item(int item_id, String item_title, String item_description, Blob pic, String item_nutrients, int item_category, List<Ingridient> ingridients, Double item_price) {
@@ -54,38 +56,48 @@ public class Item {
         this.item_category = item_category;
         this.ingridients = ingridients;
         this.item_price = item_price;
+        this.qty = 1;
     }
 
     public Item(int item_id, String item_title, String item_description, String item_warnings, String item_nutrients, int item_category, List<Ingridient> ingridients, Double item_price) {
         this.item_id = item_id;
         this.item_title = item_title;
         this.item_description = item_description;
-
         this.item_nutrients = item_nutrients;
         this.item_category = item_category;
         this.ingridients = ingridients;
         this.item_price = item_price;
+        this.qty = 1;
     }
 
     public Item(String item_title, String item_description, String item_warnings, String item_nutrients, int item_category, Double item_price) {
-
         this.item_title = item_title;
         this.item_description = item_description;
-
         this.item_nutrients = item_nutrients;
         this.item_category = item_category;
         this.item_price = item_price;
+        this.qty = 1;
     }
 
     public Item(int item_id, String item_title, String item_description, String item_nutrients, int item_category, Double item_price) {
         this.item_id = item_id;
         this.item_title = item_title;
         this.item_description = item_description;
-
+        this.qty = 1;
         this.item_nutrients = item_nutrients;
         this.item_category = item_category;
         this.item_price = item_price;
+        this.qty = 1;
     }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+    
 
     public int getItem_id() {
         return item_id;

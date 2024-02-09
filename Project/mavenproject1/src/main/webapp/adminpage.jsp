@@ -4,6 +4,9 @@
     Author     : Train
 --%>
 
+<%@page import="za.ac.bakery.model.Order"%>
+<%@page import="java.util.List"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,11 +35,11 @@
                         <span><i class="uil uil-apps"></i></span>
                         <h3>Dashboard</h3>
                     </a>
-                    <a href="#">
+                    <a href="viewAllCustomers.jsp">
                         <span><i class="uil uil-user"></i></span>
                         <h3>Customers</h3>
                     </a>
-                    <a href="#">
+                    <a href="viewAllOrders.jsp">
                         <span><i class="uil uil-shopping-cart-alt"></i></span>
                         <h3>Orders</h3>
                     </a>
@@ -56,12 +59,13 @@
                         <span><i class="uil uil-setting"></i></span>
                         <h3>Settings</h3>
                     </a>
-                    <a href="#">
+                    <a href="addItem.jsp">
                         <span><i class="uil uil-plus"></i></span>
                         <h3>Add Product</h3>
                     </a>
                     <!-- logout -->
-                    <a href="#">
+                    <a href="s">
+                      
                         <span><i class="uil uil-signout"></i></span>
                         <h3>Logout</h3>
                     </a>
@@ -145,75 +149,19 @@
                                 <th>Product ID</th>
                                 <th>Payment</th>
                                 <th>Status</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
+         
                             <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Due</td>
+                                <td> 01FENH</td>
+                                <td>1</td>
+                                <td>PAID</td>
                                 <td class="danger">Pending</td>
-                            </tr>
-                            <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Due</td>
-                                <td class="danger">Pending</td>
-                            </tr>
-                            <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Due</td>
-                                <td class="danger">Pending</td>
-                            </tr>
-                            <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Paid</td>
-                                <td class="success">Shipped</td>
-                            </tr>
-                            <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Due</td>
-                                <td class="danger">Pending</td>
-                            </tr>
-                            <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Due</td>
-                                <td class="danger">Pending</td>
-                            </tr>
-                            <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Due</td>
-                                <td class="warning">Processing</td>
-                            </tr>
-                            <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Due</td>
-                                <td class="danger">Pending</td>
-                            </tr>
-                            <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Due</td>
-                                <td class="danger">Pending</td>
-                            </tr>
-                            <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Paid</td>
-                                <td class="success">Shipped</td>
-                            </tr>
-                            <tr>
-                                <td>Sony DSLR Camera</td>
-                                <td>524589</td>
-                                <td>Paid</td>
-                                <td class="success">Shipped</td>
-                            </tr>
+                                <td>2023-23</td>
+                            </tr>                  
+           
                         </tbody>
                     </table>
                 </div>
@@ -268,16 +216,25 @@
                         </div>
                     </div>
 
-                    <div class="item add-product">
+                    <div class="item add-product" id="add-product">
                         <div>
-                            <span><i class="uil uil-plus"></i></span>
+                            <span><i class="uil uil-plus" class="button"></i></span>
                             <h3>Add Product</h3>
                         </div>
                     </div>
                 </div>
                 <!--=============== right end ===============-->
             </div>
-            </div>
+        </div>
     </body>
+    <script >
+       document.getElementById("add-product").addEventListener("click", function () {
+            window.location.href = "addItem.jsp";
+        });  
+        
+        
+        
+        
+    </script>
 
 </html>

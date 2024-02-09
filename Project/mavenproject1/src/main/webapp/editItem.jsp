@@ -203,97 +203,72 @@
 
         <div class="container">
 
-            <form action="AddToCart" method="POST">
+            <form action="EditItemController.do" method="POST"> <!-- Assuming EditItemController is the appropriate controller for editing items -->
+
                 <div class="single-item">
-                    <% Item item = (Item) session.getAttribute("item");
+                    <%
+
+                        Item item = (Item) session.getAttribute("item");
+
                         if (item.getItem_id() != 0) {
+
                             Blob imageBlob = item.getPic();
+
                             byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
                             String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
+
+                            // Assuming the image is a PNG for this example, adjust as needed
                             String imgSrc = "data:image/png;base64, " + base64Image;
                     %>
                     <img src="<%=imgSrc%>" alt="Your Item Image">
 
                     <div class="item-details">
-                        <h2><%=item.getItem_title()%></h2>
+                        <h2><input type="text" name="title" value="<%=item.getItem_title()%>"></h2>
 
                         <div class="info-box">
-                            <p>Item Description:<br> <%=item.getItem_description()%></p>
+                            <p>Item Description:<br> <textarea name="description"><%=item.getItem_description()%></textarea></p>
                         </div>
 
                         <div class="info-box">
-                            <p>Enter  Allergies:<input type="text" name="warning"></p>
+                            <p>Nutrient Information:<br><textarea name="nutrients"><%=item.getItem_nutrients()%></textarea></p>
                         </div>
-
-                        <div class="info-box">
-                            <p>Nutrient Information:<br><%=item.getItem_nutrients()%>.</p>
-                        </div>
-
                         <%
-                            List<Ingridient> ingredients = item.getIngridients();
-                            String ingredientsString = "";
 
-                            if (!ingredients.isEmpty()) {
-                                StringBuilder sb = new StringBuilder();
-                                for (Ingridient ingredient : ingredients) {
-                                    sb.append(ingredient.getIngridient_name()).append(", ");
-                                }
-                                // Remove the trailing comma and space
-                                ingredientsString = sb.substring(0, sb.length() - 2);
-                            }
+                            List<Ingridient> ingridients = item.getIngridients();
 
+                            if (ingridients.isEmpty()) {
                         %>
                         <div class="info-box">
-                            <p>Ingredients: <%= ingredientsString.isEmpty() ? "Empty!" : ingredientsString%></p>
+                            <p>Ingredients: Empty!</p>
+                        </div>
+                        <%} else {%>
+                        <%  for (int i = 0; i < ingridients.size(); i++) {
+                        %>
+                        <div class="info-box">
+                            <p>Ingredients: <input type="text" name="ingredients" value="<%=ingridients.get(i)%>"></p>
+                        </div>
+                        <%}%>
+                        <%}%>
+
+                        <div class="info-box">
+                            <p>Price :R<input type="text" name="price" value="<%=item.getItem_price()%>"></p>
                         </div>
 
-
-
-                    
-
-                    <div class="info-box">
-                        <p>Price :R<%=item.getItem_price()%></p>
+                        <input type="hidden" name="itemId" value="<%= item.getItem_id()%>">
+                        <button type="submit" class="add-to-cart-button">Edit Item</button>
                     </div>
+                    <%} else {%>
+                    <p>No Item found !</p>
+                    <%}%>
 
-                    <input type="hidden" name="itemId" value="<%= item.getItem_id()%>">
-                    <input type="hidden" name="quantity" value="1">
-                    <button type="submit" class="add-to-cart-button">Add to Cart</button>
                 </div>
-                <% } else { %>
-                <p>No Item found !</p>
-                <% }%>
-
+            </form>
         </div>
-    </form>
-</div>
 
-<script>
-    function addToCart() {
-        // Replace this with your actual logic to add the item to the cart
-        alert('Item added to cart!');
-    }
-    //navbar and top section
-    function myFunction() {
-        var x = document.querySelector("nav");
-        if (x.className === "") {
-            x.className = "responsive";
-        } else {
-            x.className = "";
-        }
-    }
-    // adding to cart
-    let cartCount = 0;
-    function addToCart() {
-        // Increment the cart count
-        cartCount++;
-        // Update the cart count element
-        document.getElementById('cart-count').innerText = cartCount;
-    }
-    function performSearch() {
-        // Your search functionality goes here
-        alert('Performing search...');
-    }
-</script>
+    </body>
 
-</body>
 </html>
+
+
+
+

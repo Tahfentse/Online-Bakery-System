@@ -1,32 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package za.ac.bakery.model;
 
-/**
- *
- * @author Train
- */
+
 public class Ingridient {
 
     private int ingridientId;
     private String ingridient_name;
-    private Double ingridient_size;
+    private Double available_qty;
 
     public Ingridient() {
     }
 
-    public Ingridient(String ingridient_name, Double ingridient_size) {
+    public Ingridient(String ingridient_name, Double available_qty) {
 
         this.ingridient_name = ingridient_name;
-        this.ingridient_size = ingridient_size;
+        this.available_qty = available_qty;
     }
 
-    public Ingridient(int ingridientId, String ingridient_name, Double ingridient_size) {
+    public Ingridient(int ingridientId, String ingridient_name, Double available_qty) {
         this.ingridientId = ingridientId;
         this.ingridient_name = ingridient_name;
-        this.ingridient_size = ingridient_size;
+        this.available_qty = available_qty;
     }
 
     public String getIngridient_name() {
@@ -37,12 +31,12 @@ public class Ingridient {
         this.ingridient_name = ingridient_name;
     }
 
-    public Double getIngridient_size() {
-        return ingridient_size;
+    public Double getAvailable_qty() {
+        return available_qty;
     }
 
-    public void setIngridient_size(Double ingridient_size) {
-        this.ingridient_size = ingridient_size;
+    public void setAvailable_qty(Double available_qty) {
+        this.available_qty = available_qty;
     }
 
     public int getIngridientId() {
@@ -54,9 +48,33 @@ public class Ingridient {
     }
 
     @Override
-    public String toString() {
-        return "Ingridient{" + "ingridientId=" + ingridientId + ", ingridient_name=" + ingridient_name + ", ingridient_size=" + ingridient_size + '}';
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + this.ingridientId;
+        return hash;
     }
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ingridient other = (Ingridient) obj;
+        if (this.ingridientId != other.ingridientId) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingridient{" + "ingridientId=" + ingridientId + ", ingridient_name=" + ingridient_name + ", available_qty=" + available_qty + '}';
+    }
 
 }

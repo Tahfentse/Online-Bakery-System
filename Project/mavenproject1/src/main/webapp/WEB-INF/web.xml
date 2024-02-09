@@ -20,6 +20,14 @@
         <servlet-name>Controller</servlet-name>
         <servlet-class>za.ac.bakery.Controller.Controller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Copy</servlet-name>
+        <servlet-class>za.ac.bakery.Controller.Copy</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Copy2Servlet</servlet-name>
+        <servlet-class>za.ac.bakery.Controller.Copy2Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CustomerController</servlet-name>
         <url-pattern>/CustomerController</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Copy</servlet-name>
+        <url-pattern>/Copy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Copy2Servlet</servlet-name>
+        <url-pattern>/Copy2Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

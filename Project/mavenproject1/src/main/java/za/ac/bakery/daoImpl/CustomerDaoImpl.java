@@ -101,8 +101,9 @@ public class CustomerDaoImpl implements CustomerDao {
         Address a;
         try {
 
-            ps = con.prepareStatement("SELECT p.idNumber,p.name,p.surname,p.title,p.contactNo,p.email,p.password,p.role,a.address_id,a.street_name,a.suburb,a.postal_code FROM person p,address a WHERE p.idNumber=a.person_id AND p.email=?");
+            ps = con.prepareStatement("SELECT p.idNumber,p.name,p.surname,p.title,p.contactNo,p.email,p.password,p.role,a.address_id,a.street_name,a.suburb,a.postal_code FROM person p,address a WHERE p.idNumber=a.person_id AND p.email=? AND p.role =?");
             ps.setString(1, email);
+            ps.setString(2,"customer");
 
             ResultSet rs = ps.executeQuery();
 
@@ -175,7 +176,8 @@ public class CustomerDaoImpl implements CustomerDao {
 
         CustomerDaoImpl cust = new CustomerDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
-        Address adrs = new Address("Tswelele", "Harties", "0455");
+        Customer customer =cust.getCustomer("220724859@tut4life.ac.za");
+        System.out.println("Customer "+customer);
 
     }
 

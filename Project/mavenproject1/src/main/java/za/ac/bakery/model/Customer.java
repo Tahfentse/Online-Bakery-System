@@ -11,11 +11,11 @@ package za.ac.bakery.model;
 public class Customer extends Person {
     
     public Customer() {
-        
+        super();
     }
     
     public Customer(String id_Number, String name, String surname, String title, String email, String contact_no, Address Address, String password, String role) {
-        super(id_Number, name, surname, title, email, contact_no, Address, password, role);
+        super(id_Number, name, surname, title, email, contact_no,Address, password, role);
     }
 
     public Customer(String id_Number, String name, String surname, String title, String email, String contact_no, String password) {

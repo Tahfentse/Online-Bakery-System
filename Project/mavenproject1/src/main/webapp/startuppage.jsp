@@ -1,3 +1,4 @@
+<%@page import="za.ac.bakery.model.Customer"%>
 <%@page import="za.ac.bakery.model.Catergory"%>
 <%@page import="java.sql.Blob"%>
 <%@page import="za.ac.bakery.model.Item"%>
@@ -31,8 +32,49 @@
 <body>
 
     <!-- Header SECTION -->
+
     <%@ include file="header.jsp" %>
-    <!--End Header SECTION -->
+
+    <header class="header">
+        <a href="startuppage.jsp" class="logo"> 2<i class="fas fa-chart-pie"></i> 4 Bakery </a>
+        <nav class="navbar">                
+            <a href="#category">Category</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <a href="#reviews">Review</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search" class="fas fa-search" ></div>
+
+
+
+            <a id="cart-link" href="#" ">
+                <div id="cart-icon" class="fas fa-shopping-cart">
+                    <span id="cart-count">0</span>
+
+                </div>
+            </a>
+
+            <%
+                Customer customer = (Customer) session.getAttribute("customer");
+
+                if (customer == null) {
+            %>
+            <a id="login-btn" href="sign_in.jsp">
+                <div id="login-btn" class="fas fa-user"></div>
+            </a> 
+            <%} else {%>
+            <a id="login-btn" href="viewCustomer.jsp">
+                <div id="login-btn" class="fas fa-user"></div>
+            </a> 
+            <%}%>
+        </div>
+        <div class="search">
+            <input type="search" placeholder="search...">
+        </div>
+    </header>
 
     <!-- Welcome SECTION -->   
     <div class="welcome-section" id="home">
@@ -118,7 +160,9 @@
     <!-- Products SECTION -->
     <section class="products" id="products">
 
-        <h1 class="title"> our <span>products</span> <a href="/mavenproject1/StoreController.do?action=POST&act=viewall">view all </a> </h1>
+
+        <h1 class="title"> our <span>products</span> <a href="/mavenproject1/StoreController.do?action=POST&act=viewall">view all</a> </h1>
+
         <div class="box-container">
             <%
                 List<Item> items = (List<Item>) session.getAttribute("items");
@@ -134,8 +178,11 @@
             %>     
             <div class="box">
                 <div class="icons">
-                    <a href="/mavenproject1/AddToCart?action=GET&quantity=1&itemId=<%=item.getItem_id()%>" class="fas fa-shopping-cart" name="itemId"></a>
-                    <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
+
+
+                    <button onclick="addItemToCart('<%=item.getItem_id()%>')"><a clas="fas fa-shopping-cart"></a>BUY</button>
+
+                    <a href="/mavenproject1/StoreController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
                 </div>
                 <div class="img">
                     <img decoding="async" src="<%=imgSrc%>" alt="">
@@ -157,6 +204,36 @@
             %>
         </div>
     </section>
+
+    <script>
+        var cartItems = []; // Array to store item IDs
+
+        function addItemToCart(itemId) {
+            // Check if the item is already in the cart
+            if (!cartItems.includes(itemId)) {
+                cartItems.push(itemId); // Add item ID to the array
+                updateCartCount(); // Update the cart count display
+            }
+        }
+
+        // Function to update the cart count display
+        function updateCartCount() {
+            var cartCountElement = document.getElementById("cart-count");
+            if (cartCountElement) {
+                cartCountElement.textContent = cartItems.length; // Update the cart count
+            }
+        }
+
+        // Function to send item IDs to servlet when "Cart" link is clicked
+        document.getElementById("cart-link").addEventListener("click", function () {
+            // Convert the array to a comma-separated string
+            var itemIdsString = cartItems.join(",");
+            // Redirect to the servlet with the item IDs as a query parameter
+            window.location.href = "/mavenproject1/AddToCart?action=GET&act=viewcart&itemIds=" + itemIdsString;
+        });
+
+    </script>
+
     <!--End Products SECTION -->
 
     <!-- About SECTION -->
@@ -259,27 +336,10 @@
     <%@ include file="footer.jsp" %>
     <!--End Footer SECTION -->
 
-    <script>
-        let search = document.querySelector('.search');
-        document.querySelector('#search').onclick = () => {
-            search.classList.toggle('active');
-        };
-
-        var cartBtn = document.getElementById('cart-btn');
-        cartBtn.addEventListener('click', function () {
-            window.location.href = "cart.jsp";
-        });
-
-
-
-
-
-
-
-    </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function ()
+        {
             const cartIcon = document.getElementById('cart-icon');
             const cartCount = document.getElementById('cart-count');
             const cartPopup = document.getElementById('cart-popup');
@@ -292,7 +352,7 @@
                 cartCount.innerText = itemCount;
             }
 
-            // Function to decrement cart count
+// Function to decrement cart count
             function decrementCart() {
                 if (itemCount > 0) {
                     itemCount--;
@@ -300,21 +360,21 @@
                 }
             }
 
-            // Show cart popup when icon is clicked
+// Show cart popup when icon is clicked
             cartIcon.addEventListener('click', function (event) {
                 event.preventDefault();
                 cartPopup.style.display = 'block';
                 // You can fetch and display cart items here
             });
 
-            // Hide cart popup when user clicks outside of it
+// Hide cart popup when user clicks outside of it
             document.addEventListener('click', function (event) {
                 if (!cartPopup.contains(event.target) && event.target !== cartIcon) {
                     cartPopup.style.display = 'none';
                 }
             });
 
-            // Example of adding an item to the cart
+// Example of adding an item to the cart
             const addToCartButton = document.querySelector('.icons a');
             addToCartButton.addEventListener('click', function (event) {
                 event.preventDefault();
@@ -322,8 +382,8 @@
                 // You can add logic here to fetch and add item to the cart
             });
 
-            // Example of removing an item from the cart
-            // Assuming you have a remove button for each item in the cart
+// Example of removing an item from the cart
+// Assuming you have a remove button for each item in the cart
             document.addEventListener('click', function (event) {
                 if (event.target.classList.contains('remove-item')) {
                     decrementCart();
@@ -332,6 +392,35 @@
             });
         });
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+
+        function openCartPopup()
+        {
+// AJAX request to load cart_test.jsp content
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("cart-content").innerHTML = this.responseText;
+                    document.getElementById("cart-popup").style.display = "block";
+                }
+            };
+            xhttp.open("GET", "cart_test.jsp", true);
+            xhttp.send();
+        }
+
+
+        function closeCartPopup() {
+            document.getElementById("cart-popup").style.display = "none";
+        }
+
+    </script>
+
+
+
+
 
     <script src="main.js" defer data-deferred="1"></script> </body>
 </html>

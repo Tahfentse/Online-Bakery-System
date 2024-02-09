@@ -12,10 +12,12 @@ import java.util.List;
  * @author Train
  */
 public class Order {
-    private String OrderId;
+
+    private int OrderId;
+    private String OrderName;
     private Double price;
     private List<Item> items;
-    private Timestamp timestamp; 
+    private Timestamp timestamp;
 
     public Order() {
     }
@@ -25,16 +27,37 @@ public class Order {
         this.timestamp = timestamp;
     }
 
-    public Order(String OrderId, List<Item> items, Timestamp timestamp) {
+    public Order(int OrderId, List<Item> items, Timestamp timestamp) {
         this.OrderId = OrderId;
         this.items = items;
         this.timestamp = timestamp;
     }
 
-    public Order(int orderId, double orderPrice, List<Item> items, Timestamp orderTimestamp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Order(int OrderId, String OrderName, Double price, List<Item> items, Timestamp timestamp) {
+        this.OrderId = OrderId;
+        this.OrderName = OrderName;
+        this.price = price;
+        this.items = items;
+        this.timestamp = timestamp;
     }
 
+    public Order(int orderId, double orderPrice, List<Item> items, Timestamp orderTimestamp) {
+        this.OrderId = orderId;
+        this.price = orderPrice;
+        this.items = items;
+        this.timestamp = orderTimestamp;
+    }
+
+    public String getOrderName() {
+        return OrderName;
+    }
+
+    public void setOrderName(String OrderName) {
+        this.OrderName = OrderName;
+    }
+
+    
+    
     public Double getPrice() {
         return price;
     }
@@ -42,13 +65,12 @@ public class Order {
     public void setPrice(Double price) {
         this.price = price;
     }
-    
 
-    public String getOrderId() {
+    public int getOrderId() {
         return OrderId;
     }
 
-    public void setOrderId(String OrderId) {
+    public void setOrderId(int OrderId) {
         this.OrderId = OrderId;
     }
 
@@ -72,6 +94,5 @@ public class Order {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
-    
-    
+
 }

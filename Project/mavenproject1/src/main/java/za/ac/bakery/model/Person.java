@@ -22,7 +22,7 @@ public class Person {
 
     public Person() {
 
-        this.id_Number = "";
+        this.id_Number = "0";
         this.name = "";
         this.surname = "";
         this.title = "";
@@ -30,6 +30,7 @@ public class Person {
         this.contact_no = "";
         this.password = "";
         this.role = "";
+        this.Address =new Address();
 
     }
 

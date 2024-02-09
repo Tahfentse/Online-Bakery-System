@@ -84,8 +84,9 @@ public class StoreServiceImpl implements StoreService {
 
         StoreServiceImpl service = new StoreServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
         items = service.getItems();
+        Item item = service.getItem(8);
         
-        items.forEach(System.out::println);
+        System.out.println(" "+item.toString());
 
     }
 
