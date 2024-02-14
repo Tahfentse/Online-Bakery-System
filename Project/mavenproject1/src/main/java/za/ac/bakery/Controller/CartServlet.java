@@ -99,7 +99,7 @@ public class CartServlet extends HttpServlet {
             session.setAttribute("error", error);
         }
 
-        response.sendRedirect(request.getContextPath() + "/cart_view.jsp");
+        response.sendRedirect(request.getContextPath() + "/startuppage.jsp#products");
     }
 
     private double calculateTotalAmount(S_CartService userCart) {

@@ -13,16 +13,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1,user-scalable=0">
         <meta name="description" content="Shopping cart view">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/cart_normalize.css">
         <link rel="stylesheet" type="text/css" href="css/cart_style.css">
+        <link rel="website icon" type="png" href="img/logo.png">
         <title>Shopping Cart</title>
     </head>
     <% Customer customer = (Customer) session.getAttribute("customer"); %>
     <body>
-        
+
 
         <header class="header">
-            <h2 class="header-title">Shopping Cart</h2>
+            <h2 class="header-title">Your Cart</h2>
         </header>
         <main class="main">
             <section class="section">
@@ -41,9 +41,9 @@
                             Map<Integer, ShoppingCart> cartItems = (Map<Integer, ShoppingCart>) session.getAttribute("cartItems");
                             Double totalAmountObj = (Double) session.getAttribute("totalAmount");
                             String error = (String) session.getAttribute("error");
-                            double deliveryfee=50;
-                            double subtotal=0;
-                            int totalQuantity=0;
+                            double deliveryfee = 50;
+                            double subtotal = 0;
+                            int totalQuantity = 0;
 
                             if (cartItems != null && !cartItems.isEmpty()) {
                                 double totalAmount = (totalAmountObj != null) ? totalAmountObj : 0.0;
@@ -53,50 +53,50 @@
                                     ShoppingCart cartItem = entry.getValue();
                                     Item item = cartItem.getItem();
                                     int quantity = cartItem.getQuantity();
-                                    double itemPrice = item.getItem_price() * quantity; 
-                                    subtotal += itemPrice; 
-                                      totalQuantity += quantity;
+                                    double itemPrice = item.getItem_price() * quantity;
+                                    subtotal += itemPrice;
+                                    totalQuantity += quantity;
 
                                     // Convert byte array to Base64 encoded string
-                                    byte[] itemPicBytes = item.getPic()!= null ? item.getPic().getBytes(1, (int)item.getPic().length()) : null;
+                                    byte[] itemPicBytes = item.getPic() != null ? item.getPic().getBytes(1, (int) item.getPic().length()) : null;
                                     String base64Image = itemPicBytes != null ? Base64.getEncoder().encodeToString(itemPicBytes) : "";
-                            %>
+                        %>
                         <tr>
                             <td>
                                 <form action="RemoveFromCartServlet" method="post">
-                                    <input type="hidden" name="itemId" value="<%= itemId %>">
-                                    <input type="hidden" name="qty" value="<%= quantity %>">
+                                    <input type="hidden" name="itemId" value="<%= itemId%>">
+                                    <input type="hidden" name="qty" value="<%= quantity%>">
                                     <button type="submit" class="button-image">
-                                            <img class="button-image" src="img/x-img.png" alt="x sign to remove the product from the cart">
-                                        </button>
+                                        <img class="button-image" src="img/x-img.png" alt="x sign to remove the product from the cart">
+                                    </button>
                                 </form>
                             </td>
-                   
-                    <td><img class="image" src="data:image/jpeg;base64, <%= base64Image %>" alt="Item Picture" width="60px" height="60px"></td>
-                    <td><%= item.getItem_title() %></td>
-                        <td><%= String.format("%.2f",item.getItem_price()) %></td>
-                        <td>
-                            <div class="section-table__counter">
-                                <form action="RemoveFromCartServlet" method="post">
-                                    <input type="hidden" name="itemId" value="<%= itemId %>">
-                                    <input type="hidden" name="qty" value="<%= quantity %>">
-                                    <button type="submit" class="square">-</button>
-                                </form>
-                                <div class="square" id="quantity_<%= itemId%>"><%= quantity%></div>
-                                <form action="CartServlet" method="get">
-                                    <input type="hidden" name="itemId" value="<%= itemId %>">
-                                    <input type="hidden" name="qty" value="<%= quantity %>">
-                                    <button type="submit" class="square"">+</button>
-                                </form>
-                            </div>
-                            
-                        
-                    </td>
-                    </tr>
-                    <%
+
+                            <td><img class="image" src="data:image/jpeg;base64, <%= base64Image%>" alt="Item Picture" width="60px" height="60px"></td>
+                            <td><%= item.getItem_title()%></td>
+                            <td><%= String.format("%.2f", item.getItem_price())%></td>
+                            <td>
+                                <div class="section-table__counter">
+                                    <form action="RemoveFromCartServlet" method="post">
+                                        <input type="hidden" name="itemId" value="<%= itemId%>">
+                                        <input type="hidden" name="qty" value="<%= quantity%>">
+                                        <button type="submit" class="square">-</button>
+                                    </form>
+                                    <div class="square" id="quantity_<%= itemId%>"><%= quantity%></div>
+                                    <form action="CartServlet" method="get">
+                                        <input type="hidden" name="itemId" value="<%= itemId%>">
+                                        <input type="hidden" name="qty" value="<%= quantity%>">
+                                        <button type="submit" class="square"">+</button>
+                                    </form>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                        <%
+                                }
                             }
-                        }
-                    %>
+                        %>
                     </tbody>
                 </table>
                 <div class="section-footer">
@@ -129,13 +129,13 @@
                         </tr>
                         <tr>
                             <td>Grand total</td>
-                            <td id="grandTotal">R <%= String.format("%.2f",  subtotal + deliveryfee)%></td> <!-- Display initial grand total -->
+                            <td id="grandTotal">R <%= String.format("%.2f", subtotal + deliveryfee)%></td> <!-- Display initial grand total -->
                         </tr>
                         <%
                             session.setAttribute("amount", subtotal);
                             session.setAttribute("totalQuantity", totalQuantity); // Set total quantity in session
                             session.setAttribute("Delivery", deliveryfee); // Set total quantity in session
-%>
+                        %>
                         <tr>
                             <td colspan="2">
                                 <a id="checkout" class="button" onclick="proceedToCheckout()">Proceed to checkout</a>
@@ -147,8 +147,8 @@
         </main>
         <footer class="footer">
         </footer>
-                       
-                       
+
+
         <script>
             function proceedToCheckout() {
                 // Redirect to the servlet to handle the checkout process
