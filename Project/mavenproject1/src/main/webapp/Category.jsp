@@ -11,9 +11,19 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" href="style.css">
+        <script src="main.js" defer data-deferred="1"></script>
+        <style>
+            .space{
+                min-height: 6vh;
+            }
+        </style>
 
     </head>
-    <body>
+    <body>       
+        <!-- Header SECTION -->
+        <%@ include file="header.jsp" %>
+        <!-- Header SECTION -->
+        <div class="space"></div>
         <section class="products">
             <h1 class="title">Our <span>${catergorytitle}</span></h1>
 
@@ -32,8 +42,8 @@
 
                 <div class="box">
                     <div class="icons">
-                        <a href="/mavenproject1/AddToCart?action=GET&quantity=1&itemId=<%=item.getItem_id()%>" class="fas fa-shopping-cart" name="itemId"></a>
-                        <a href="/mavenproject1/AdminController.do?action=POST&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
+                        <a href="/mavenproject1/CartServlet?action=GET&act=viewItem&itemId=<%=item.getItem_id()%>" class="fas fa-shopping-cart" name="itemId"></a>
+                        <a href="/mavenproject1/StoreController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
 
                     </div>
                     <div class="img">
@@ -52,13 +62,14 @@
                     </div>
                 </div>
 
-                </form>
                 <%
                         }
                     }
                 %>
             </div>
         </section>
-
-</body>
+        <!--Footer SECTION -->
+        <%@ include file="footer.jsp" %>
+        <!--End Footer SECTION -->
+    </body>
 </html>
