@@ -302,10 +302,7 @@ public class StoreDaoImpl implements StoreDao {
 
         StoreDaoImpl dao = new StoreDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
 
-        Item item = dao.getItem(36);
-        System.out.println("" + item.toString());
-
-        System.out.println("" + item.toString());
+       List<Order> oders = dao.Allorderss();
 
     }
 

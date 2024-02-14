@@ -78,9 +78,9 @@ public class StoreController extends HttpServlet {
             categories = storeservice.catergories();
 
             items = storeservice.getAllItems();
-            
+
             System.out.println("Number of Items " + items.size());
-            
+
             session.setAttribute("categories", categories);
             session.setAttribute("items", items);
 
@@ -140,13 +140,11 @@ public class StoreController extends HttpServlet {
                     password = request.getParameter("password");
 
                     people = storeservice.getAllPeople();
-                    
-                    
 
                     for (int i = 0; i < people.size(); i++) {
                         if (people.get(i).getEmail().equalsIgnoreCase(email)) {
 
-                            System.out.println("Person"+people.get(i));
+                            System.out.println("Person" + people.get(i));
                             person.setId_Number(people.get(i).getId_Number());
                             person.setName(people.get(i).getName());
                             person.setSurname(people.get(i).getSurname());
@@ -176,47 +174,7 @@ public class StoreController extends HttpServlet {
 
                     if (person.getEmail().length() > 2) {
 
-<<<<<<< Updated upstream
                         if (person.getPassword().equals(password)) {
-=======
-                                if (person.getRole().equalsIgnoreCase("customer")) {
-                                    customer = new Customer(person.getId_Number(), person.getName(), person.getSurname(), person.getTitle(), person.getEmail(), person.getContact_no(), person.getAddress(), person.getPassword(), person.getRole());
-                                    session.setAttribute("customer", customer);
-                                    path = "sucessful.jsp";
-                                    realpath = "/mavenproject1/StoreController.do?action=GET";
-                                    message = "Succesfully Logged In!";
-                                    session.setAttribute("user", customer);
-                                } else {
-
-                                    path = "adminpage.jsp";
-                                    realpath = "adminpage.jsp";
-                                    message = "Succesfully Logged\n Your being Directed to the Admin Page!";
-
-                                    List<Item> allitems = storeservice.getAllItems();
-
-                                    List<Order> ordess = storeservice.Allorders();
-
-                                    List<Person> people = storeservice.getAllPeople();
-                                    List<Customer> customers = new ArrayList<>();
-
-                                    for (int in = 0; in < people.size(); in++) {
-
-                                        if (people.get(in).getRole().equalsIgnoreCase("customer")) {
-
-                                            person = people.get(in);
-
-                                            customer = new Customer(person.getId_Number(), person.getName(), person.getSurname(), person.getTitle(), person.getEmail(), person.getContact_no(), person.getAddress(), person.getPassword(), person.getRole());
-
-                                            customers.add(customer);
-                                        }
-
-                                    }
-
-                                    session.setAttribute("items", allitems);
-                                    session.setAttribute("orders", ordess);
-                                    session.setAttribute("customers", customers);
-                                }
->>>>>>> Stashed changes
 
                             if (person.getRole().equalsIgnoreCase("customer")) {
                                 customer = new Customer(person.getId_Number(), person.getName(), person.getSurname(), person.getTitle(), person.getEmail(), person.getContact_no(), person.getAddress(), person.getPassword(), person.getRole());
@@ -227,10 +185,33 @@ public class StoreController extends HttpServlet {
                                 session.setAttribute("user", customer);
                             } else {
 
-                                path = "sucessful.jsp";
-                                realpath = "addItem.jsp";
-                                message = "Succesfully Logged In!";
+                                path = "adminpage.jsp";
+                                realpath = "adminpage.jsp";
+                                message = "Succesfully Logged\n Your being Directed to the Admin Page!";
 
+                                List<Item> allitems = storeservice.getAllItems();
+
+                                List<Order> ordess = storeservice.Allorders();
+
+                                List<Person> people = storeservice.getAllPeople();
+                                List<Customer> customers = new ArrayList<>();
+
+                                for (int in = 0; in < people.size(); in++) {
+
+                                    if (people.get(in).getRole().equalsIgnoreCase("customer")) {
+
+                                        person = people.get(in);
+
+                                        customer = new Customer(person.getId_Number(), person.getName(), person.getSurname(), person.getTitle(), person.getEmail(), person.getContact_no(), person.getAddress(), person.getPassword(), person.getRole());
+
+                                        customers.add(customer);
+                                    }
+
+                                }
+
+                                session.setAttribute("items", allitems);
+                                session.setAttribute("orders", ordess);
+                                session.setAttribute("customers", customers);
                             }
 
                         } else {
@@ -243,7 +224,6 @@ public class StoreController extends HttpServlet {
 
                     } else {
 
-                    
                         path = "unsuccesful.jsp";
                         realpath = "sign_up.jsp";
 
@@ -256,7 +236,6 @@ public class StoreController extends HttpServlet {
 
                     request.getRequestDispatcher(path).forward(request, response);
 
-                 
                     break;
                 case "forgotpassword":
                     email = request.getParameter("email");

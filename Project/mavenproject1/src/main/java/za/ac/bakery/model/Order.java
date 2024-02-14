@@ -23,12 +23,7 @@ public class Order {
     private Timestamp timestamp;
 
     public Order() {
-        this.OrderId = 111;
-        this.OrderName = "Ofen11";
-        this.price = 200.0;
-        this.items = new ArrayList<>();
-        this.timestamp = Timestamp.from(timestamp.toInstant());
-
+     
     }
 
     public Order(Double price, Timestamp timestamp) {

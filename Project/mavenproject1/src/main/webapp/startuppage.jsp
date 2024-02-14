@@ -50,7 +50,7 @@
             <a id="cart-link" href="cart_view.jsp">
                 <div id="cart-icon" class="fas fa-shopping-cart">
                     <span>
-                        <% 
+                        <%
                             // Retrieve the count from the session
                             Integer cartItemCount = (Integer) session.getAttribute("cartItemCount");
                             // Display 0 if count is null
@@ -179,25 +179,14 @@
     <section class="products" id="products">
 
         <h1 class="title"> our <span>products</span> <a href="/mavenproject1/StoreController.do?action=POST&act=viewall">view all</a> </h1>
-        <%
-            List<Item> items = (List<Item>) session.getAttribute("items");
 
-            for (Item item : items) {
-                Blob imageBlob = item.getPic();
-                byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
-                String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
-                String imgSrc = "data:image/png;base64, " + base64Image;
-        %>
-
-        <div class="box-container">
-<<<<<<< Updated upstream
-=======
+        
             <%
                 List<Item> items = (List<Item>) session.getAttribute("items");
                 int n = 1;
                 for (int i = n; i < 6; i++) {
 
-                    n=6*i;
+                    n = 6 * i;
                     Blob imageBlob = items.get(n).getPic();
 
                     byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
@@ -205,20 +194,16 @@
 
                     String imgSrc = "data:image/png;base64, " + base64Image;
             %>     
->>>>>>> Stashed changes
+
+        <div class="box-container">
+
             <div class="box">
                 <div class="icons">
 
-                    <!--<button onclick="addItemToCart('<%//=item.getItem_id()%>')"><a clas="fas fa-shopping-cart"></a>BUY</button>-->
-                    <a href="/mavenproject1/CartServlet?action=GET&act=viewItem&itemId=<%=item.getItem_id()%>" clas="fas fa-shopping-cart">Buy</a>
-                    <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
 
-<<<<<<< Updated upstream
-=======
-                    <button onclick="addItemToCart('<%=items.get(n).getItem_id()%>')"><a clas="fas fa-shopping-cart"></a>BUY</button>
+                    <a href="/mavenproject1/CartServlet?action=GET&act=viewItem&itemId=<%=items.get(n).getItem_id()%>" clas="fas fa-shopping-cart">Buy</a>
+                    <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=items.get(n).getItem_id()%>" class="fas fa-eye"></a>
 
-                    <a href="/mavenproject1/StoreController.do?action=GET&act=viewItem&itemid=<%=items.get(n).getItem_id()%>" class="fas fa-eye"></a>
->>>>>>> Stashed changes
                 </div>
                 <div class="img">
                     <img decoding="async" src="<%=imgSrc%>" alt="">
@@ -234,47 +219,44 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-<<<<<<< Updated upstream
-            </div>
-=======
-            </div>      
-            <%
 
-                   ;
-               n= n+5; }
-            %>
->>>>>>> Stashed changes
+            </div>
         </div>
-        <%}%>
+        <%
+
+               ;
+                n = n + 5;
+            }
+        %>
 
     </section>
 
     <script>
-        var cartItems = []; // Array to store item IDs
+            var cartItems = []; // Array to store item IDs
 
-        function addItemToCart(itemId) {
-            // Check if the item is already in the cart
-            if (!cartItems.includes(itemId)) {
-                cartItems.push(itemId); // Add item ID to the array
-                updateCartCount(); // Update the cart count display
+            function addItemToCart(itemId) {
+                // Check if the item is already in the cart
+                if (!cartItems.includes(itemId)) {
+                    cartItems.push(itemId); // Add item ID to the array
+                    updateCartCount(); // Update the cart count display
+                }
             }
-        }
 
-        // Function to update the cart count display
-        function updateCartCount() {
-            var cartCountElement = document.getElementById("cart-count");
-            if (cartCountElement) {
-                cartCountElement.textContent = cartItems.length; // Update the cart count
+            // Function to update the cart count display
+            function updateCartCount() {
+                var cartCountElement = document.getElementById("cart-count");
+                if (cartCountElement) {
+                    cartCountElement.textContent = cartItems.length; // Update the cart count
+                }
             }
-        }
 
-        // Function to send item IDs to servlet when "Cart" link is clicked
-        document.getElementById("cart-link").addEventListener("click", function () {
-            // Convert the array to a comma-separated string
-            var itemIdsString = cartItems.join(",");
-            // Redirect to the servlet with the item IDs as a query parameter
-            window.location.href = "/mavenproject1/AddToCart?action=GET&act=viewcart&itemIds=" + itemIdsString;
-        });
+            // Function to send item IDs to servlet when "Cart" link is clicked
+            document.getElementById("cart-link").addEventListener("click", function () {
+                // Convert the array to a comma-separated string
+                var itemIdsString = cartItems.join(",");
+                // Redirect to the servlet with the item IDs as a query parameter
+                window.location.href = "/mavenproject1/AddToCart?action=GET&act=viewcart&itemIds=" + itemIdsString;
+            });
 
     </script>
 
