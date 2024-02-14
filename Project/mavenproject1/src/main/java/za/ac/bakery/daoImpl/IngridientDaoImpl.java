@@ -11,14 +11,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import za.ac.bakery.dao.IngridientDao;
 import za.ac.bakery.databaseManager.Dbmanager;
-import za.ac.bakery.model.Ingridient;
+import za.ac.bakery.model.Ingredient;
 
 
 public class IngridientDaoImpl implements IngridientDao {
     
     private Dbmanager db;
     private Connection con;
-    private List<Ingridient> allIngridient;
+    private List<Ingredient> allIngridient;
     private PreparedStatement ps;
 
     public IngridientDaoImpl(String url, String username, String password) {
@@ -94,8 +94,8 @@ public class IngridientDaoImpl implements IngridientDao {
     }
 
     @Override
-    public Ingridient getIngredientById(int ingredient_id) {
-        Ingridient ingredient=null;
+    public Ingredient getIngredientById(int ingredient_id) {
+        Ingredient ingredient=null;
         ResultSet rs = null;
 
         if (con != null) {
@@ -106,7 +106,7 @@ public class IngridientDaoImpl implements IngridientDao {
                 rs = ps.executeQuery();
 
                 if (rs.next()) {
-                    ingredient = new Ingridient(
+                    ingredient = new Ingredient(
                         rs.getInt("ingredient_id"),
                         rs.getString("ingredient_name"),
                         rs.getDouble("intgredient_qty")
@@ -137,8 +137,8 @@ public class IngridientDaoImpl implements IngridientDao {
     }
 
     @Override
-    public List<Ingridient> getAllIngridients() {
-        List<Ingridient> allIngredients = new ArrayList<>();
+    public List<Ingredient> getAllIngridients() {
+        List<Ingredient> allIngredients = new ArrayList<>();
         ResultSet rs = null;
 
         try {
@@ -146,7 +146,7 @@ public class IngridientDaoImpl implements IngridientDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                Ingridient ingredient = new Ingridient(
+                Ingredient ingredient = new Ingredient(
                     rs.getInt("ingredient_id"),
                     rs.getString("ingredient_name"),
                     rs.getDouble("intgredient_qty")

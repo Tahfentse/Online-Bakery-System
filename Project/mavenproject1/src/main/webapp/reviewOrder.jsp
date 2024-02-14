@@ -42,6 +42,7 @@
 
                 Customer customer = (Customer) session.getAttribute("customer");
                 Double amount = (Double) session.getAttribute("amount");
+                Double deliveryfee = (Double) session.getAttribute("Delivery");
                 int numberOfItems = (Integer) session.getAttribute("totalQuantity");
                 Address address = customer.getAddress();
                 LocalDateTime date = LocalDateTime.now().plusDays(3);
@@ -77,10 +78,10 @@
                 <section id="order-summary" class="section">
                     <h2>Order Summary</h2>
                     <p>Number of Items: <%= numberOfItems%></p>
-                    <p>Delivery: R26.50</p>
+                    <p>Delivery: R<%=deliveryfee%></p>
                     <p><input type="checkbox" name="donate"/>Donate R5 to Reefentse Children's Charity</p>
 
-                    <p>TO PAY: <%= amount%></p>
+                    <p>TO PAY: <%= amount + deliveryfee%></p>
                     <button onclick="redirectToCheckout()">PAY NOW</button>
 
                 </section>

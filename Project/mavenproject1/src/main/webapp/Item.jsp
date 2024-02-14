@@ -203,97 +203,140 @@
 
         <div class="container">
 
+<!--                <div class="top-section">
+                    <a href="#" class="logo"><img src="img/Screenshot (99).png"></a>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search...">
+                        <img src="img/search.png" alt="Search" onclick="performSearch()">
+                    </div>
+                    <div class="top-icons">
+                        <img src="img/cart.png" id="cart-icon" onclick="addToCart()">
+                        <span id="cart-count" class="cart-count">0</span>
+                        <img src="img/profile-user.png">
+                    </div>
+                </div>
+            
+                <nav>
+                    <a href="#">Menu</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Cakes</a>
+                    <a href="#">Cupcakes</a>
+                    <a href="#">Fresh Bread</a>
+                    <a href="#">Pastries</a>
+                    <a href="#">Pies</a>
+                    <a href="#">Brownies</a>
+                    <a href="#">Contact Us</a> 
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+                </nav>-->
+
             <form action="AddToCart" method="POST">
-                <div class="single-item">
-                    <% Item item = (Item) session.getAttribute("item");
-                        if (item.getItem_id() != 0) {
-                            Blob imageBlob = item.getPic();
-                            byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
-                            String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
-                            String imgSrc = "data:image/png;base64, " + base64Image;
-                    %>
-                    <img src="<%=imgSrc%>" alt="Your Item Image">
+            <div class="single-item">
+                <%
 
-                    <div class="item-details">
-                        <h2><%=item.getItem_title()%></h2>
-
-                        <div class="info-box">
-                            <p>Item Description:<br> <%=item.getItem_description()%></p>
-                        </div>
-
-                        <div class="info-box">
-                            <p>Enter  Allergies:<input type="text" name="warning"></p>
-                        </div>
-
-                        <div class="info-box">
-                            <p>Nutrient Information:<br><%=item.getItem_nutrients()%>.</p>
-                        </div>
-
-                        <%
-                            List<Ingridient> ingredients = item.getIngridients();
-                            String ingredientsString = "";
-
-                            if (!ingredients.isEmpty()) {
-                                StringBuilder sb = new StringBuilder();
-                                for (Ingridient ingredient : ingredients) {
-                                    sb.append(ingredient.getIngridient_name()).append(", ");
-                                }
-                                // Remove the trailing comma and space
-                                ingredientsString = sb.substring(0, sb.length() - 2);
-                            }
-
-                        %>
-                        <div class="info-box">
-                            <p>Ingredients: <%= ingredientsString.isEmpty() ? "Empty!" : ingredientsString%></p>
-                        </div>
-
-
-
+                    Item item = (Item) session.getAttribute("item");
                     
+                    if(item.getItem_id()!=0){
+
+                    Blob imageBlob = item.getPic();
+
+               
+                        byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
+                        String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
+
+                        // Assuming the image is a PNG for this example, adjust as needed
+                        String imgSrc = "data:image/png;base64, " + base64Image;
+                %>
+                <img src="<%=imgSrc%>" alt="Your Item Image">
+ 
+                <div class="item-details">
+                    <h2><%=item.getItem_title()%></h2>
+
+                    <div class="info-box">
+                        <p>Item Description:<br> <%=item.getItem_description()%></p>
+                    </div>
+
+                    <div class="info-box">
+                        <p>Enter  Allergies:<input type="text" name="warning"></p>
+                    </div>
+
+                    <div class="info-box">
+                        <p>Nutrient Information:<br><%=item.getItem_nutrients()%>.</p>
+                    </div>
+                    <%
+
+                        List<Ingridient> ingridients = item.getIngridients();
+
+                        if (ingridients.isEmpty()) {
+                    %>
+                    <div class="info-box">
+                        <p>Ingredients: Empty!</p>
+                    </div>
+                    <%} else {%>
+                    <%  for (int i = 0; i < ingridients.size(); i++) {
+                    %>
+                    <div class="info-box">
+                        <p>Ingredients: <%=ingridients.get(i)%></p>
+                    </div>
+                    <%}%>
+                    <%}%>
 
                     <div class="info-box">
                         <p>Price :R<%=item.getItem_price()%></p>
                     </div>
-
-                    <input type="hidden" name="itemId" value="<%= item.getItem_id()%>">
+                    
+                    <input type="hidden" name="itemId" value="<%= item.getItem_id() %>">
                     <input type="hidden" name="quantity" value="1">
                     <button type="submit" class="add-to-cart-button">Add to Cart</button>
                 </div>
-                <% } else { %>
-                <p>No Item found !</p>
-                <% }%>
-
+                    <%}else{%>
+                    <p>No Item found !</p>
+                    <%}%>
+                    
+            </div>
+                    </form>
         </div>
-    </form>
-</div>
+                    
 
-<script>
-    function addToCart() {
-        // Replace this with your actual logic to add the item to the cart
-        alert('Item added to cart!');
-    }
-    //navbar and top section
-    function myFunction() {
-        var x = document.querySelector("nav");
-        if (x.className === "") {
-            x.className = "responsive";
-        } else {
-            x.className = "";
-        }
-    }
-    // adding to cart
-    let cartCount = 0;
-    function addToCart() {
-        // Increment the cart count
-        cartCount++;
-        // Update the cart count element
-        document.getElementById('cart-count').innerText = cartCount;
-    }
-    function performSearch() {
-        // Your search functionality goes here
-        alert('Performing search...');
-    }
-</script>
+        <script>
+            function addToCart() {
+                // Replace this with your actual logic to add the item to the cart
+                alert('Item added to cart!');
 
-</body>
+            }
+            //navbar and top section
+            function myFunction() {
+                var x = document.querySelector("nav");
+                if (x.className === "") {
+                    x.className = "responsive";
+                } else {
+                    x.className = "";
+                }
+            }
+
+            // adding to cart
+            let cartCount = 0;
+
+            function addToCart() {
+                // Increment the cart count
+                cartCount++;
+
+                // Update the cart count element
+                document.getElementById('cart-count').innerText = cartCount;
+            }
+
+            function performSearch() {
+                // Your search functionality goes here
+                alert('Performing search...');
+
+
+
+            }
+
+        </script>
+
+    </body>
 </html>
+
+
+
+

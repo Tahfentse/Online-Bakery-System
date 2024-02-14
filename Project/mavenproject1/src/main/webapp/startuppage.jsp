@@ -32,9 +32,6 @@
 <body>
 
     <!-- Header SECTION -->
-
-    <%@ include file="header.jsp" %>
-
     <header class="header">
         <a href="startuppage.jsp" class="logo"> 2<i class="fas fa-chart-pie"></i> 4 Bakery </a>
         <nav class="navbar">                
@@ -50,12 +47,26 @@
 
 
 
-            <a id="cart-link" href="#" ">
+            <a id="cart-link" href="cart_view.jsp">
                 <div id="cart-icon" class="fas fa-shopping-cart">
-                    <span id="cart-count">0</span>
-
+                    <span>
+                        <% 
+                            // Retrieve the count from the session
+                            Integer cartItemCount = (Integer) session.getAttribute("cartItemCount");
+                            // Display 0 if count is null
+                            if (cartItemCount == null) {
+                                cartItemCount = 0;
+                            }
+                            out.print(cartItemCount);
+                        %>
+                    </span>
                 </div>
             </a>
+            <!--                    <div id="cart-popup" style="display: none;">
+                                     Content of cart_test.jsp will be loaded here 
+                                    <div id="cart-content"></div>
+                                    <button onclick="closeCartPopup()">Close</button>
+                                </div>-->
 
             <%
                 Customer customer = (Customer) session.getAttribute("customer");
@@ -75,6 +86,13 @@
             <input type="search" placeholder="search...">
         </div>
     </header>
+    <!--End Header SECTION -->
+    <!--Carrrtttt pop-up--->
+    <div id="cart-popup" style="display: none;">
+        <!-- Content of cart_test.jsp will be loaded here -->
+        <div id="cart-content"></div>
+        <button onclick="closeCartPopup()">Close</button>
+    </div>
 
     <!-- Welcome SECTION -->   
     <div class="welcome-section" id="home">
@@ -160,29 +178,25 @@
     <!-- Products SECTION -->
     <section class="products" id="products">
 
-
         <h1 class="title"> our <span>products</span> <a href="/mavenproject1/StoreController.do?action=POST&act=viewall">view all</a> </h1>
+        <%
+            List<Item> items = (List<Item>) session.getAttribute("items");
+
+            for (Item item : items) {
+                Blob imageBlob = item.getPic();
+                byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
+                String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
+                String imgSrc = "data:image/png;base64, " + base64Image;
+        %>
 
         <div class="box-container">
-            <%
-                List<Item> items = (List<Item>) session.getAttribute("items");
-
-                for (Item item : items) {
-
-                    Blob imageBlob = item.getPic();
-
-                    byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
-                    String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
-
-                    String imgSrc = "data:image/png;base64, " + base64Image;
-            %>     
             <div class="box">
                 <div class="icons">
 
+                    <!--<button onclick="addItemToCart('<%//=item.getItem_id()%>')"><a clas="fas fa-shopping-cart"></a>BUY</button>-->
+                    <a href="/mavenproject1/CartServlet?action=GET&act=viewItem&itemId=<%=item.getItem_id()%>" clas="fas fa-shopping-cart">Buy</a>
+                    <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
 
-                    <button onclick="addItemToCart('<%=item.getItem_id()%>')"><a clas="fas fa-shopping-cart"></a>BUY</button>
-
-                    <a href="/mavenproject1/StoreController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
                 </div>
                 <div class="img">
                     <img decoding="async" src="<%=imgSrc%>" alt="">
@@ -195,14 +209,13 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
                 </div>
-            </div>      
-            <%
-                }
-            %>
+            </div>
         </div>
+        <%}%>
+
     </section>
 
     <script>
@@ -333,73 +346,58 @@
     <div class="space"></div>   
 
     <!--Footer SECTION -->
-    <%@ include file="footer.jsp" %>
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#home"> <i class="fas fa-arrow-right"></i> Home</a>
+                <a href="#about"> <i class="fas fa-arrow-right"></i>About</a>
+                <a href="#products"> <i class="fas fa-arrow-right"></i>Products</a>
+                <a href="#review"> <i class="fas fa-arrow-right"></i> Review</a>
+            </div>
+            <div class="box">
+                <h3>extra links</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i>  my order </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>  my account </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>  terms or use </a>
+            </div>
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="https://facebook.com"> <i class="fab fa-facebook-f"></i> facebook </a>
+                <a href="https://twitter.com"> <i class="fab fa-twitter"></i> twitter </a>
+                <a href="https://instagram.com"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="https://linkedin.com"> <i class="fab fa-linkedin"></i> linkedin </a>
+            </div>
+            <div class="box" id="contact">
+                <h3>contact us</h3>
+                <p>Email: info@2Pie4bakery.com</p>
+                <p>Phone: 012 461 3724</p>
+            </div>
+        </div>
+
+    </section>
+    <section class="credit"><p>&copy; 2024 2Pie4 Bakery. All rights reserved.</p></section>
     <!--End Footer SECTION -->
 
-
     <script>
-        document.addEventListener("DOMContentLoaded", function ()
-        {
-            const cartIcon = document.getElementById('cart-icon');
-            const cartCount = document.getElementById('cart-count');
-            const cartPopup = document.getElementById('cart-popup');
+        let search = document.querySelector('.search');
+        document.querySelector('#search').onclick = () => {
+            search.classList.toggle('active');
+        };
 
-            let itemCount = 0;
 
-            // Function to increment cart count
-            function incrementCart() {
-                itemCount++;
-                cartCount.innerText = itemCount;
-            }
 
-// Function to decrement cart count
-            function decrementCart() {
-                if (itemCount > 0) {
-                    itemCount--;
-                    cartCount.innerText = itemCount;
-                }
-            }
+        //----------------------------------------------------------
 
-// Show cart popup when icon is clicked
-            cartIcon.addEventListener('click', function (event) {
-                event.preventDefault();
-                cartPopup.style.display = 'block';
-                // You can fetch and display cart items here
-            });
 
-// Hide cart popup when user clicks outside of it
-            document.addEventListener('click', function (event) {
-                if (!cartPopup.contains(event.target) && event.target !== cartIcon) {
-                    cartPopup.style.display = 'none';
-                }
-            });
 
-// Example of adding an item to the cart
-            const addToCartButton = document.querySelector('.icons a');
-            addToCartButton.addEventListener('click', function (event) {
-                event.preventDefault();
-                incrementCart();
-                // You can add logic here to fetch and add item to the cart
-            });
-
-// Example of removing an item from the cart
-// Assuming you have a remove button for each item in the cart
-            document.addEventListener('click', function (event) {
-                if (event.target.classList.contains('remove-item')) {
-                    decrementCart();
-                    // You can add logic here to remove item from the cart
-                }
-            });
-        });
     </script>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
 
-        function openCartPopup()
-        {
-// AJAX request to load cart_test.jsp content
+        function openCartPopup() {
+            // AJAX request to load cart_test.jsp content
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
@@ -411,13 +409,10 @@
             xhttp.send();
         }
 
-
         function closeCartPopup() {
             document.getElementById("cart-popup").style.display = "none";
         }
-
     </script>
-
 
 
 

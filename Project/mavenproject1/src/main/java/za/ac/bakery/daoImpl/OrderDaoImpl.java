@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import za.ac.bakery.databaseManager.Dbmanager;
-import za.ac.bakery.model.Ingridient;
+import za.ac.bakery.model.Ingredient;
 import za.ac.bakery.model.Item;
 import za.ac.bakery.model.Order;
 import za.ac.bakery.model.Person;
@@ -76,8 +76,8 @@ public class OrderDaoImpl implements OrderDao { // OrderDaoImpl == these are you
         Item item = null;
         Order order = null;
         List<Item> items = new ArrayList<>();
-        Ingridient ingridient;
-        List<Ingridient> ingridients;
+        Ingredient ingridient;
+        List<Ingredient> ingridients;
         try {
             ps = con.prepareStatement("SELECT o.order_id, o.order_price, o.orderTimeStamp, "
                     + "i.item_id, i.item_title, i.item_description, i.item_warnings, i.item_nutrients, "
@@ -114,10 +114,10 @@ public class OrderDaoImpl implements OrderDao { // OrderDaoImpl == these are you
                 String ingredientName = rs.getString("ingridient_name");
                 double ingredientSize = rs.getDouble("ingridient_size");
 
-                Ingridient ingredient = new Ingridient(ingredientId, ingredientName, ingredientSize);
+                Ingredient ingredient = new Ingredient(ingredientId, ingredientName, ingredientSize);
 
                 item = itemMap.computeIfAbsent(itemId, id -> {
-                    List<Ingridient> ingredientsList = new ArrayList<>();
+                    List<Ingredient> ingredientsList = new ArrayList<>();
                     Item newItem = new Item(id, itemTitle, itemDescription, itemWarnings, itemNutrients, itemCategory, ingredientsList, itemPrice);
                     items.add(newItem);
                     return newItem;

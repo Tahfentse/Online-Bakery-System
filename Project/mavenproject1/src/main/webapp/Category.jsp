@@ -14,10 +14,6 @@
 
     </head>
     <body>
-        <!-- Header SECTION -->
-        <%@ include file="header.jsp" %>
-        <!--End Header SECTION -->
-        <div class="space"></div>
         <section class="products">
             <h1 class="title">Our <span>${catergorytitle}</span></h1>
 
@@ -63,11 +59,6 @@
                 %>
             </div>
         </section>
-        <!--Footer SECTION -->
-        <%@ include file="footer.jsp" %>
-        <!--End Footer SECTION -->
 
-
-    </body>
-
+</body>
 </html>

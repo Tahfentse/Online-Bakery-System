@@ -22,7 +22,7 @@ public class Item {
     private String item_nutrients;
     private int item_category;
 
-    private List<Ingridient> ingridients;
+    private List<Ingredient> ingridients;
     private Double item_price;
 
     private int qty;
@@ -47,7 +47,7 @@ public class Item {
         this.qty = 1;
     }
 
-    public Item(int item_id, String item_title, String item_description, Blob pic, String item_nutrients, int item_category, List<Ingridient> ingridients, Double item_price) {
+    public Item(int item_id, String item_title, String item_description, Blob pic, String item_nutrients, int item_category, List<Ingredient> ingridients, Double item_price) {
         this.item_id = item_id;
         this.item_title = item_title;
         this.item_description = item_description;
@@ -59,7 +59,7 @@ public class Item {
         this.qty = 1;
     }
 
-    public Item(int item_id, String item_title, String item_description, String item_warnings, String item_nutrients, int item_category, List<Ingridient> ingridients, Double item_price) {
+    public Item(int item_id, String item_title, String item_description, String item_warnings, String item_nutrients, int item_category, List<Ingredient> ingridients, Double item_price) {
         this.item_id = item_id;
         this.item_title = item_title;
         this.item_description = item_description;
@@ -148,11 +148,11 @@ public class Item {
         this.item_category = item_category;
     }
 
-    public List<Ingridient> getIngridients() {
+    public List<Ingredient> getIngridients() {
         return ingridients;
     }
 
-    public void setIngridients(List<Ingridient> ingridients) {
+    public void setIngridients(List<Ingredient> ingridients) {
         this.ingridients = ingridients;
     }
 

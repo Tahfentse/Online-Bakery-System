@@ -1,3 +1,6 @@
+<%@page import="java.util.Base64"%>
+<%@page import="za.ac.bakery.model.ShoppingCart"%>
+<%@page import="java.util.Map"%>
 <%@page import="za.ac.bakery.model.Customer"%>
 <%@page import="java.sql.Blob"%>
 <%@page import="za.ac.bakery.model.Item"%>
@@ -12,61 +15,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/cart_normalize.css">
         <link rel="stylesheet" type="text/css" href="css/cart_style.css">
-        <link rel="website icon" type="png" href="img/logo.png">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-        <link rel="stylesheet" href="style.css">
-
         <title>Shopping Cart</title>
     </head>
-
+    <% Customer customer = (Customer) session.getAttribute("customer"); %>
     <body>
-        <!-- Header SECTION -->
-        <%@ include file="header.jsp" %>
-        <!--End Header SECTION -->
-        <div class="space"></div>
+        
 
         <header class="header">
-            <a href="startuppage.jsp" class="logo"> 2<i class="fas fa-chart-pie"></i> 4 Bakery </a>
-            <nav class="navbar">                
-                <a href="#category">Category</a>
-                <a href="#products">Products</a>
-                <a href="#about">About</a>
-                <a href="#reviews">Review</a>
-                <a href="#contact">Contact</a>
-            </nav>
-            <div class="icons">
-                <div id="menu-btn" class="fas fa-bars"></div>
-                <div id="search" class="fas fa-search" ></div>
-                <%
-                    Customer customer = (Customer) session.getAttribute("customer");
-
-                    if (customer == null) {
-                %>
-                <a id="login-btn" href="sign_in.jsp">
-                    <div id="login-btn" class="fas fa-user"></div>
-                </a> 
-                <%} else {%>
-                <a id="login-btn" href="viewCustomer.jsp">
-                    <div id="login-btn" class="fas fa-user"></div>
-                </a> 
-                <%}%>
-            </div>
-            <div class="search">
-                <input type="search" placeholder="search...">
-            </div>
+            <h2 class="header-title">Shopping Cart</h2>
         </header>
-        <div class="space"></div>
-
-
-        <% List<Item> items = (List<Item>) session.getAttribute("items");
-
-            if (!items.isEmpty()) {
-
-        %>
         <main class="main">
-
-
             <section class="section">
                 <table class="section-table">
                     <thead class="section-table__thead">
@@ -79,61 +37,65 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%                            session.setAttribute("item", items);
-                            double subtotal = 0.00;
-                            int totalQuantity = 0;
+                        <%
+                            Map<Integer, ShoppingCart> cartItems = (Map<Integer, ShoppingCart>) session.getAttribute("cartItems");
+                            Double totalAmountObj = (Double) session.getAttribute("totalAmount");
+                            String error = (String) session.getAttribute("error");
+                            double deliveryfee=50;
+                            double subtotal=0;
+                            int totalQuantity=0;
 
-                            // Initialize subtotal
-                            for (Item item : items) {
-                                int itemId = item.getItem_id();
-                                String itemTitle = item.getItem_title();
-                                int qty = item.getQty();
-                                totalQuantity += qty; // Increment total quantity
-                                double itemPrice = item.getItem_price() * qty; // Multiply item price by quantity
-                                subtotal += itemPrice; // Add item total to subtotal
+                            if (cartItems != null && !cartItems.isEmpty()) {
+                                double totalAmount = (totalAmountObj != null) ? totalAmountObj : 0.0;
 
-                                Blob imageBlob = item.getPic();
+                                for (Map.Entry<Integer, ShoppingCart> entry : cartItems.entrySet()) {
+                                    int itemId = entry.getKey();
+                                    ShoppingCart cartItem = entry.getValue();
+                                    Item item = cartItem.getItem();
+                                    int quantity = cartItem.getQuantity();
+                                    double itemPrice = item.getItem_price() * quantity; 
+                                    subtotal += itemPrice; 
+                                      totalQuantity += quantity;
 
-                                byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
-                                String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
-
-                                // Assuming the image is a PNG for this example, adjust as needed
-                                String imgSrc = "data:image/png;base64," + base64Image;
-                        %>
+                                    // Convert byte array to Base64 encoded string
+                                    byte[] itemPicBytes = item.getPic()!= null ? item.getPic().getBytes(1, (int)item.getPic().length()) : null;
+                                    String base64Image = itemPicBytes != null ? Base64.getEncoder().encodeToString(itemPicBytes) : "";
+                            %>
                         <tr>
                             <td>
-                                <form action="AddToCart" method="GET">
-                                    <input type="hidden" name="itemId" value="<%= itemId%>">
-                                    <input type="hidden" name="act" value="removeitem">
+                                <form action="RemoveFromCartServlet" method="post">
+                                    <input type="hidden" name="itemId" value="<%= itemId %>">
+                                    <input type="hidden" name="qty" value="<%= quantity %>">
                                     <button type="submit" class="button-image">
-                                        <img class="button-image" src="img/x-img.png" alt="x sign to remove the product from the cart">
-                                    </button>
+                                            <img class="button-image" src="img/x-img.png" alt="x sign to remove the product from the cart">
+                                        </button>
                                 </form>
                             </td>
-                    <script>
-                        document.getElementById("button-image").addEventListener("click", function () {
-                            // Convert the array to a comma-separated string
-                            var itemIdsString = cartItems.join(",");
-                            // Redirect to the servlet with the item IDs as a query parameter
-                            window.location.href = "/mavenproject1/AddToCart?action=GET&act=removeitem&itemId=" + <%= itemId%>;
-                        });
-                    </script>
-                    <td>
-                        <img class="image" src="<%= imgSrc%>" alt="<%= itemTitle%>" width="60px" height="60px">
-                    </td>
-                    <td><%= itemTitle%></td>
-                    <td>R <%= String.format("%.2f", itemPrice)%></td> <!-- Display total item price -->
-                    <td>
-                        <div class="section-table__counter">
-                            <button class="square" onclick="updateQuantity(<%= itemId%>, <%= item.getItem_price()%>, 'decrease')">-</button>
-                            <div class="square" id="quantity_<%= itemId%>"><%= qty%></div>
-                            <button class="square" onclick="updateQuantity(<%= itemId%>, <%= item.getItem_price()%>, 'increase')">+</button>
-                        </div>
+                   
+                    <td><img class="image" src="data:image/jpeg;base64, <%= base64Image %>" alt="Item Picture" width="60px" height="60px"></td>
+                    <td><%= item.getItem_title() %></td>
+                        <td><%= String.format("%.2f",item.getItem_price()) %></td>
+                        <td>
+                            <div class="section-table__counter">
+                                <form action="RemoveFromCartServlet" method="post">
+                                    <input type="hidden" name="itemId" value="<%= itemId %>">
+                                    <input type="hidden" name="qty" value="<%= quantity %>">
+                                    <button type="submit" class="square">-</button>
+                                </form>
+                                <div class="square" id="quantity_<%= itemId%>"><%= quantity%></div>
+                                <form action="CartServlet" method="get">
+                                    <input type="hidden" name="itemId" value="<%= itemId %>">
+                                    <input type="hidden" name="qty" value="<%= quantity %>">
+                                    <button type="submit" class="square"">+</button>
+                                </form>
+                            </div>
+                            
+                        
                     </td>
                     </tr>
                     <%
+                            }
                         }
-
                     %>
                     </tbody>
                 </table>
@@ -146,7 +108,7 @@
                     <thead class="aside-table__thead">
                         <tr>
                             <th>SHIPPING</th>
-                            <th>R23.80</th> <!-- This value should be dynamically calculated -->
+                            <th>R <%= deliveryfee%></th> 
                         </tr>
                     </thead>
                 </table>
@@ -159,20 +121,21 @@
                     <tbody class="aside-table__tbody">
                         <tr>
                             <td>Subtotal</td>
-                            <td id="subtotal">R <%= String.format("%.2f", subtotal)%></td> <!-- Display initial subtotal -->
+                            <td id="subtotal">R <%= String.format("%.2f", subtotal)%></td> 
                         </tr>
                         <tr>
-                            <td>Total Quantity</td>
+                            <td>Total Cart Quantity</td>
                             <td><%= totalQuantity%></td> <!-- Display total quantity -->
                         </tr>
                         <tr>
                             <td>Grand total</td>
-                            <td id="grandTotal">R <%= String.format("%.2f", subtotal + 23.80)%></td> <!-- Display initial grand total -->
+                            <td id="grandTotal">R <%= String.format("%.2f",  subtotal + deliveryfee)%></td> <!-- Display initial grand total -->
                         </tr>
                         <%
                             session.setAttribute("amount", subtotal);
                             session.setAttribute("totalQuantity", totalQuantity); // Set total quantity in session
-                        %>
+                            session.setAttribute("Delivery", deliveryfee); // Set total quantity in session
+%>
                         <tr>
                             <td colspan="2">
                                 <a id="checkout" class="button" onclick="proceedToCheckout()">Proceed to checkout</a>
@@ -182,26 +145,10 @@
                 </table>
             </aside>
         </main>
-
-        <%} else {%>
-
-        <div style="
-
-             display: flex;
-             align-content: center;
-             align-items: center;
-             text-align: center
-
-             ">
-            <p> Cart Empty! </p>
-
-        </div>
-
-        <%}%>   
         <footer class="footer">
         </footer>
-
-
+                       
+                       
         <script>
             function proceedToCheckout() {
                 // Redirect to the servlet to handle the checkout process

@@ -19,7 +19,9 @@
     <body>
         <!-- partial:index.partial.html -->
         
-        <%Double amount = (Double) session.getAttribute("amount");%>
+        <%  Double amount = (Double) session.getAttribute("amount");
+            Double deliveryfee = (Double) session.getAttribute("Delivery");
+        %>
         <div class="payment-title">
             <h1>Enter Payment Information</h1>
         </div>
@@ -122,7 +124,7 @@
                     </div>
                 </div>
             </div>
-            <form action="#" method="" >
+            <form action="OrderServlet" method="post" >
                 <div class="form-container">
                     <div class="field-container">
                         <label for="name">Name</label>
@@ -146,12 +148,14 @@
                     </div>
                 </div>
                 <input type="hidden"  name="act" value="payment" />
-                <button type="submit"> PAY </button>
+                
+                <button type="submit"> PAY <p> R <%= amount + deliveryfee%></p></button>
+            </form>
+
         </div>
 
 
 
-    </form>
     <!-- partial -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js'></script><script  src="./checkout_script.js"></script>
 

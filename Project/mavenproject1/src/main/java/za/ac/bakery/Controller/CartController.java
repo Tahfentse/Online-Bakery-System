@@ -78,8 +78,7 @@ public class CartController extends HttpServlet {
                     request.getRequestDispatcher("cart_view.jsp").forward(request, response);
                 } else {
                     // No item IDs provided, handle accordingly
-                    session.setAttribute("items", items);
-                    request.getRequestDispatcher("cart_view.jsp").forward(request, response);
+                    response.getWriter().println("No item IDs provided.");
                 }
 
                 break;

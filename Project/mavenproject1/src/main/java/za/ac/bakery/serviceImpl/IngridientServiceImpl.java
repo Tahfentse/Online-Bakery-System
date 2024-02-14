@@ -3,7 +3,7 @@ package za.ac.bakery.serviceImpl;
 
 import java.util.List;
 import za.ac.bakery.daoImpl.IngridientDaoImpl;
-import za.ac.bakery.model.Ingridient;
+import za.ac.bakery.model.Ingredient;
 import za.ac.bakery.service.IngridientService;
 
 
@@ -18,7 +18,7 @@ public class IngridientServiceImpl implements IngridientService {
     }
 
     @Override
-    public Ingridient getIngredientById(int ingredient_id) {
+    public Ingredient getIngredientById(int ingredient_id) {
         return ingridientdao.getIngredientById(ingredient_id);
     }
 
@@ -33,7 +33,7 @@ public class IngridientServiceImpl implements IngridientService {
     }
 
     @Override
-    public List<Ingridient> getAllIngridients() {
+    public List<Ingredient> getAllIngridients() {
          return ingridientdao.getAllIngridients();
     }
     

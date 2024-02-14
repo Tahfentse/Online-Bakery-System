@@ -1,7 +1,9 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     min-height: 100vh;
     padding: 4rem 2rem 2rem 2rem;
+    background:#FEF7E4; /* Vanilla Cream */
+    color: #5C3D2E;
 }
 
 /* header */
@@ -15,7 +17,7 @@ body {
     top: 0;
     left: 0;
     padding: 0 2rem 0 3rem;
-    color: #d9d9d9;
+    /*color: #d9d9d9;*/
 }
 
 .header-title {
@@ -37,22 +39,31 @@ body {
     margin: 1rem;
     padding: 1rem;
     flex-grow: 1;
-    border: 1px solid #d9d9d9;
+    /*border: 1px solid #d9d9d9;*/
     box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.section:hover{
+    box-shadow: 0 0 10px rgba(152, 95, 40, 0.5);
 }
 
 .section-table {
     width: 100%;
     text-align: left;
     padding: 1rem;
-    border-bottom: 1px solid #d9d9d9;
+    /*border-bottom: 1px solid #d9d9d9;*/
     border-collapse: collapse;
+    border-radius: 10px;
+    /*overflow: hidden;*/
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .section-table__thead {
     border-bottom: 1px solid #d9d9d9;
 }
-
 
 .section-table__thead th {
     padding: 1rem;
@@ -73,10 +84,19 @@ body {
     height: 2rem;
     text-align: center;
     justify-content: center;
-    border: 1px solid #d9d9d9;
+    border: 1px solid ;
     display: flex;
     justify-content: center;
+    text-decoration: none;
     align-items: center;
+    background-color: #5C3D2E;
+    color: #ffffff
+   
+}
+
+.square:hover {
+    background-color: #985f28;
+    box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
 }
 
 .image {
@@ -102,21 +122,24 @@ body {
     align-items: stretch;
 }
 
-
 .aside-table {
     width: 100%;
+    background-color: #FEF7E4;
     text-align: left;
     padding: 1rem;
     margin: 0rem;
-    border-bottom: 1px solid #d9d9d9;
     border-collapse: collapse;
-    border: 1px solid #d9d9d9;
     box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.aside-table:hover {
+    box-shadow: 0 0 10px rgba(152, 95, 40, 0.5);
 }
 
 .aside-table__thead {
-    border: 1px solid #d9d9d9;
-    background-color: #d9d9d9;
+    background-color: #F2E3CC;
 }
 
 .aside-table th,
@@ -126,11 +149,11 @@ td {
 
 .aside-table__tbody td {
     padding: 1rem 1.5rem;
-    background-color: #ededed;
+    background-color: #FEF7E4;
 }
 
 .aside-table__tbody tr td:nth-child(2) {
-font-weight: 700;
+    font-weight: 700;
 }
 
 .aside-table__tbody tr:nth-child(2){
@@ -155,12 +178,15 @@ font-weight: 700;
 
 /* button */
 .button {
+    background-color: #5C3D2E;
     font: inherit;
+    font-size: 18px;
     padding: 0.5rem 1.5rem;
-    border: 1px black;
-    background: black;
+    border: none;
     color: white;
-    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+    transition: box-shadow 0.3s ease;
+    border-radius: 10px;
     cursor: pointer;
     margin-right: 1rem;
     text-decoration: none;
@@ -168,15 +194,21 @@ font-weight: 700;
 }
 
 .button:hover {
-    background: white;
-    color: black;
+    background-color: #985f28;
+    box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
 }
 
-.button-image {
+.button-images {
     border: none;
-    background: transparent;
+    border-radius: 10px;
+    background-color: #5C3D2E;
+    cursor: pointer;
+    text-decoration: none;
+
 }
 
-.button-image:hover {
-    border: 1px solid black;
+.button-images:hover {
+    /*border: 1px solid black;*/
+    background-color: #985f28;
+    box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
 }

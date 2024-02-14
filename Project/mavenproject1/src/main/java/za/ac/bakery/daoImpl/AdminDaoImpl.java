@@ -20,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import za.ac.bakery.databaseManager.Dbmanager;
 import za.ac.bakery.model.Address;
-import za.ac.bakery.model.Ingridient;
+import za.ac.bakery.model.Ingredient;
 import za.ac.bakery.model.Item;
 import za.ac.bakery.model.Person;
 import za.ac.bakery.dao.AdminDao;

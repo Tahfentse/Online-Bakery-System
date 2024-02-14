@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import za.ac.bakery.dao.IngredientRecipeDao;
 import za.ac.bakery.databaseManager.Dbmanager;
 import za.ac.bakery.model.IngredientRecipe;
-import za.ac.bakery.model.Ingridient;
+import za.ac.bakery.model.Ingredient;
 
 
 public class IngredientRecipeDaoImpl implements IngredientRecipeDao {
