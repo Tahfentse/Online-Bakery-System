@@ -9,35 +9,64 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Order Review - Takealot</title>
+        <title>Checkout</title>
+        <link rel="website icon" type="png" href="img/logo.png">
         <style>
-            /* CSS to style the layout */
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #FEF7E4;
+                color: #5C3D2E;
+            }
             .container {
-                display: flex;
-                justify-content: center; /* Centering the container */
-                align-items: flex-start; /* Aligning items to the top */
+                max-width: 600px;
+                margin: auto;
             }
-            .section {
-                flex: 1;
-                margin-right: 20px;
+            .address-section, .order-summary {
+                border: 1px solid #ccc;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+                border-radius: 10px;
+                overflow: hidden;
+                border: none;
             }
-            .delivery-info {
-                flex: 1; /* Take remaining space */
-                max-width: 400px; /* Limit width if needed */
+
+            .address-section:hover{
+                box-shadow: 0 0 10px rgba(152, 95, 40, 0.5);
+            }
+
+            .order-summary:hover{
+                box-shadow: 0 0 10px rgba(152, 95, 40, 0.5);
+            }
+
+            button {
+                background-color: #5C3D2E;
+                font: inherit;
+                font-size: 18px;
+                padding: 0.5rem 1.5rem;
+                border: none;
+                color: white;
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+                transition: box-shadow 0.3s ease;
+                border-radius: 10px;
+                cursor: pointer;
+                margin-right: 22px;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            button:hover {
+                background-color: #985f28;
+                box-shadow: 0 4px 23px 14px rgba(152, 95, 40, 0.8);
+            }
+            .space{
+                min-height: 5vh;
             }
         </style>
     </head>
     <body>
-        <header>
-            <h1>Takealot Logo</h1>
-            <nav>
-                <!-- Navigation links -->
-            </nav>
-            <div>
-                <!-- User account options -->
-            </div>
-        </header>
-        <main>
+
+        <div class="container">
             <%
 
                 Customer customer = (Customer) session.getAttribute("customer");
@@ -51,48 +80,54 @@
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, dd - MMMM - yyyy");
                 String formattedDate = date.format(formatter);
             %>
-            <div class="container">
-                <section id="delivery-info" class="section delivery-info">
-                    <h2>Review your order</h2>
-                    <div id="delivery-address">
-                        <%
-                        if (customer != null && !customer.getId_Number().equalsIgnoreCase("0")){
-                        %>
-                        <h1>RESIDENTIAL</h1>
-                        <p>Street name : <%= address.getStreet_name()%></p>
+
+            <h1>Review your order</h1>
+            <div class="space"></div
+
+            <section id="delivery-info" class="section delivery-info">
+                <div id="delivery-address" style="background-color:#F2E3CC; padding:10px;border-radius: 10px;">
+                    <%
+                        if (customer != null && !customer.getId_Number().equalsIgnoreCase("0")) {
+                    %>                  
+                        <p><strong>Street name : <%= address.getStreet_name()%></strong></p>
                         <p>Suburb : <%= address.getSuburb()%></p>
-                        <p>Postal code : <%= address.getPostal_code()%></p>
+                        <p>Postal code : <%= address.getPostal_code()%></p>                                
                     </div>
-                    <%}else{ %>
-                    
-                    <p>NO CUSTOMER!</p>
-                    <%}%>
-                    <div id="delivery-by">
-                        <%= formattedDate%>
-                        <p>Standard Delivery - Free</p>
-                    </div>
-                    <div id="payment-method">
-                        <p>EFT With MasterCard</p>
-                    </div>
-                </section>
-                <section id="order-summary" class="section">
-                    <h2>Order Summary</h2>
-                    <p>Number of Items: <%= numberOfItems%></p>
-                    <p>Delivery: R<%=deliveryfee%></p>
-                    <p><input type="checkbox" name="donate"/>Donate R5 to Reefentse Children's Charity</p>
+                    <br>
+                    <button type="button">Change Delivery Address</button>               
+                <%} else { %>
 
-                    <p>TO PAY: <%= amount + deliveryfee%></p>
-                    <button onclick="redirectToCheckout()">PAY NOW</button>
+                <p>NO CUSTOMER!</p>
+                <%}%>
+<!--                <div id="delivery-by">
+                    <%= formattedDate%>
+                    <p>Standard Delivery - Free</p>
+                </div>
+                <div id="payment-method">
+                    <p>EFT With MasterCard</p>
+                </div>-->
 
-                </section>
+            <!-- Order Summary Section -->
+            <div id="order-summary" class="order-summary">
+                <h2>Order Summary</h2>
+                <div id="delivery-by">
+                    <p>Date: <%= formattedDate%></p>
+                </div>
+                <p>Number of Items: <%= numberOfItems%></p>
+                <p>Delivery: R<%=deliveryfee%></p>
+                <hr>
+                <p>TO PAY: <%= amount + deliveryfee%></p>
+                <button onclick="redirectToCheckout()">Checkout</button>
+
+                🛡️ Secure Checkout
             </div>
-        </main>
-                    
-<script>
-function redirectToCheckout() {
-    // Redirect to checkout.jsp
-    window.location.href = "checkout.jsp";
-}
-</script>
+        </div>
+
+        <script>
+            function redirectToCheckout() {
+                // Redirect to checkout.jsp
+                window.location.href = "checkout.jsp";
+            }
+        </script>
     </body>
 </html>
