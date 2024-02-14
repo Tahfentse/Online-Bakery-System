@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="style.css" rel="stylesheet" type="text/css"/>
+    <script src="main.js" defer data-deferred="1"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
     .cart-popup {
@@ -32,67 +34,16 @@
 <body>
 
     <!-- Header SECTION -->
-    <header class="header">
-        <a href="startuppage.jsp" class="logo"> 2<i class="fas fa-chart-pie"></i> 4 Bakery </a>
-        <nav class="navbar">                
-            <a href="#category">Category</a>
-            <a href="#products">Products</a>
-            <a href="#about">About</a>
-            <a href="#reviews">Review</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-            <div id="search" class="fas fa-search" ></div>
-
-
-
-            <a id="cart-link" href="cart_view.jsp">
-                <div id="cart-icon" class="fas fa-shopping-cart">
-                    <span>
-                        <%
-                            // Retrieve the count from the session
-                            Integer cartItemCount = (Integer) session.getAttribute("cartItemCount");
-                            // Display 0 if count is null
-                            if (cartItemCount == null) {
-                                cartItemCount = 0;
-                            }
-                            out.print(cartItemCount);
-                        %>
-                    </span>
-                </div>
-            </a>
-            <!--                    <div id="cart-popup" style="display: none;">
-                                     Content of cart_test.jsp will be loaded here 
-                                    <div id="cart-content"></div>
-                                    <button onclick="closeCartPopup()">Close</button>
-                                </div>-->
-
-            <%
-                Customer customer = (Customer) session.getAttribute("customer");
-
-                if (customer == null) {
-            %>
-            <a id="login-btn" href="sign_in.jsp">
-                <div id="login-btn" class="fas fa-user"></div>
-            </a> 
-            <%} else {%>
-            <a id="login-btn" href="viewCustomer.jsp">
-                <div id="login-btn" class="fas fa-user"></div>
-            </a> 
-            <%}%>
-        </div>
-        <div class="search">
-            <input type="search" placeholder="search...">
-        </div>
-    </header>
+    <%@ include file="header.jsp" %>
     <!--End Header SECTION -->
-    <!--Carrrtttt pop-up--->
+
+    <!--Cart pop-up--->
     <div id="cart-popup" style="display: none;">
-        <!-- Content of cart_test.jsp will be loaded here -->
+        <!-- Content of cart_view.jsp will be loaded here -->
         <div id="cart-content"></div>
         <button onclick="closeCartPopup()">Close</button>
     </div>
+    <!--End Cart pop-up--->
 
     <!-- Welcome SECTION -->   
     <div class="welcome-section" id="home">
@@ -118,7 +69,6 @@
                 <div class="swiper">
                     <div class="swiper-wrapper">
 
-
                         <% for (Catergory category : categories) {
 
                                 Blob imageBlob = category.getCatergory_pic();
@@ -129,8 +79,6 @@
                                 // Assuming the image is a PNG for this example, adjust as needed
                                 String imgSrc = "data:image/png;base64, " + base64Image;
                         %>
-
-
 
                         <div class="swiper-slide">
 
@@ -153,12 +101,9 @@
                         <%
 
                             } %>
-
-
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-
                 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
                 <script src="./app/js/app.js"></script>
             </div>
@@ -178,9 +123,9 @@
     <!-- Products SECTION -->
     <section class="products" id="products">
 
-        <h1 class="title"> our <span>products</span> <a href="/mavenproject1/StoreController.do?action=POST&act=viewall">view all</a> </h1>
+        <h1 class="title"> our <span>products</span> <a href="/mavenproject1/StoreController.do?action=POST&act=viewall">view all>></a> </h1>
 
-        
+        <div class="box-container">
             <%
                 List<Item> items = (List<Item>) session.getAttribute("items");
                 int n = 1;
@@ -195,15 +140,10 @@
                     String imgSrc = "data:image/png;base64, " + base64Image;
             %>     
 
-        <div class="box-container">
-
             <div class="box">
                 <div class="icons">
-
-
-                    <a href="/mavenproject1/CartServlet?action=GET&act=viewItem&itemId=<%=items.get(n).getItem_id()%>" clas="fas fa-shopping-cart">Buy</a>
+                    <a href="/mavenproject1/CartServlet?action=GET&act=viewItem&itemId=<%=items.get(n).getItem_id()%>" class="fas fa-shopping-cart"></a>
                     <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=items.get(n).getItem_id()%>" class="fas fa-eye"></a>
-
                 </div>
                 <div class="img">
                     <img decoding="async" src="<%=imgSrc%>" alt="">
@@ -219,47 +159,14 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-
-            </div>
+            </div>        
+            <%
+                   ;
+                    n = n + 5;
+                }
+            %>
         </div>
-        <%
-
-               ;
-                n = n + 5;
-            }
-        %>
-
     </section>
-
-    <script>
-            var cartItems = []; // Array to store item IDs
-
-            function addItemToCart(itemId) {
-                // Check if the item is already in the cart
-                if (!cartItems.includes(itemId)) {
-                    cartItems.push(itemId); // Add item ID to the array
-                    updateCartCount(); // Update the cart count display
-                }
-            }
-
-            // Function to update the cart count display
-            function updateCartCount() {
-                var cartCountElement = document.getElementById("cart-count");
-                if (cartCountElement) {
-                    cartCountElement.textContent = cartItems.length; // Update the cart count
-                }
-            }
-
-            // Function to send item IDs to servlet when "Cart" link is clicked
-            document.getElementById("cart-link").addEventListener("click", function () {
-                // Convert the array to a comma-separated string
-                var itemIdsString = cartItems.join(",");
-                // Redirect to the servlet with the item IDs as a query parameter
-                window.location.href = "/mavenproject1/AddToCart?action=GET&act=viewcart&itemIds=" + itemIdsString;
-            });
-
-    </script>
-
     <!--End Products SECTION -->
 
     <!-- About SECTION -->
@@ -359,76 +266,7 @@
     <div class="space"></div>   
 
     <!--Footer SECTION -->
-    <section class="footer">
-        <div class="box-container">
-            <div class="box">
-                <h3>quick links</h3>
-                <a href="#home"> <i class="fas fa-arrow-right"></i> Home</a>
-                <a href="#about"> <i class="fas fa-arrow-right"></i>About</a>
-                <a href="#products"> <i class="fas fa-arrow-right"></i>Products</a>
-                <a href="#review"> <i class="fas fa-arrow-right"></i> Review</a>
-            </div>
-            <div class="box">
-                <h3>extra links</h3>
-                <a href="#"> <i class="fas fa-arrow-right"></i>  my order </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i>  my account </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i>  terms or use </a>
-            </div>
-            <div class="box">
-                <h3>follow us</h3>
-                <a href="https://facebook.com"> <i class="fab fa-facebook-f"></i> facebook </a>
-                <a href="https://twitter.com"> <i class="fab fa-twitter"></i> twitter </a>
-                <a href="https://instagram.com"> <i class="fab fa-instagram"></i> instagram </a>
-                <a href="https://linkedin.com"> <i class="fab fa-linkedin"></i> linkedin </a>
-            </div>
-            <div class="box" id="contact">
-                <h3>contact us</h3>
-                <p>Email: info@2Pie4bakery.com</p>
-                <p>Phone: 012 461 3724</p>
-            </div>
-        </div>
-
-    </section>
-    <section class="credit"><p>&copy; 2024 2Pie4 Bakery. All rights reserved.</p></section>
+    <%@ include file="footer.jsp" %>
     <!--End Footer SECTION -->
 
-    <script>
-        let search = document.querySelector('.search');
-        document.querySelector('#search').onclick = () => {
-            search.classList.toggle('active');
-        };
-
-
-
-        //----------------------------------------------------------
-
-
-
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-
-
-        function openCartPopup() {
-            // AJAX request to load cart_test.jsp content
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("cart-content").innerHTML = this.responseText;
-                    document.getElementById("cart-popup").style.display = "block";
-                }
-            };
-            xhttp.open("GET", "cart_test.jsp", true);
-            xhttp.send();
-        }
-
-        function closeCartPopup() {
-            document.getElementById("cart-popup").style.display = "none";
-        }
-    </script>
-
-
-
-
-    <script src="main.js" defer data-deferred="1"></script> </body>
 </html>
