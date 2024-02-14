@@ -4,6 +4,7 @@
     Author     : Train
 --%>
 
+<%@page import="za.ac.bakery.model.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- Header SECTION -->
@@ -19,12 +20,38 @@
     <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="search" class="fas fa-search" ></div>
-        <a id="cart-btn" href="cart.jsp">
-            <div id="cart-btn" class="fas fa-shopping-cart"></div>
-        </a>               
+        
+<!--other side of cart, will review later-->
+        <a id="cart-link" href="cart_view.jsp">
+            <div id="cart-icon" class="fas fa-shopping-cart">
+                <span id="cart-count">
+                    <%
+                            // Retrieve the count from the session
+                            Integer cartItemCount = (Integer) session.getAttribute("cartItemCount");
+                            // Display 0 if count is null
+                            if (cartItemCount == null) {
+                                cartItemCount = 0;
+                            }
+                            out.print(cartItemCount);
+                        %>
+                </span>
+
+            </div>
+        </a>       
+
+        <%
+            Customer customer = (Customer) session.getAttribute("customer");
+
+            if (customer == null) {
+        %>
         <a id="login-btn" href="sign_in.jsp">
             <div id="login-btn" class="fas fa-user"></div>
         </a> 
+        <%} else {%>
+        <a id="login-btn" href="viewCustomer.jsp">
+            <div id="login-btn" class="fas fa-user"></div>
+        </a> 
+        <%}%>
     </div>
     <div class="search">
         <input type="search" placeholder="search...">
