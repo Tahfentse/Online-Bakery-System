@@ -45,7 +45,7 @@
     <div class="space"></div>
 
         <section class="products">
-            <h1 class="title">Our <span>Products</span></h1>
+            <h1 class="title"><span>Products</span></h1>
             <div class="box-container">
                 <%
                     List<Item> items = (List<Item>) session.getAttribute("items");

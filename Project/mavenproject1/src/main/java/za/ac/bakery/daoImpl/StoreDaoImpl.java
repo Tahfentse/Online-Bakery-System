@@ -22,6 +22,7 @@ import za.ac.bakery.model.Address;
 import za.ac.bakery.model.Catergory;
 import za.ac.bakery.model.Ingredient;
 import za.ac.bakery.model.Item;
+import za.ac.bakery.model.Order;
 import za.ac.bakery.model.Person;
 
 /**
@@ -90,9 +91,8 @@ public class StoreDaoImpl implements StoreDao {
         List<Ingredient> ingridients = new ArrayList<>();
 
         try {
-            ps = con.prepareStatement("SELECT i.item_id, item_title, item_description, item_nutrients,item_pic, item_category, item_price, ingredient_id, ingredient_name, intgredient_qty\n"
-                    + "FROM item i,recipe r,ingredient ing,recipe_ingredient ri \n"
-                    + "WHERE item_id =r.recipeid AND ri.recipeId =r.recipeid AND ri.recipeIngredient =ing.ingredient_id AND item_id=?",
+
+            ps = con.prepareStatement("SELECT i.item_id,i.item_title,i.item_description,i.item_nutrients,i.item_pic,i.item_category,i.item_price,r.recipeid,r.item_recipe,ri.recipeIngredient,ri.required_qty,ing.ingredient_id,ing.ingredient_name,ing.intgredient_qty FROM item i ,recipe r,recipe_ingredient ri,ingredient ing WHERE i.item_id = r.recipeid AND r.recipeid =ri.recipeId AND ri.ingredientId = ing.ingredient_id AND i.item_id=?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ps.setInt(1, itemId);
 
@@ -184,7 +184,7 @@ public class StoreDaoImpl implements StoreDao {
         List<Item> items = new ArrayList<>();
 
         try {
-            ps = con.prepareStatement("SELECT i.item_id, item_title, item_description, item_nutrients,item_pic, item_category, item_price,ingredient_id,ing.ingredient_name,ing.intgredient_qty,r.recipeid,r.item_recipe FROM item i, ingredient ing,recipe r,recipe_ingredient ri WHERE i.item_id=ri.recipeId AND ri.recipeIngredient =ing.ingredient_id AND ri.recipeId =r.recipeid",
+            ps = con.prepareStatement("SELECT i.item_id,i.item_title,i.item_description,i.item_nutrients,i.item_pic,i.item_category,i.item_price,r.recipeid,r.item_recipe,ri.recipeIngredient,ri.required_qty,ing.ingredient_id,ing.ingredient_name,ing.intgredient_qty FROM item i ,recipe r,recipe_ingredient ri,ingredient ing WHERE i.item_id = r.recipeid AND r.recipeid =ri.recipeId AND ri.ingredientId = ing.ingredient_id",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
             ResultSet rs = ps.executeQuery();
@@ -271,7 +271,6 @@ public class StoreDaoImpl implements StoreDao {
         }
         return items;
     }
-    
 
     @Override
     public List<Person> getAllPeople() {
@@ -294,16 +293,118 @@ public class StoreDaoImpl implements StoreDao {
         } catch (SQLException ex) {
             Logger.getLogger(StoreDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+
         return people;
 
     }
 
     public static void main(String[] args) {
-        
+
         StoreDaoImpl dao = new StoreDaoImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
-        
-        Item item =dao.getItem(36);System.out.println(""+item.toString());
-        
+
+        Item item = dao.getItem(36);
+        System.out.println("" + item.toString());
+
+        System.out.println("" + item.toString());
+
     }
+
+    @Override
+    public List<Order> Allorders() {
+        List<Order> orders = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT o.order_id, o.order_price, o.orderTimeStamp, i.item_id, i.item_title, i.item_description, i.item_nutrients, i.item_pic, i.item_price FROM `order` o JOIN oderitemid oi ON o.order_id = oi.OrderId JOIN item i ON oi.itemID = i.item_id");
+
+            ResultSet rs = ps.executeQuery();
+
+            Map<Long, Order> orderMap = new HashMap<>();
+
+            while (rs.next()) {
+                long orderId = rs.getLong("order_id");
+                int id = Integer.parseInt(String.valueOf(orderId));
+                Order order = orderMap.get(orderId);
+                if (order == null) {
+                    order = new Order();
+                    order.setOrderId(id);
+                    order.setPrice(rs.getDouble("order_price"));
+                    order.setTimestamp(rs.getTimestamp("orderTimeStamp"));
+                    orders.add(order);
+                    orderMap.put(orderId, order);
+                }
+
+                Item item = new Item();
+
+                item.setItem_id((int) rs.getLong("item_id"));
+                item.setItem_title(rs.getString("item_title"));
+                item.setItem_description(rs.getString("item_description"));
+                item.setItem_nutrients(rs.getString("item_nutrients"));
+                item.setPic(rs.getBlob("item_pic"));
+                item.setItem_price(rs.getDouble("item_price"));
+
+                order.getItems().add(item);
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(StoreDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return orders;
+    }
+
+    public List<Order> Allorderss() {
+        List<Order> orders = new ArrayList<>();
+
+        try {
+            if (con == null) {
+                // Handle the case where connection is not initialized
+                System.out.println("Connection is null");
+                return orders; // return empty list
+            }
+
+            try (PreparedStatement ps = con.prepareStatement("SELECT o.order_id, o.order_price, o.orderTimeStamp, i.item_id, i.item_title, i.item_description, i.item_nutrients, i.item_pic, i.item_price FROM `order` o JOIN oderitemid oi ON o.order_id = oi.OrderId JOIN item i ON oi.itemID = i.item_id")) {
+                ResultSet rs = ps.executeQuery();
+
+                Map<Long, Order> orderMap = new HashMap<>();
+
+                while (rs.next()) {
+                    long orderId = rs.getLong("order_id");
+                    Order order = orderMap.get(orderId);
+                    if (order == null) {
+                        order = new Order();
+                        order.setOrderId((int) orderId);
+                        order.setPrice(rs.getDouble("order_price"));
+                        order.setTimestamp(rs.getTimestamp("orderTimeStamp"));
+                        orders.add(order);
+                        orderMap.put(orderId, order);
+                    }
+
+                    Item item = new Item();
+                    item.setItem_id((int) rs.getLong("item_id"));
+                    item.setItem_title(rs.getString("item_title"));
+                    item.setItem_description(rs.getString("item_description"));
+                    item.setItem_nutrients(rs.getString("item_nutrients"));
+                    item.setPic(rs.getBlob("item_pic"));
+                    item.setItem_price(rs.getDouble("item_price"));
+
+                    // Ensure that order is not null before trying to add item
+                    if (order != null) {
+                        if (order.getItems() == null) {
+                            order.setItems(new ArrayList<>());
+                        }
+                        order.getItems().add(item);
+                    }
+                }
+
+                rs.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StoreDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return orders;
+    }
+
 }

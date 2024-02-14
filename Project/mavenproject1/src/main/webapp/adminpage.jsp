@@ -31,23 +31,25 @@
                 </div>
                 <!-- sidebar -->
                 <div class="sidebar">
-                    <a href="#">
+                    <a href="adminviewitems.jsp#home">
                         <span><i class="uil uil-apps"></i></span>
                         <h3>Dashboard</h3>
                     </a>
+
                     <a href="viewAllCustomers.jsp">
                         <span><i class="uil uil-user"></i></span>
                         <h3>Customers</h3>
                     </a>
+
                     <a href="viewAllOrders.jsp">
                         <span><i class="uil uil-shopping-cart-alt"></i></span>
                         <h3>Orders</h3>
                     </a>
-                    <a href="#">
+                    <a href="analytics.jsp">
                         <span><i class="uil uil-analytics"></i></span>
                         <h3>Analytics</h3>
                     </a>
-                    <a href="#">
+                    <a href="adminviewitems.jsp">
                         <span><i class="uil uil-ankh"></i></span>
                         <h3>Products</h3>
                     </a>
@@ -65,7 +67,7 @@
                     </a>
                     <!-- logout -->
                     <a href="s">
-                      
+
                         <span><i class="uil uil-signout"></i></span>
                         <h3>Logout</h3>
                     </a>
@@ -153,7 +155,7 @@
                             </tr>
                         </thead>
                         <tbody>
-         
+
                             <tr>
                                 <td> 01FENH</td>
                                 <td>1</td>
@@ -161,7 +163,7 @@
                                 <td class="danger">Pending</td>
                                 <td>2023-23</td>
                             </tr>                  
-           
+
                         </tbody>
                     </table>
                 </div>
@@ -228,13 +230,21 @@
         </div>
     </body>
     <script >
-       document.getElementById("add-product").addEventListener("click", function () {
+        document.getElementById("add-product").addEventListener("click", function () {
             window.location.href = "addItem.jsp";
-        });  
-        
-        
-        
-        
+        });
+
+        document.getElementById("view-customer").addEventListener("click", function () {
+            window.location.href = "/mavenproject1/AddToCart?action=GET&act=viewallcustomer";
+        });
+
+        document.getElementById("analytics").addEventListener("click", function () {
+            window.location.href = "/mavenproject1/AddToCart?action=GET&act=viewallcustomer";
+        });
+
+
+
+
     </script>
 
 </html>

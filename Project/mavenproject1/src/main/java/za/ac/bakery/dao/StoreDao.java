@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.List;
 import za.ac.bakery.model.Catergory;
 import za.ac.bakery.model.Item;
+import za.ac.bakery.model.Order;
 import za.ac.bakery.model.Person;
 
 /**
@@ -35,5 +36,7 @@ public interface StoreDao {
     public List<Item> getAllItems();
     
     public List<Person> getAllPeople();
+    
+    public List<Order> Allorders();
     
 }

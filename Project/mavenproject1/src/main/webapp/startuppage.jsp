@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 <style>
     .cart-popup {
@@ -190,6 +190,22 @@
         %>
 
         <div class="box-container">
+<<<<<<< Updated upstream
+=======
+            <%
+                List<Item> items = (List<Item>) session.getAttribute("items");
+                int n = 1;
+                for (int i = n; i < 6; i++) {
+
+                    n=6*i;
+                    Blob imageBlob = items.get(n).getPic();
+
+                    byte[] imageData = imageBlob.getBytes(1, (int) imageBlob.length());
+                    String base64Image = java.util.Base64.getEncoder().encodeToString(imageData);
+
+                    String imgSrc = "data:image/png;base64, " + base64Image;
+            %>     
+>>>>>>> Stashed changes
             <div class="box">
                 <div class="icons">
 
@@ -197,13 +213,19 @@
                     <a href="/mavenproject1/CartServlet?action=GET&act=viewItem&itemId=<%=item.getItem_id()%>" clas="fas fa-shopping-cart">Buy</a>
                     <a href="/mavenproject1/AdminController.do?action=GET&act=viewItem&itemid=<%=item.getItem_id()%>" class="fas fa-eye"></a>
 
+<<<<<<< Updated upstream
+=======
+                    <button onclick="addItemToCart('<%=items.get(n).getItem_id()%>')"><a clas="fas fa-shopping-cart"></a>BUY</button>
+
+                    <a href="/mavenproject1/StoreController.do?action=GET&act=viewItem&itemid=<%=items.get(n).getItem_id()%>" class="fas fa-eye"></a>
+>>>>>>> Stashed changes
                 </div>
                 <div class="img">
                     <img decoding="async" src="<%=imgSrc%>" alt="">
                 </div>
                 <div class="content">
-                    <h3><%=item.getItem_title()%></h3>
-                    <div class="price">R<%=item.getItem_price()%></div>
+                    <h3><%=items.get(n).getItem_title()%></h3>
+                    <div class="price">R<%=items.get(n).getItem_price()%></div>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -212,7 +234,16 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
+<<<<<<< Updated upstream
             </div>
+=======
+            </div>      
+            <%
+
+                   ;
+               n= n+5; }
+            %>
+>>>>>>> Stashed changes
         </div>
         <%}%>
 

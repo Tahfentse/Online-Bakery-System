@@ -5,6 +5,7 @@
 package za.ac.bakery.daoImpl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,7 +46,7 @@ public class OrderDaoImpl implements OrderDao { // OrderDaoImpl == these are you
 
             ps = con.prepareStatement("INSERT INTO ordert (order_price,orderTimeStamp) VALUES(?,?)");
             ps.setDouble(1, 0);
-            ps.setTimestamp(2, order.getTimestamp());
+            ps.setDate(2, (Date) order.getTimestamp());
 
             ps.executeUpdate();
 
@@ -62,7 +63,7 @@ public class OrderDaoImpl implements OrderDao { // OrderDaoImpl == these are you
                     + "SET order_price=?,orderTimeStamp=?"
                     + "WHERE order_id=?");
             ps.setDouble(1, order.getPrice());
-            ps.setTimestamp(2, order.getTimestamp());
+            ps.setTimestamp(2, (Timestamp) order.getTimestamp());
             ps.executeUpdate();
 
         } catch (SQLException ex) {

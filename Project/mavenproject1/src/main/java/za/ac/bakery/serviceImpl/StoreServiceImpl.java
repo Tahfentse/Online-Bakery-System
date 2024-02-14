@@ -19,6 +19,7 @@ import za.ac.bakery.daoImpl.AdminDaoImpl;
 import za.ac.bakery.daoImpl.StoreDaoImpl;
 import za.ac.bakery.model.Catergory;
 import za.ac.bakery.model.Item;
+import za.ac.bakery.model.Order;
 import za.ac.bakery.model.Person;
 import za.ac.bakery.service.AdminService;
 import za.ac.bakery.service.StoreService;
@@ -83,9 +84,15 @@ public class StoreServiceImpl implements StoreService {
         List<Item> items;
 
         StoreServiceImpl service = new StoreServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
+
         items = service.getItems();
         
         items.forEach(System.out::println);
+
+        List<Order> orders = service.Allorders();
+
+        orders.forEach(System.out::println);
+
 
     }
 
@@ -205,4 +212,16 @@ public class StoreServiceImpl implements StoreService {
         return "notsucess";
 
     }
+
+    @Override
+    public List<Order> Allorders() {
+        List<Order> orders = storeservice.Allorderss();
+
+        if (orders.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return orders;
+    }
+
 }

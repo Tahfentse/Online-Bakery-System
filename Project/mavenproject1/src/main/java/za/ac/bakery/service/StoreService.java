@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.List;
 import za.ac.bakery.model.Catergory;
 import za.ac.bakery.model.Item;
+import za.ac.bakery.model.Order;
 import za.ac.bakery.model.Person;
 
 /**
@@ -37,4 +38,6 @@ public interface StoreService {
     public List<Person> getAllPeople();
     
     public String forgotPassword(String email);
+    
+    public List<Order> Allorders();
 }

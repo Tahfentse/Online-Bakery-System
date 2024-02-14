@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +20,8 @@ import za.ac.bakery.model.Catergory;
 import za.ac.bakery.model.Customer;
 import za.ac.bakery.model.Ingredient;
 import za.ac.bakery.model.Item;
+import za.ac.bakery.model.Order;
 import za.ac.bakery.model.Person;
-import za.ac.bakery.serviceImpl.AdminServiceImpl;
 import za.ac.bakery.serviceImpl.StoreServiceImpl;
 
 /**
@@ -78,8 +77,10 @@ public class StoreController extends HttpServlet {
 
             categories = storeservice.catergories();
 
-            items = storeservice.getItems();
-
+            items = storeservice.getAllItems();
+            
+            System.out.println("Number of Items " + items.size());
+            
             session.setAttribute("categories", categories);
             session.setAttribute("items", items);
 
@@ -125,7 +126,6 @@ public class StoreController extends HttpServlet {
                     int itemId = Integer.parseInt(request.getParameter("itemid"));
 
                     Item item = storeservice.getItem(itemId);
-
                     session.setAttribute("item", item);
                     path = "Item.jsp";
                     request.getRequestDispatcher(path).forward(request, response);
@@ -176,7 +176,47 @@ public class StoreController extends HttpServlet {
 
                     if (person.getEmail().length() > 2) {
 
+<<<<<<< Updated upstream
                         if (person.getPassword().equals(password)) {
+=======
+                                if (person.getRole().equalsIgnoreCase("customer")) {
+                                    customer = new Customer(person.getId_Number(), person.getName(), person.getSurname(), person.getTitle(), person.getEmail(), person.getContact_no(), person.getAddress(), person.getPassword(), person.getRole());
+                                    session.setAttribute("customer", customer);
+                                    path = "sucessful.jsp";
+                                    realpath = "/mavenproject1/StoreController.do?action=GET";
+                                    message = "Succesfully Logged In!";
+                                    session.setAttribute("user", customer);
+                                } else {
+
+                                    path = "adminpage.jsp";
+                                    realpath = "adminpage.jsp";
+                                    message = "Succesfully Logged\n Your being Directed to the Admin Page!";
+
+                                    List<Item> allitems = storeservice.getAllItems();
+
+                                    List<Order> ordess = storeservice.Allorders();
+
+                                    List<Person> people = storeservice.getAllPeople();
+                                    List<Customer> customers = new ArrayList<>();
+
+                                    for (int in = 0; in < people.size(); in++) {
+
+                                        if (people.get(in).getRole().equalsIgnoreCase("customer")) {
+
+                                            person = people.get(in);
+
+                                            customer = new Customer(person.getId_Number(), person.getName(), person.getSurname(), person.getTitle(), person.getEmail(), person.getContact_no(), person.getAddress(), person.getPassword(), person.getRole());
+
+                                            customers.add(customer);
+                                        }
+
+                                    }
+
+                                    session.setAttribute("items", allitems);
+                                    session.setAttribute("orders", ordess);
+                                    session.setAttribute("customers", customers);
+                                }
+>>>>>>> Stashed changes
 
                             if (person.getRole().equalsIgnoreCase("customer")) {
                                 customer = new Customer(person.getId_Number(), person.getName(), person.getSurname(), person.getTitle(), person.getEmail(), person.getContact_no(), person.getAddress(), person.getPassword(), person.getRole());
@@ -240,6 +280,11 @@ public class StoreController extends HttpServlet {
                     session.setAttribute("path", realpath);
 
                     request.getRequestDispatcher(path).forward(request, response);
+
+                    break;
+                case "viewallcustomer":
+
+                    request.getRequestDispatcher("").forward(request, response);
 
                     break;
             }
