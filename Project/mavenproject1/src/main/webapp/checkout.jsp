@@ -11,21 +11,18 @@
 <html lang="en" >
     <head>
         <meta charset="UTF-8">
-        <title>Credit Card Payment</title>
+        <title>Credit Card Payment Form</title>
+        <link rel="website icon" type="png" href="img/logo.png">
         <link href="https://fonts.googleapis.com/css?family=Raleway|Rock+Salt|Source+Code+Pro:300,400,600" rel="stylesheet">
         <link rel="stylesheet" href="./checkout_style.css">
 
     </head>
     <body>
         <!-- partial:index.partial.html -->
-        
-        <%  Double amount = (Double) session.getAttribute("amount");
-            Double deliveryfee = (Double) session.getAttribute("Delivery");
-        %>
-        <div class="payment-title">
-            <h1>Enter Payment Information</h1>
+        <div class="payment-title">           
         </div>
         <div class="wholecontainer">
+            <h1>Payment Information</h1>
             <div class="container preload">
                 <div class="creditcard">
                     <div class="front">
@@ -43,7 +40,7 @@
                         <path class="darkcolor greydark" d="M750,431V193.2c-217.6-57.5-556.4-13.5-750,24.9V431c0,22.1,17.9,40,40,40h670C732.1,471,750,453.1,750,431z" />
                         </g>
                         <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber" class="st2 st3 st4">0123 4567 8910 1112</text>
-                        <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">Hope Sky</text>
+                        <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">JOHN DOE</text>
                         <text transform="matrix(1 0 0 1 54.1074 389.8793)" class="st7 st5 st8">cardholder name</text>
                         <text transform="matrix(1 0 0 1 479.7754 388.8793)" class="st7 st5 st8">expiration</text>
                         <text transform="matrix(1 0 0 1 65.1054 241.5)" class="st7 st5 st8">card number</text>
@@ -124,14 +121,14 @@
                     </div>
                 </div>
             </div>
-            <form action="OrderServlet" method="post" >
+            <form action="#" method="" >
                 <div class="form-container">
                     <div class="field-container">
                         <label for="name">Name</label>
                         <input id="name" maxlength="20" type="text">
                     </div>
                     <div class="field-container">
-                        <label for="cardnumber">Card Number</label><span id="generatecard">Change card</span>
+                        <label for="cardnumber">Card Number</label><span id="generatecard">generate random</span>
                         <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric">
                         <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -148,14 +145,12 @@
                     </div>
                 </div>
                 <input type="hidden"  name="act" value="payment" />
-                
-                <button type="submit"> PAY <p> R <%= amount + deliveryfee%></p></button>
-            </form>
-
+                <div style="text-align: center;"><button type="submit"> PAY </button></div>
         </div>
 
 
 
+    </form>
     <!-- partial -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js'></script><script  src="./checkout_script.js"></script>
 
