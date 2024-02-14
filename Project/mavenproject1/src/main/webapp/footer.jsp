@@ -11,14 +11,14 @@
         <div class="box-container">
             <div class="box">
                 <h3>quick links</h3>
-                <a href="#home"> <i class="fas fa-arrow-right"></i> Home</a>
-                <a href="#about"> <i class="fas fa-arrow-right"></i>About</a>
-                <a href="#products"> <i class="fas fa-arrow-right"></i>Products</a>
-                <a href="#review"> <i class="fas fa-arrow-right"></i> Review</a>
+                <a href="startuppage.jsp#home"> <i class="fas fa-arrow-right"></i> Home</a>
+                <a href="startuppage.jsp#about"> <i class="fas fa-arrow-right"></i>About</a>
+                <a href="startuppage.jsp#products"> <i class="fas fa-arrow-right"></i>Products</a>
+                <a href="startuppage.jsp#review"> <i class="fas fa-arrow-right"></i> Review</a>
             </div>
             <div class="box">
                 <h3>extra links</h3>
-                <a href="#"> <i class="fas fa-arrow-right"></i>  my order </a>
+                <a href="cart_view.jsp"> <i class="fas fa-arrow-right"></i>  my order </a>
                 <a href="#"> <i class="fas fa-arrow-right"></i>  my account </a>
                 <a href="#"> <i class="fas fa-arrow-right"></i>  terms or use </a>
             </div>
