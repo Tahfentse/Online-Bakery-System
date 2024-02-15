@@ -1,11 +1,3 @@
-        modified:   Project/mavenproject1/src/main/java/za/ac/bakery/Controller/CartController.java
-        modified:   Project/mavenproject1/src/main/java/za/ac/bakery/Controller/CartServlet.java
-        modified:   Project/mavenproject1/src/main/java/za/ac/bakery/Controller/CustomerController.java
-        modified:   Project/mavenproject1/src/main/java/za/ac/bakery/Controller/StoreController.java
-        modified:   Project/mavenproject1/src/main/webapp/checkout.jsp
-        modified:   Project/mavenproject1/src/main/webapp/reviewOrder.jsp
-        modified:   Project/mavenproject1/src/main/webapp/viewCustomer.jsp
-
 <%-- 
     Document   : viewCustomer
     Created on : Feb 8, 2024, 3:12:43 PM
