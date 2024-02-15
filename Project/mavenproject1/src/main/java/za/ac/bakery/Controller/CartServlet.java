@@ -44,10 +44,13 @@ public class CartServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
+
+        List<Integer> numberOfItems = (List<Integer>) session.getAttribute("numberOfItem");
+
         S_CartService userCart = (S_CartService) session.getAttribute("userCart");
 
         if (userCart == null) {
-           
+
             userCart = new S_CartServiceImpl("jdbc:mysql://localhost:3306/bakery-systemdb", "root", "root");
             session.setAttribute("userCart", userCart);
         }
@@ -74,9 +77,9 @@ public class CartServlet extends HttpServlet {
 
                         count++;
                         session.setAttribute("cartItemCount", count);
-                       
+
                         session.setAttribute("cartItems", userCart.getCart());
-                       
+
                         double totalAmount = calculateTotalAmount(userCart);
                         session.setAttribute("totalAmount", totalAmount);
                     } else {
