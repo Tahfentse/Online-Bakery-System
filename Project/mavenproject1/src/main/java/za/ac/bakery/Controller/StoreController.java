@@ -80,6 +80,9 @@ public class StoreController extends HttpServlet {
             items = storeservice.getAllItems();
 
             System.out.println("Number of Items " + items.size());
+            Integer cartItemCount = 0;
+
+            session.setAttribute("cartItemCount", null);
 
             session.setAttribute("categories", categories);
             session.setAttribute("items", items);
@@ -140,17 +143,19 @@ public class StoreController extends HttpServlet {
                     password = request.getParameter("password");
 
                     people = storeservice.getAllPeople();
+                    System.out.println("People "+people.toString());
 
                     for (int i = 0; i < people.size(); i++) {
                         if (people.get(i).getEmail().equalsIgnoreCase(email)) {
 
                             System.out.println("Person" + people.get(i));
+                            
                             person.setId_Number(people.get(i).getId_Number());
                             person.setName(people.get(i).getName());
                             person.setSurname(people.get(i).getSurname());
                             person.setTitle(people.get(i).getTitle());
                             person.setEmail(people.get(i).getEmail());
-                            person.setContact_no(person.getContact_no());
+                            person.setContact_no(people.get(i).getContact_no());
 
                             adres.setAddress_Id(people.get(i).getAddress().getAddress_Id());
                             adres.setPostal_code(people.get(i).getAddress().getPostal_code());
@@ -179,9 +184,12 @@ public class StoreController extends HttpServlet {
                             if (person.getRole().equalsIgnoreCase("customer")) {
                                 customer = new Customer(person.getId_Number(), person.getName(), person.getSurname(), person.getTitle(), person.getEmail(), person.getContact_no(), person.getAddress(), person.getPassword(), person.getRole());
                                 session.setAttribute("customer", customer);
+                                System.out.println(""+customer.toString());
                                 path = "sucessful.jsp";
-                                realpath = "/mavenproject1/StoreController.do?action=GET";
+                                realpath = "startuppage.jsp";
                                 message = "Succesfully Logged In!";
+                                Integer count = (Integer) session.getAttribute("cartItemCount");
+                                session.setAttribute("cartItemCount", count);
                                 session.setAttribute("user", customer);
                             } else {
 
@@ -196,18 +204,6 @@ public class StoreController extends HttpServlet {
                                 List<Person> people = storeservice.getAllPeople();
                                 List<Customer> customers = new ArrayList<>();
 
-                                for (int in = 0; in < people.size(); in++) {
-
-                                    if (people.get(in).getRole().equalsIgnoreCase("customer")) {
-
-                                        person = people.get(in);
-
-                                        customer = new Customer(person.getId_Number(), person.getName(), person.getSurname(), person.getTitle(), person.getEmail(), person.getContact_no(), person.getAddress(), person.getPassword(), person.getRole());
-
-                                        customers.add(customer);
-                                    }
-
-                                }
 
                                 session.setAttribute("items", allitems);
                                 session.setAttribute("orders", ordess);
