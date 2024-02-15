@@ -124,6 +124,9 @@ public class CustomerController extends HttpServlet {
 
                 request.getRequestDispatcher(path).forward(request, response);
                 break;
+            case "editcustomer":
+                
+                break;
         }
 
     }
